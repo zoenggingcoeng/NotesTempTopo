@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-04-06">
+
+<title>LENGTH SPACES – 拓扑学讲义翻译</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec16.html">16. LENGTH SPACES</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">拓扑学讲义翻译</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BASIC TOPOLOGY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">全书（单页 HTML）</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. CATEGORY THEORY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. TOPOLOGICAL SUBSPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. LIMITS AND CONVERGENCE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. INDUCED TOPOLOGIES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. ORDERS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. IDENTIFYING AND ATTACHING SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. CONNECTEDNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. SEPARATION</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. COMPACTNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. COUNTABILITY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15. METRIC SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec16.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">16. LENGTH SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17. SPACES OF METRICS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18. METRIZING TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19. TOPOLOGY OF FUNCTION SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Probset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Quiz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quiz</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#length-spaces.-长度空间" id="toc-length-spaces.-长度空间" class="nav-link active" data-scroll-target="#length-spaces.-长度空间">16.1 Length spaces. | 长度空间</a>
+  <ul class="collapse">
+  <li><a href="#length-structures.-长度结构" id="toc-length-structures.-长度结构" class="nav-link" data-scroll-target="#length-structures.-长度结构">16.1.1 Length structures. | 长度结构</a></li>
+  <li><a href="#intrinsic-metrics.-内蕴度量" id="toc-intrinsic-metrics.-内蕴度量" class="nav-link" data-scroll-target="#intrinsic-metrics.-内蕴度量">16.1.2 Intrinsic metrics. | 内蕴度量</a></li>
+  </ul></li>
+  <li><a href="#topology-associated-to-the-length-structure.-关联于长度结构的拓扑" id="toc-topology-associated-to-the-length-structure.-关联于长度结构的拓扑" class="nav-link" data-scroll-target="#topology-associated-to-the-length-structure.-关联于长度结构的拓扑">16.2 Topology associated to the length structure. | 关联于长度结构的拓扑</a></li>
+  <li><a href="#geodesics.-测地线" id="toc-geodesics.-测地线" class="nav-link" data-scroll-target="#geodesics.-测地线">16.3 Geodesics. | 测地线</a>
+  <ul class="collapse">
+  <li><a href="#geodesics.-测地线-1" id="toc-geodesics.-测地线-1" class="nav-link" data-scroll-target="#geodesics.-测地线-1">16.3.1 Geodesics. | 测地线</a></li>
+  <li><a href="#the-hopfrinow-theorem.-hopf-rinow-定理" id="toc-the-hopfrinow-theorem.-hopf-rinow-定理" class="nav-link" data-scroll-target="#the-hopfrinow-theorem.-hopf-rinow-定理">16.3.2 The Hopf–Rinow theorem. | Hopf-Rinow 定理</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LENGTH SPACES</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 6, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="length-spaces.-长度空间" class="level2">
+<h2 class="anchored" data-anchor-id="length-spaces.-长度空间">16.1 Length spaces. | 长度空间</h2>
+<section id="length-structures.-长度结构" class="level3">
+<h3 class="anchored" data-anchor-id="length-structures.-长度结构">16.1.1 Length structures. | 长度结构</h3>
+<p>Intuitively, a length structure consists of a class of admissible paths for which we can measure their length, and the length itself, which is a correspondence assigning a nonnegative number to every path from the class. Both the class and the correspondence have to possess several natural properties.</p>
+<p>Recall that a path <span class="math inline">\(\gamma\)</span> in a topological space <span class="math inline">\(X\)</span> is a continuous map <span class="math inline">\(\gamma: I \to X\)</span> defined on an interval <span class="math inline">\(I \subseteq \mathbb{R}\)</span>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>16.1.1.1 Definition:</strong> <strong>Length structures</strong>: A <em>length structure</em> on a topological space <span class="math inline">\(X\)</span> is a class <span class="math inline">\(\mathcal{A}\)</span> of admissible paths, which is a subset of all continuous paths in <span class="math inline">\(X\)</span>, together with a <em>length functional</em> <span class="math inline">\(L: \mathcal{A} \to [0, \infty]\)</span>. The class <span class="math inline">\(\mathcal{A}\)</span> is closed under these operations:</p>
+<ol type="1">
+<li><em>Restrictions.</em> If <span class="math inline">\(\gamma: I \to X\)</span> is an admissible path and <span class="math inline">\([a, b] \subseteq I\)</span>, then the restriction <span class="math inline">\(\gamma|_{[a,b]}\)</span> is also admissible.</li>
+<li><em>Concatenations.</em> If a path <span class="math inline">\(\gamma: [a, b] \to X\)</span> is such that its restrictions <span class="math inline">\(\gamma|_{[a,c]}\)</span> and <span class="math inline">\(\gamma|_{[c,b]}\)</span> are both admissible paths, then so is <span class="math inline">\(\gamma\)</span>.</li>
+<li><em>Linear reparameterizations.</em> For an admissible path <span class="math inline">\(\gamma: I \to X\)</span> and a homeomorphism <span class="math inline">\(\varphi: J \to I\)</span> of the form <span class="math inline">\(\varphi(t) = at + b\)</span> for some <span class="math inline">\(a, b \in \mathbb{R}\)</span>, the composition <span class="math inline">\(\gamma \circ \varphi\)</span> is also an admissible path. The functional <span class="math inline">\(L\)</span> possesses the following properties, denoting <span class="math inline">\(L(\gamma, a, b) = -L(\gamma, b, a) = L(\gamma|_{[a,b]})\)</span> for any <span class="math inline">\([a, b] \subseteq I\)</span>:</li>
+<li><em>Additivity.</em> <span class="math inline">\(L(\gamma, a, b) = L(\gamma, a, c) + L(\gamma, c, b)\)</span> for any <span class="math inline">\(a, b, c \in I\)</span>.</li>
+<li><em>Continuous dependence on parameter.</em> For a path <span class="math inline">\(\gamma: I \to X\)</span>, the function <span class="math inline">\(L(\gamma, \cdot, \cdot): I^2 \to [0, \infty]\)</span> is continuous.</li>
+<li><em>Invariance under reparameterization.</em> <span class="math inline">\(L(\gamma \circ \varphi) = L(\gamma)\)</span> for a linear homeomorphism <span class="math inline">\(\varphi\)</span>. The length structures agree with the topology of <span class="math inline">\(X\)</span> in the following sense: for a neighborhood <span class="math inline">\(U_p\)</span> of a point <span class="math inline">\(p\)</span>, the length of paths connecting <span class="math inline">\(p\)</span> with points of the complement of <span class="math inline">\(U_p\)</span> is separated from zero: <span class="math inline">\(\inf\{L(\gamma) : \gamma(a) = p, \gamma(b) \in X \setminus U_p\} &gt; 0\)</span>.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>16.1.1.1 定义：</strong> <strong>长度结构</strong> (Length structures)：拓扑空间 <span class="math inline">\(X\)</span> 上的<strong>长度结构</strong>是容许路径的一个类 <span class="math inline">\(\mathcal{A}\)</span>（它是 <span class="math inline">\(X\)</span> 中所有连续路径的子集），连同一个<strong>长度泛函</strong> (length functional) <span class="math inline">\(L: \mathcal{A} \to [0, \infty]\)</span>。类 <span class="math inline">\(\mathcal{A}\)</span> 在以下运算下是封闭的：</p>
+<ol type="1">
+<li><strong>限制</strong> (Restrictions)。如果 <span class="math inline">\(\gamma: I \to X\)</span> 是一条容许路径且 <span class="math inline">\([a, b] \subseteq I\)</span>，那么限制 <span class="math inline">\(\gamma|_{[a,b]}\)</span> 也是容许的。</li>
+<li><strong>拼接</strong> (Concatenations)。如果路径 <span class="math inline">\(\gamma: [a, b] \to X\)</span> 使得它的限制 <span class="math inline">\(\gamma|_{[a,c]}\)</span> 和 <span class="math inline">\(\gamma|_{[c,b]}\)</span> 都是容许路径，那么 <span class="math inline">\(\gamma\)</span> 也是容许的。</li>
+<li><strong>线性重新参数化</strong> (Linear reparameterizations)。对于容许路径 <span class="math inline">\(\gamma: I \to X\)</span> 和形如 <span class="math inline">\(\varphi(t) = at + b\)</span>（其中 <span class="math inline">\(a, b \in \mathbb{R}\)</span>）的同胚 <span class="math inline">\(\varphi: J \to I\)</span>，复合 <span class="math inline">\(\gamma \circ \varphi\)</span> 也是一条容许路径。 泛函 <span class="math inline">\(L\)</span> 具有以下性质，对于任何 <span class="math inline">\([a, b] \subseteq I\)</span>，记 <span class="math inline">\(L(\gamma, a, b) = -L(\gamma, b, a) = L(\gamma|_{[a,b]})\)</span>：</li>
+<li><strong>可加性</strong> (Additivity)。对于任意 <span class="math inline">\(a, b, c \in I\)</span>，<span class="math inline">\(L(\gamma, a, b) = L(\gamma, a, c) + L(\gamma, c, b)\)</span>。</li>
+<li><strong>对参数的连续依赖性</strong> (Continuous dependence on parameter)。对于路径 <span class="math inline">\(\gamma: I \to X\)</span>，函数 <span class="math inline">\(L(\gamma, \cdot, \cdot): I^2 \to [0, \infty]\)</span> 是连续的。</li>
+<li><strong>重新参数化下的不变性</strong> (Invariance under reparameterization)。对于线性同胚 <span class="math inline">\(\varphi\)</span>，<span class="math inline">\(L(\gamma \circ \varphi) = L(\gamma)\)</span>。 长度结构在以下意义上与 <span class="math inline">\(X\)</span> 的拓扑相容：对于点 <span class="math inline">\(p\)</span> 的邻域 <span class="math inline">\(U_p\)</span>，连接 <span class="math inline">\(p\)</span> 与 <span class="math inline">\(U_p\)</span> 的补集中点的路径的长度有正的下界：<span class="math inline">\(\inf\{L(\gamma) : \gamma(a) = p, \gamma(b) \in X \setminus U_p\} &gt; 0\)</span>。</li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+<p>In fact, all reasonable length structures are invariant under arbitrary reparameterizations: <span class="math inline">\(L(\gamma \circ \varphi) = L(\gamma)\)</span> for any homeomorphism <span class="math inline">\(\varphi\)</span> such that both <span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\gamma \circ \varphi\)</span> are admissible. However, it is not necessary to verify this in the beginning.</p>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.1.2 Remark:</strong> Every natural class of paths comes with its own class of reparameterizations. For example, consider the class of all continuous paths and the class of homeomorphisms, the class of piecewise smooth paths and the class of diffeomorphisms. We only require that this class of reparameterizations includes all linear maps.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.1.2 备注：</strong> 每个自然的路径类都伴随着它自己的重新参数化类。例如，考虑所有连续路径的类和同胚的类，分段光滑路径的类和微分同胚的类。我们只要求这个重新参数化类包含所有线性映射。
+</details>
+</div>
+</div>
+</div>
+<p><strong>16.1.1.3 Example:</strong> Examples of classes of admissible paths include: all continuous paths; piecewise smooth paths (on a smooth manifold); broken lines in <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+</section>
+<section id="intrinsic-metrics.-内蕴度量" class="level3">
+<h3 class="anchored" data-anchor-id="intrinsic-metrics.-内蕴度量">16.1.2 Intrinsic metrics. | 内蕴度量</h3>
+<p>Once we have a length structure, we are ready to define a metric associated with the structure.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.1 Definition:</strong> Let <span class="math inline">\(X\)</span> be a Hausdorff space with a length structure <span class="math inline">\((\mathcal{A}, L)\)</span>. For two points <span class="math inline">\(p, q \in X\)</span> the associated distance between them is the infimum of lengths of admissible paths connecting these points: <span class="math display">\[d_L(p, q) = \inf\{L(\gamma) : \gamma: [a, b] \to X, \gamma \in \mathcal{A}, \gamma(a) = p, \gamma(b) = q\}. \qquad (246)\]</span>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.1 定义：</strong> 设 <span class="math inline">\(X\)</span> 是一个带有长度结构 <span class="math inline">\((\mathcal{A}, L)\)</span> 的 Hausdorff 空间。对于两个点 <span class="math inline">\(p, q \in X\)</span>，它们之间的关联距离是连接这两点的容许路径长度的下确界： <span class="math display">\[d_L(p, q) = \inf\{L(\gamma) : \gamma: [a, b] \to X, \gamma \in \mathcal{A}, \gamma(a) = p, \gamma(b) = q\}. \qquad (246)\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.2 Remark:</strong> If it is clear from the context which length structure <span class="math inline">\(L\)</span> gives rise to <span class="math inline">\(d_L\)</span>, we usually drop <span class="math inline">\(L\)</span> in the notation <span class="math inline">\(d_L\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.2 备注：</strong> 如果从上下文中可以清楚地看出是哪个长度结构 <span class="math inline">\(L\)</span> 导出了 <span class="math inline">\(d_L\)</span>，我们通常在记号 <span class="math inline">\(d_L\)</span> 中省略 <span class="math inline">\(L\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.3 Proposition:</strong> Let <span class="math inline">\(X\)</span> be a Hausdorff space with a length structure <span class="math inline">\((\mathcal{A}, L)\)</span>. The associated distance <span class="math inline">\(d_L\)</span> is a (generalized) metric on <span class="math inline">\(X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.3 命题：</strong> 设 <span class="math inline">\(X\)</span> 是带有长度结构 <span class="math inline">\((\mathcal{A}, L)\)</span> 的 Hausdorff 空间。关联距离 <span class="math inline">\(d_L\)</span> 是 <span class="math inline">\(X\)</span> 上的一个（广义）度量。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.4 Remark:</strong> Note that <span class="math inline">\(d_L\)</span> is not necessarily a finite metric. For instance, if <span class="math inline">\(X\)</span> is a disconnected union of two components, no continuous path can go from one component to the other and therefore the distance between points of different components is infinite. On the other hand, there may be points such that continuous paths connecting them exist but all have infinite length.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.4 备注：</strong> 注意 <span class="math inline">\(d_L\)</span> 不一定是有限度量。例如，如果 <span class="math inline">\(X\)</span> 是两个连通分支的不连通并集，没有连续路径可以从一个分支走到另一个分支，因此不同分支的点之间的距离是无穷大。另一方面，也可能存在这样的点：连接它们的连续路径存在，但长度都是无穷大。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.5 Definition:</strong> Let <span class="math inline">\(X\)</span> be a Hausdorff space with a length structure <span class="math inline">\((\mathcal{A}, L)\)</span>. Two points <span class="math inline">\(p, q \in X\)</span> belong to the same <em>accessibility component</em> if they can be connected by a path of finite length.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.5 定义：</strong> 设 <span class="math inline">\(X\)</span> 是带有长度结构 <span class="math inline">\((\mathcal{A}, L)\)</span> 的 Hausdorff 空间。如果两点 <span class="math inline">\(p, q \in X\)</span> 可以被一条有限长度的路径连接，则它们属于同一个<strong>可达分支</strong> (accessibility component)。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.1.2.6 Lemma:</strong> Let <span class="math inline">\(X\)</span> be a Hausdorff space with a length structure <span class="math inline">\((\mathcal{A}, L)\)</span>. Admissible paths of finite length are continuous in the metric topology induced by <span class="math inline">\(d_L\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.1.2.6 引理：</strong> 设 <span class="math inline">\(X\)</span> 是带有长度结构 <span class="math inline">\((\mathcal{A}, L)\)</span> 的 Hausdorff 空间。有限长度的容许路径在由 <span class="math inline">\(d_L\)</span> 诱导的度量拓扑中是连续的。
+</details>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="topology-associated-to-the-length-structure.-关联于长度结构的拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="topology-associated-to-the-length-structure.-关联于长度结构的拓扑">16.2 Topology associated to the length structure. | 关联于长度结构的拓扑</h2>
+<p>This lemma deals with the topology determined by the metric <span class="math inline">\(d_L\)</span> rather than the original topology on <span class="math inline">\(X\)</span>.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.2.0.1 Proposition:</strong> The topology determined by <span class="math inline">\(d_L\)</span> is finer than that of <span class="math inline">\(X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.2.0.1 命题：</strong> 由 <span class="math inline">\(d_L\)</span> 决定的拓扑比 <span class="math inline">\(X\)</span> 的拓扑更细。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.2.0.2 Definition:</strong> <strong>Length spaces</strong>: A metric obtained as the distance function associated to a length structure is called an <em>intrinsic</em>, or length, metric. A metric space whose metric is intrinsic is called a <em>length space</em>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.2.0.2 定义：</strong> <strong>长度空间</strong> (Length spaces)：作为关联于长度结构的距离函数而获得的度量称为<strong>内蕴度量</strong> (intrinsic metric) 或长度度量。其度量是内蕴度量的度量空间称为<strong>长度空间</strong> (length space)。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.2.0.3 Remark:</strong> Not every metric can arise as a length metric. Even if <span class="math inline">\((X, d)\)</span> is a length space and <span class="math inline">\(A \subseteq X\)</span>, the restriction of <span class="math inline">\(d|_A\)</span> is not necessarily intrinsic. For example, consider a circle in the plane. Moreover, not every metrizable topology can be induced by intrinsic metrics.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.2.0.3 备注：</strong> 并非所有的度量都能作为长度度量出现。即使 <span class="math inline">\((X, d)\)</span> 是一个长度空间且 <span class="math inline">\(A \subseteq X\)</span>，限制 <span class="math inline">\(d|_A\)</span> 也不一定是内蕴的。例如，考虑平面上的一个圆。此外，并非所有可度量化的拓扑都可以由内蕴度量诱导。
+</details>
+</div>
+</div>
+</div>
+<p><strong>16.2.0.4 Example:</strong> (1) The rationals <span class="math inline">\(\mathbb{Q}\)</span> is not homeomorphic to a length space. (2) The space <span class="math inline">\(X = \{(x, y) : y = \sin \frac{1}{x}, x &gt; 0\} \cup \mathbb{R} \times \{0\} \subseteq \mathbb{R}^2\)</span> is not homeomorphic to a length space.</p>
+<p>There can be more delicate reasons why a topological space may be not homeomorphic to a length space.</p>
+<p>[16, Exercises 2.1.8] <strong>16.2.0.5 Example:</strong> Consider the union of segments <span class="math display">\[X = \bigcup_{n \in \mathbb{N}} \left[ (0,0), \left(\cos \frac{1}{n}, \sin \frac{1}{n}\right) \right] \cup [(0,0), (1,0)] \subseteq \mathbb{R}^2. \qquad (247)\]</span> This topological space is not homeomorphic to a length space.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.2.0.6 Proposition:</strong> A length space is locally-path connected.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.2.0.6 命题：</strong> 长度空间是局部路径连通的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.2.0.7 Remark:</strong> The infimum in Definition 16.1.2.1 cannot be replaced by the minimum since there may be no shortest path between two points.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.2.0.7 备注：</strong> 定义 16.1.2.1 中的下确界不能被最小值代替，因为两点之间可能不存在最短路径。
+</details>
+</div>
+</div>
+</div>
+<p>For instance, consider the Euclidean plane with an open segment removed; then for the endpoints of the segment, the shortest path does not exist: it is just removed. Still, its length can be approximated with a given precision by other paths connecting the points. Such situations rarely arise in “real-life” examples; in most cases they will be also prohibited by imposing completeness-compactness type assumptions. On the other hand, existence of shortest paths helps to avoid tedious and nonessential complications. For the simplicity of our exposition we will often restrict ourselves to complete length structures.</p>
+</section>
+<section id="geodesics.-测地线" class="level2">
+<h2 class="anchored" data-anchor-id="geodesics.-测地线">16.3 Geodesics. | 测地线</h2>
+<section id="geodesics.-测地线-1" class="level3">
+<h3 class="anchored" data-anchor-id="geodesics.-测地线-1">16.3.1 Geodesics. | 测地线</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.1 Definition:</strong> <strong>Geodesics:</strong> A curve <span class="math inline">\(\gamma: [a, b] \to X\)</span> is a called a <em>shortest path</em> if its length is minimal among the curves with the same endpoints; that is <span class="math inline">\(L(\eta) \ge L(\gamma)\)</span> for any curve <span class="math inline">\(\eta\)</span> connecting <span class="math inline">\(\gamma(a)\)</span> and <span class="math inline">\(\gamma(b)\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.1 定义：</strong> <strong>测地线：</strong> 如果曲线 <span class="math inline">\(\gamma: [a, b] \to X\)</span> 的长度在具有相同端点的曲线中是最小的，那么它被称为<strong>最短路径</strong> (shortest path)；也就是说，对于任何连接 <span class="math inline">\(\gamma(a)\)</span> 和 <span class="math inline">\(\gamma(b)\)</span> 的曲线 <span class="math inline">\(\eta\)</span>，都有 <span class="math inline">\(L(\eta) \ge L(\gamma)\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.2 Definition:</strong> <strong>Geodesics:</strong> Let <span class="math inline">\(X\)</span> be a length space. A curve <span class="math inline">\(\gamma: I \to X\)</span> is called a <em>geodesic</em> if for every <span class="math inline">\(t \in I\)</span> there exists a neighborhood <span class="math inline">\(J\)</span> of <span class="math inline">\(t\)</span> in <span class="math inline">\(I\)</span> such that <span class="math inline">\(\gamma|_J\)</span> is a shortest path.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.2 定义：</strong> <strong>测地线：</strong> 设 <span class="math inline">\(X\)</span> 是一个长度空间。曲线 <span class="math inline">\(\gamma: I \to X\)</span> 被称为<strong>测地线</strong> (geodesic)，如果对于每一个 <span class="math inline">\(t \in I\)</span>，在 <span class="math inline">\(I\)</span> 中都存在一个 <span class="math inline">\(t\)</span> 的邻域 <span class="math inline">\(J\)</span>，使得 <span class="math inline">\(\gamma|_J\)</span> 是一条最短路径。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.3 Remark:</strong> The example of the sphere shows that there are geodesics that are not shortest paths: whereas every segment of a great circle on a sphere is a geodesic, it fails to be shortest as soon as it is longer than half of the equator. Although the spherical example suggests that a shortest path between two points should be unique at least locally, this is also not true in general. To see an example, consider the surface of a cube with its intrinsic metric induced by the Euclidean metric of its ambient space. We suggest that the reader shows that any neighborhood of a vertex contains points with multiple shortest paths between them. Another natural conjecture that turns out to be wrong is that a limit of geodesics is a geodesic; give a counterexample to this on the surface of the cube. We will see later that these phenomena are caused by nonsmoothness of the surface and that indeed such things never happen to smooth examples.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.3 备注：</strong> 球面的例子表明，存在不是最短路径的测地线：虽然球面上大圆的每一段都是测地线，但一旦它长于赤道的一半，就不再是最短的。尽管球面的例子暗示两点之间的最短路径至少在局部应该是唯一的，但这在一般情况下也是不成立的。为了看一个例子，考虑一个立方体的表面，其内蕴度量由其所在空间的欧几里得度量诱导。我们建议读者证明，顶点的任何邻域都包含它们之间具有多条最短路径的点。另一个被证明是错误的自然猜想是，测地线的极限是测地线；请在立方体表面上给出一个反例。我们稍后将看到，这些现象是由表面的不光滑性引起的，实际上在光滑的例子中绝对不会发生这种事情。
+</details>
+</div>
+</div>
+</div>
+<p>It is clear that a shortest path always admits a natural parameterization, and hence so does a geodesic.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.4 Definition:</strong> <strong>Complete length spaces:</strong> A length structure <span class="math inline">\((\mathcal{A}, L)\)</span> on <span class="math inline">\(X\)</span> is <em>complete</em> if for every <span class="math inline">\(p, q \in X\)</span> there exists an admissible path <span class="math inline">\(\gamma\)</span> joining them with <span class="math inline">\(L(\gamma) = d_L(p, q)\)</span>. Intrinsic metrics associated with complete length structures are said to be <em>strictly intrinsic</em>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.4 定义：</strong> <strong>完备长度空间：</strong> <span class="math inline">\(X\)</span> 上的一个长度结构 <span class="math inline">\((\mathcal{A}, L)\)</span> 是<strong>完备的</strong> (complete)，如果对于每一个 <span class="math inline">\(p, q \in X\)</span>，都存在一条连接它们的容许路径 <span class="math inline">\(\gamma\)</span>，满足 <span class="math inline">\(L(\gamma) = d_L(p, q)\)</span>。与完备长度结构相关联的内蕴度量被称为<strong>严格内蕴的</strong> (strictly intrinsic)。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.5 Proposition:</strong> A length structure is complete iff there is a shortest path between every two points.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.5 命题：</strong> 一个长度结构是完备的，当且仅当每两点之间都存在一条最短路径。
+</details>
+</div>
+</div>
+</div>
+<p>Intuitively, a space is noncomplete if a point is missing. One may suspect that this absence of a point can be noticed by moving along a geodesic that would end at this point: the interval for which our motion is well-defined is not closed. The theorem below formalizes this observation. Before formulating it, we generalize the notion of a shortest path so as to include paths defined on nonclosed intervals.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>16.3.1.6 Definition:</strong> <strong>Minimal geodesics:</strong> A curve <span class="math inline">\(\gamma: I \to X\)</span> in a metric space is a <em>shortest path</em>, or a <em>minimal geodesic</em>, if its restriction to any interval <span class="math inline">\([a, b] \subseteq I\)</span> is a shortest path (Definition 16.3.1.1).
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>16.3.1.6 定义：</strong> <strong>最小测地线：</strong> 度量空间中的曲线 <span class="math inline">\(\gamma: I \to X\)</span> 是<strong>最短路径</strong> (shortest path) 或<strong>最小测地线</strong> (minimal geodesic)，如果它在任何区间 <span class="math inline">\([a, b] \subseteq I\)</span> 上的限制都是一条最短路径（定义 16.3.1.1）。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="the-hopfrinow-theorem.-hopf-rinow-定理" class="level3">
+<h3 class="anchored" data-anchor-id="the-hopfrinow-theorem.-hopf-rinow-定理">16.3.2 The Hopf–Rinow theorem. | Hopf-Rinow 定理</h3>
+<p>The next theorem generalizes the classical Hopf–Rinow theorem for Riemannian manifolds.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>16.3.2.1 Theorem:</strong> <strong>Hopf–Rinow–Cohn-Vossen:</strong> For a locally compact length space <span class="math inline">\((X, d)\)</span>, the following four assertions are equivalent:</p>
+<ol type="1">
+<li><span class="math inline">\(X\)</span> is complete.</li>
+<li><span class="math inline">\(X\)</span> is boundedly compact, i.e., every closed metric ball in <span class="math inline">\(X\)</span> is compact.</li>
+<li>Every geodesic <span class="math inline">\(\gamma: [0, a[ \to X\)</span> can be extended to a continuous path <span class="math inline">\(\overline{\gamma}: [0, a] \to X\)</span>.</li>
+<li>There is a point <span class="math inline">\(p \in X\)</span> such that every shortest path <span class="math inline">\(\gamma: [0, a[ \to X\)</span> with <span class="math inline">\(\gamma(0) = p\)</span> can be extended to a continuous path <span class="math inline">\(\overline{\gamma}: [0, a] \to X\)</span>.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>16.3.2.1 定理：</strong> <strong>Hopf–Rinow–Cohn-Vossen：</strong> 对于局部紧的长度空间 <span class="math inline">\((X, d)\)</span>，以下四个断言是等价的：</p>
+<ol type="1">
+<li><span class="math inline">\(X\)</span> 是完备的。</li>
+<li><span class="math inline">\(X\)</span> 是有界紧的，即 <span class="math inline">\(X\)</span> 中的每个闭度量球都是紧的。</li>
+<li>每条测地线 <span class="math inline">\(\gamma: [0, a[ \to X\)</span> 都可以扩张为连续路径 <span class="math inline">\(\overline{\gamma}: [0, a] \to X\)</span>。</li>
+<li>存在一点 <span class="math inline">\(p \in X\)</span>，使得每条满足 <span class="math inline">\(\gamma(0) = p\)</span> 的最短路径 <span class="math inline">\(\gamma: [0, a[ \to X\)</span> 都可以扩张为连续路径 <span class="math inline">\(\overline{\gamma}: [0, a] \to X\)</span>。</li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开证明]
+</summary>
+<p><em>Proof:</em> Implications <span class="math inline">\((2) \implies (1) \implies (3) \implies (4)\)</span> are left as easy exercises. We will prove that <span class="math inline">\((4)\)</span> implies <span class="math inline">\((2)\)</span>.</p>
+<p>Since <span class="math inline">\(X\)</span> is locally compact, sufficiently small closed balls <span class="math inline">\(D_d(p, r)\)</span> are compact. Assuming that there are noncompact closed balls for the sake of contradiction, assume that <span class="math display">\[R = \sup\{r : D_d(p, r) \text{ is compact}\} &lt; \infty. \qquad (248)\]</span> The argument consists of two steps.</p>
+<p>First, we prove that the open ball <span class="math inline">\(B_d(p, R)\)</span> is pre-compact. It suffices to show that every sequence <span class="math inline">\(\{p_i\}\)</span> in this ball contains a converging subsequence. Let <span class="math inline">\(r_i = d(p, p_i)\)</span> for <span class="math inline">\(i \in \mathbb{N}\)</span>. One may assume that <span class="math inline">\(r_i \to R\)</span> as <span class="math inline">\(i \to \infty\)</span>; otherwise a subsequence of <span class="math inline">\(\{p_i\}\)</span> is contained in a ball <span class="math inline">\(D_d(p, r)\)</span> for some <span class="math inline">\(r &lt; R\)</span>, and then there is a converging subsequence because this smaller ball is compact by the choice of <span class="math inline">\(R\)</span>.</p>
+<p>Let <span class="math inline">\(\gamma_i: [0, r_i] \to X\)</span> be an arc-length parameterized shortest path connecting <span class="math inline">\(p\)</span> to <span class="math inline">\(p_i\)</span>. Such a shortest path exists because <span class="math inline">\(p_i\)</span> belongs to a compact ball centered at <span class="math inline">\(p\)</span>. We can choose a subsequence of <span class="math inline">\(\{\gamma_i\}\)</span> such that the restrictions of the paths to <span class="math inline">\([0, r_1]\)</span> converge. From this subsequence, we choose a further subsequence of paths whose restrictions to <span class="math inline">\([0, r_2]\)</span> converge, and so on. Then the Cantor diagonal procedure yields a sequence <span class="math inline">\(\{\gamma_{i_n}\}\)</span> (for all large enough <span class="math inline">\(n\)</span>) such that for every <span class="math inline">\(t \in [0, R[\)</span> the sequence <span class="math inline">\(\{\gamma_{i_n}(t)\}\)</span> converges in <span class="math inline">\(X\)</span>.</p>
+<p>Define <span class="math inline">\(\gamma(t) = \lim_{n \to \infty} \gamma_{i_n}(t)\)</span>; then <span class="math inline">\(\gamma: [0, R[ \to X\)</span> is a nonexpanding map and a shortest path. By the assertion <span class="math inline">\((4)\)</span>, there is a continuous extension <span class="math inline">\(\overline{\gamma}: [0, R] \to X\)</span>. Then the points <span class="math inline">\(p_{i_n}\)</span> converge to <span class="math inline">\(\overline{\gamma}(R)\)</span>.</p>
+Second, since the open ball <span class="math inline">\(B_d(p, R)\)</span> is pre-compact, the closed ball <span class="math inline">\(D_d(p, R)\)</span> in a length space, being the closure of the respective open ball, is compact. Now we show that a ball <span class="math inline">\(B_{R+\varepsilon}(p)\)</span> is pre-compact for some <span class="math inline">\(\varepsilon &gt; 0\)</span>. Since <span class="math inline">\(X\)</span> is locally compact, for every <span class="math inline">\(q \in D_d(p, R)\)</span> there is an <span class="math inline">\(r(q) &gt; 0\)</span> such that the ball <span class="math inline">\(B_d(q, r(q))\)</span> is precompact. Choose <span class="math inline">\(\{q_i\}_{i=1}^N \subseteq D_d(p, R)\)</span> so that <span class="math inline">\(D = \bigcup_{i=1}^N D_d(q_i, r(p_i)) \supseteq D_d(q, R)\)</span>. Since <span class="math inline">\(D\)</span> is pre-compact and contains the ball <span class="math inline">\(B_d(p, R + \varepsilon)\)</span> for <span class="math inline">\(\varepsilon = \min r_i &gt; 0\)</span>, it contradicts the choice of <span class="math inline">\(R\)</span>. <span class="math inline">\(\blacksquare\)</span>
+</details>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

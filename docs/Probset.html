@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-05-05">
+
+<title>Problems QA – 拓扑学讲义翻译</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Probset.html">Exercise</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">拓扑学讲义翻译</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BASIC TOPOLOGY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./full.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">全书（单页 HTML）</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. CATEGORY THEORY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. TOPOLOGICAL SUBSPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. LIMITS AND CONVERGENCE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. INDUCED TOPOLOGIES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. ORDERS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. IDENTIFYING AND ATTACHING SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. CONNECTEDNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. SEPARATION</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. COMPACTNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. COUNTABILITY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15. METRIC SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16. LENGTH SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17. SPACES OF METRICS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18. METRIZING TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19. TOPOLOGY OF FUNCTION SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Probset.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exercise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Quiz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quiz</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#chapter-2" id="toc-chapter-2" class="nav-link active" data-scroll-target="#chapter-2">Chapter 2</a></li>
+  <li><a href="#chapter-3" id="toc-chapter-3" class="nav-link" data-scroll-target="#chapter-3">Chapter 3</a></li>
+  <li><a href="#chapter-4" id="toc-chapter-4" class="nav-link" data-scroll-target="#chapter-4">Chapter 4</a></li>
+  <li><a href="#chapter-11" id="toc-chapter-11" class="nav-link" data-scroll-target="#chapter-11">Chapter 11</a></li>
+  <li><a href="#chapter-12" id="toc-chapter-12" class="nav-link" data-scroll-target="#chapter-12">Chapter 12</a>
+  <ul class="collapse">
+  <li><a href="#the-prove-of-urysohns-lemma-and-tietze-exension-theorem" id="toc-the-prove-of-urysohns-lemma-and-tietze-exension-theorem" class="nav-link" data-scroll-target="#the-prove-of-urysohns-lemma-and-tietze-exension-theorem">The Prove of Urysohn’s lemma and Tietze exension theorem</a></li>
+  </ul></li>
+  <li><a href="#chapter-13" id="toc-chapter-13" class="nav-link" data-scroll-target="#chapter-13">Chapter 13</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Problems QA</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 5, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="chapter-2" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2">Chapter 2</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Is it true that any closed subset <span class="math inline">\(C\)</span> of <span class="math inline">\(\mathbb{R}\)</span> is the disjoint union of countably many closed intervals? Is it true if we allow any number of closed intervals? Justify your answer.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 结论：不成立</strong></p>
+<p><strong>证明与反例：</strong></p>
+<p>最著名的反例是 <strong>康托尔集 (Cantor set)</strong>，记为 <span class="math inline">\(\mathcal{C}\)</span>。</p>
+<ul>
+<li><strong>闭性：</strong> 康托尔集是通过从闭区间 <span class="math inline">\([0, 1]\)</span> 中不断挖去开区间得到的，因此它是闭集。</li>
+<li><strong>不含区间：</strong> 康托尔集是完全不连通的（totally disconnected），它不包含任何长度大于 <span class="math inline">\(0\)</span> 的开区间。这意味着，如果我们将 <span class="math inline">\(\mathcal{C}\)</span> 写成不相交闭区间的并，这些“区间”必须全部是<strong>单点</strong>（即退化区间 <span class="math inline">\([x, x]\)</span>）。</li>
+<li><strong>基数矛盾：</strong> 康托尔集是不可数的（其基数为连续统势 <span class="math inline">\(\mathfrak{c}\)</span>）。如果我们将其表示为可数个不相交闭区间的并，由于每个区间只能是单点，那么这个并集最多只能包含可数个点，这与康托尔集的不可数性矛盾。</li>
+</ul>
+<p><strong>2. 结论：成立</strong> <strong>证明：</strong> 这个结论在数学上是平凡的，因为我们可以利用单点集的性质。</p>
+<ul>
+<li><strong>构造：</strong> 对于任何集合 <span class="math inline">\(C \subseteq \mathbb{R}\)</span>（不限于闭集），我们都可以将其写成其所有单点的并： <span class="math display">\[C = \bigcup_{x \in C} \{x\}\]</span></li>
+<li><strong>性质：</strong> 在 <span class="math inline">\(\mathbb{R}\)</span> 中，单点集 <span class="math inline">\(\{x\}\)</span> 等价于闭区间 <span class="math inline">\([x, x]\)</span>。</li>
+<li><strong>不相交性：</strong> 显然，对于不同的 <span class="math inline">\(x, y \in C\)</span>，集合 <span class="math inline">\(\{x\}\)</span> 和 <span class="math inline">\(\{y\}\)</span> 是互不相交的。</li>
+<li><strong>结论：</strong> 因此，任何集合都可以表示为（可能不可数个）互不相交闭区间的并。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Prove that a subset <span class="math inline">\(S \subseteq \mathbb{R}\)</span> is closed if and only if its complement <span class="math inline">\(S^c = \mathbb{R} \setminus S\)</span> is open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>我们将分两个方向证明这个充要条件。</p>
+<p><strong>1 必要性 (<span class="math inline">\(\implies\)</span>)：若 <span class="math inline">\(S\)</span> 是闭集，则其补集 <span class="math inline">\(S^c\)</span> 是开集</strong></p>
+<ol type="1">
+<li>取任意点 <span class="math inline">\(x \in S^c\)</span>，这意味着 <span class="math inline">\(x \notin S\)</span>。</li>
+<li>由于 <span class="math inline">\(S\)</span> 是闭集，它包含其所有的极限点（limit points）。既然 <span class="math inline">\(x \notin S\)</span>，那么 <span class="math inline">\(x\)</span> 必然不是 <span class="math inline">\(S\)</span> 的极限点。</li>
+<li>根据极限点的定义，由于 <span class="math inline">\(x\)</span> 不是极限点，必然存在某个 <span class="math inline">\(\epsilon &gt; 0\)</span>，使得开区间 <span class="math inline">\(B(x, \epsilon) = (x - \epsilon, x + \epsilon)\)</span> 不包含 <span class="math inline">\(S\)</span> 中的任何点。</li>
+<li>因此，<span class="math inline">\(B(x, \epsilon) \subseteq S^c\)</span>。</li>
+<li>由于 <span class="math inline">\(S^c\)</span> 中的每一点都是其内点，得证 <span class="math inline">\(S^c\)</span> 是开集。</li>
+</ol>
+<p><strong>2 充分性 (<span class="math inline">\(\impliedby\)</span>)：若 <span class="math inline">\(S^c\)</span> 是开集，则 <span class="math inline">\(S\)</span> 是闭集</strong></p>
+<ol type="1">
+<li>设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(S\)</span> 的一个极限点。我们需要证明 <span class="math inline">\(x \in S\)</span>。</li>
+<li>使用反证法：假设 <span class="math inline">\(x \notin S\)</span>，则 <span class="math inline">\(x \in S^c\)</span>。</li>
+<li>因为 <span class="math inline">\(S^c\)</span> 是开集，存在某个 <span class="math inline">\(\epsilon &gt; 0\)</span>，使得 <span class="math inline">\(B(x, \epsilon) \subseteq S^c\)</span>。</li>
+<li>这意味着 <span class="math inline">\(B(x, \epsilon) \cap S = \emptyset\)</span>，即 <span class="math inline">\(x\)</span> 的该邻域内不包含 <span class="math inline">\(S\)</span> 中的任何点。</li>
+<li>这与“<span class="math inline">\(x\)</span> 是 <span class="math inline">\(S\)</span> 的极限点”的定义矛盾（极限点的定义要求 <span class="math inline">\(x\)</span> 的<strong>每一个</strong>邻域都必须包含 <span class="math inline">\(S\)</span> 中的点）。</li>
+<li>因此，假设不成立，必然有 <span class="math inline">\(x \in S\)</span>。</li>
+<li>由于 <span class="math inline">\(S\)</span> 包含了其所有的极限点，得证 <span class="math inline">\(S\)</span> 是闭集。</li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-3" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3">Chapter 3</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Are the following <span class="math inline">\(\mathcal{T}\)</span> topologies on <span class="math inline">\(\mathbb{R}\)</span>?</p>
+<ol type="1">
+<li><span class="math inline">\(\mathcal{T} = \{|A| = \infty\} \cup \{\emptyset\}\)</span>;</li>
+<li><span class="math inline">\(\mathcal{T} = \{]-r, r[ : r &gt; 0\} \cup \{\emptyset, \mathbb{R}\}\)</span>.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>判断一个集合族 <span class="math inline">\(\mathcal{T}\)</span> 是否为 <span class="math inline">\(\mathbb{R}\)</span> 上的拓扑，需要验证拓扑的三条公理：</p>
+<ol type="1">
+<li><span class="math inline">\(\emptyset\)</span> 和 <span class="math inline">\(\mathbb{R}\)</span> 都在 <span class="math inline">\(\mathcal{T}\)</span> 中。</li>
+<li><span class="math inline">\(\mathcal{T}\)</span> 中任意个元素的并集仍在 <span class="math inline">\(\mathcal{T}\)</span> 中。</li>
+<li><span class="math inline">\(\mathcal{T}\)</span> 中有限个元素的交集仍在 <span class="math inline">\(\mathcal{T}\)</span> 中。</li>
+</ol>
+<p><strong>(1) <span class="math inline">\(\mathcal{T} = \{|A| = \infty\} \cup \{\emptyset\}\)</span></strong></p>
+<p><strong>结论：不是拓扑。</strong></p>
+<p><strong>理由：</strong> 它不满足<strong>有限交公理</strong>。 我们可以找到两个属于 <span class="math inline">\(\mathcal{T}\)</span> 的无限集，它们的交集是一个非空的有限集（但不属于 <span class="math inline">\(\mathcal{T}\)</span>）。</p>
+<ul>
+<li><strong>反例：</strong> 考虑集合 <span class="math inline">\(A = (\mathbb{Q} \cap \mathbb{R})\)</span>（所有有理数集）和 <span class="math inline">\(B = ((\mathbb{R} \setminus \mathbb{Q}) \cup \{1\})\)</span>（所有无理数加上数字 <span class="math inline">\(1\)</span>）。</li>
+<li>显然 <span class="math inline">\(|A| = \infty\)</span> 且 <span class="math inline">\(|B| = \infty\)</span>，因此 <span class="math inline">\(A, B \in \mathcal{T}\)</span>。</li>
+<li>然而，<span class="math inline">\(A \cap B = \{1\}\)</span>。</li>
+<li>由于 <span class="math inline">\(\{1\}\)</span> 是一个有限集且不等于 <span class="math inline">\(\emptyset\)</span>，所以 <span class="math inline">\(\{1\} \notin \mathcal{T}\)</span>。</li>
+<li>因此，<span class="math inline">\(\mathcal{T}\)</span> 对有限交运算不封闭。</li>
+</ul>
+<hr>
+<p><strong>(2) <span class="math inline">\(\mathcal{T} = \{]-r, r[ : r &gt; 0\} \cup \{\emptyset, \mathbb{R}\}\)</span></strong></p>
+<p><strong>结论：是拓扑。</strong></p>
+<p><strong>证明：</strong></p>
+<ol type="1">
+<li><strong>包含空集与全集：</strong> 定义中已明确给出 <span class="math inline">\(\emptyset, \mathbb{R} \in \mathcal{T}\)</span>。</li>
+<li><strong>任意并公理：</strong> 设 <span class="math inline">\(\{U_i\}_{i \in I}\)</span> 是 <span class="math inline">\(\mathcal{T}\)</span> 中的一个子族。
+<ul>
+<li>如果其中某个 <span class="math inline">\(U_i = \mathbb{R}\)</span>，则并集为 <span class="math inline">\(\mathbb{R} \in \mathcal{T}\)</span>。</li>
+<li>如果所有 <span class="math inline">\(U_i\)</span> 都是形如 <span class="math inline">\(]-r_i, r_i[\)</span> 的开区间，设 <span class="math inline">\(R = \sup \{r_i : i \in I\}\)</span>。
+<ul>
+<li>若 <span class="math inline">\(R = \infty\)</span>，则 <span class="math inline">\(\bigcup U_i = \mathbb{R} \in \mathcal{T}\)</span>。</li>
+<li>若 <span class="math inline">\(R &lt; \infty\)</span>，则 <span class="math inline">\(\bigcup U_i = ]-R, R[ \in \mathcal{T}\)</span>（注：对称开区间的并集仍是对称开区间，且半径为原半径集合的上确界）。</li>
+</ul></li>
+</ul></li>
+<li><strong>有限交公理：</strong> 设 <span class="math inline">\(U_1, U_2, \dots, U_n \in \mathcal{T}\)</span>。
+<ul>
+<li>如果其中任何一个是 <span class="math inline">\(\emptyset\)</span>，交集为 <span class="math inline">\(\emptyset \in \mathcal{T}\)</span>。</li>
+<li>如果不含 <span class="math inline">\(\emptyset\)</span> 但含 <span class="math inline">\(\mathbb{R}\)</span>，<span class="math inline">\(\mathbb{R}\)</span> 对交集结果无影响。</li>
+<li>如果所有 <span class="math inline">\(U_i\)</span> 均为 <span class="math inline">\(]-r_i, r_i[\)</span>，则： <span class="math display">\[\bigcap_{i=1}^n ]-r_i, r_i[ = ]-\min(r_i), \min(r_i)[\]</span></li>
+<li>由于有限个数集的最小值 <span class="math inline">\(\min(r_i)\)</span> 仍然是一个大于 <span class="math inline">\(0\)</span> 的实数，该交集仍属于 <span class="math inline">\(\mathcal{T}\)</span>。</li>
+</ul></li>
+</ol>
+<p>综上所述，(2) 满足拓扑的所有定义。</p>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Compare the trivial, discrete, cofinite, lower limit, standard topologies and the particular and excluded point topologies at 0 on <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>在拓扑学中，“比较”拓扑通常意味着建立它们之间的<strong>粗细关系 (coarser/finer relationship)</strong>。如果 <span class="math inline">\(\mathcal{T}_1 \subseteq \mathcal{T}_2\)</span>，我们称 <span class="math inline">\(\mathcal{T}_1\)</span> 比 <span class="math inline">\(\mathcal{T}_2\)</span> 粗（coarser），<span class="math inline">\(\mathcal{T}_2\)</span> 比 <span class="math inline">\(\mathcal{T}_1\)</span> 细（finer）。</p>
+<p>为了方便表述，我们先记这些拓扑如下：</p>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_{triv}\)</span>: 拓扑 (Trivial topology) <span class="math inline">\(\{\emptyset, \mathbb{R}\}\)</span></li>
+<li><span class="math inline">\(\mathcal{T}_{cof}\)</span>: 余有限拓扑 (Cofinite topology)</li>
+<li><span class="math inline">\(\mathcal{T}_{std}\)</span>: 标准拓扑 (Standard / Euclidean topology)</li>
+<li><span class="math inline">\(\mathcal{T}_{ll}\)</span>: 下限拓扑 (Lower limit topology / Sorgenfrey line)</li>
+<li><span class="math inline">\(\mathcal{T}_{disc}\)</span>: 离散拓扑 (Discrete topology) <span class="math inline">\(\mathcal{P}(\mathbb{R})\)</span></li>
+<li><span class="math inline">\(\mathcal{T}_{PP}\)</span>: 关于 <span class="math inline">\(0\)</span> 的特定点拓扑 (Particular point topology at <span class="math inline">\(0\)</span>) <span class="math inline">\(\{U \subseteq \mathbb{R} \mid 0 \in U\} \cup \{\emptyset\}\)</span></li>
+<li><span class="math inline">\(\mathcal{T}_{EP}\)</span>: 关于 <span class="math inline">\(0\)</span> 的排除点拓扑 (Excluded point topology at <span class="math inline">\(0\)</span>) <span class="math inline">\(\{U \subseteq \mathbb{R} \mid 0 \notin U\} \cup \{\mathbb{R}\}\)</span></li>
+</ul>
+<p><strong>1. 核心比较链 (Main Sequence)</strong></p>
+<p>这五个拓扑形成了一个严格递增的包含链： <span class="math display">\[\mathcal{T}_{triv} \subsetneq \mathcal{T}_{cof} \subsetneq \mathcal{T}_{std} \subsetneq \mathcal{T}_{ll} \subsetneq \mathcal{T}_{disc}\]</span></p>
+<p><strong>证明与理由：</strong> * <strong><span class="math inline">\(\mathcal{T}_{triv} \subsetneq \mathcal{T}_{cof}\)</span>:</strong> 显然平凡拓扑是最粗的。严格包含是因为 <span class="math inline">\(\mathbb{R} \setminus \{1\} \in \mathcal{T}_{cof}\)</span> 但不在 <span class="math inline">\(\mathcal{T}_{triv}\)</span> 中。 * <strong><span class="math inline">\(\mathcal{T}_{cof} \subsetneq \mathcal{T}_{std}\)</span>:</strong> 任何余有限集 <span class="math inline">\(\mathbb{R} \setminus \{x_1, \dots, x_n\}\)</span> 都可以写成有限个开区间的并集，因而是标准开集。严格包含是因为 <span class="math inline">\((0, 1) \in \mathcal{T}_{std}\)</span>，但它的补集是无限的，所以不在 <span class="math inline">\(\mathcal{T}_{cof}\)</span> 中。 * <strong><span class="math inline">\(\mathcal{T}_{std} \subsetneq \mathcal{T}_{ll}\)</span>:</strong> 任何标准开区间 <span class="math inline">\((a, b)\)</span> 都可以写成下限拓扑基元素的并集：<span class="math inline">\((a, b) = \bigcup_{n=1}^\infty [a + \frac{1}{n}, b)\)</span>，因而是下限拓扑的开集。严格包含是因为 <span class="math inline">\([0, 1) \in \mathcal{T}_{ll}\)</span>，但它在 <span class="math inline">\(0\)</span> 处不包含任何标准开邻域，故不在 <span class="math inline">\(\mathcal{T}_{std}\)</span> 中。 * <strong><span class="math inline">\(\mathcal{T}_{ll} \subsetneq \mathcal{T}_{disc}\)</span>:</strong> 显然离散拓扑是最细的（包含所有子集）。严格包含是因为单点集 <span class="math inline">\(\{0\} \in \mathcal{T}_{disc}\)</span>，但不在 <span class="math inline">\(\mathcal{T}_{ll}\)</span> 中。</p>
+<p><strong>2. 特定点拓扑 <span class="math inline">\(\mathcal{T}_{PP}\)</span> 与 排除点拓扑 <span class="math inline">\(\mathcal{T}_{EP}\)</span></strong></p>
+<p>这两个拓扑除了介于最粗和最细拓扑之间，<strong>与上述主链中的其他拓扑均不可比（Incomparable）</strong>，并且它们<strong>彼此也不可比</strong>。</p>
+<ul>
+<li><strong>与平凡/离散拓扑的关系：</strong> <span class="math display">\[\mathcal{T}_{triv} \subsetneq \mathcal{T}_{PP} \subsetneq \mathcal{T}_{disc}\]</span> <span class="math display">\[\mathcal{T}_{triv} \subsetneq \mathcal{T}_{EP} \subsetneq \mathcal{T}_{disc}\]</span></li>
+<li><strong><span class="math inline">\(\mathcal{T}_{PP}\)</span> 与 <span class="math inline">\(\mathcal{T}_{EP}\)</span> 不可比：</strong> <span class="math inline">\(\{0\} \in \mathcal{T}_{PP}\)</span> 但 <span class="math inline">\(\{0\} \notin \mathcal{T}_{EP}\)</span>；反之 <span class="math inline">\(\{1\} \in \mathcal{T}_{EP}\)</span> 但 <span class="math inline">\(\{1\} \notin \mathcal{T}_{PP}\)</span>。</li>
+<li><strong>与其他拓扑不可比的反例：</strong>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_{PP}\)</span> 和 <span class="math inline">\(\mathcal{T}_{std}\)</span>：<span class="math inline">\(\{0\} \in \mathcal{T}_{PP}\)</span> 但不在 <span class="math inline">\(\mathcal{T}_{std}\)</span> 中；区间 <span class="math inline">\((1, 2) \in \mathcal{T}_{std}\)</span>，但由于不包含 <span class="math inline">\(0\)</span>，所以不在 <span class="math inline">\(\mathcal{T}_{PP}\)</span> 中。</li>
+<li><span class="math inline">\(\mathcal{T}_{EP}\)</span> 和 <span class="math inline">\(\mathcal{T}_{std}\)</span>：<span class="math inline">\(\{1\} \in \mathcal{T}_{EP}\)</span> 但不在 <span class="math inline">\(\mathcal{T}_{std}\)</span> 中；区间 <span class="math inline">\((-1, 1) \in \mathcal{T}_{std}\)</span>，但由于它包含 <span class="math inline">\(0\)</span>（且不是全集），所以不在 <span class="math inline">\(\mathcal{T}_{EP}\)</span> 中。</li>
+<li>(同样的逻辑也适用于它们与 <span class="math inline">\(\mathcal{T}_{cof}\)</span> 和 <span class="math inline">\(\mathcal{T}_{ll}\)</span> 的比较)。</li>
+</ul></li>
+</ul>
+<p><strong>总结图示</strong></p>
+<p>如果用 Hasse 图（包含关系，越向上越“细”）来表示，结构如下：</p>
+<pre class="text"><code>          T_discrete
+         /    |     \
+        /     |      \
+       /    T_ll      \
+      /       |        \
+    T_PP    T_std     T_EP
+      \       |        /
+       \    T_cof     /
+        \     |      /
+         \    |     /
+          T_trivial</code></pre>
+(注：<span class="math inline">\(\mathcal{T}_{PP}\)</span> 和 <span class="math inline">\(\mathcal{T}_{EP}\)</span> 仅与 <span class="math inline">\(\mathcal{T}_{disc}\)</span> 和 <span class="math inline">\(\mathcal{T}_{triv}\)</span> 有直接的包含连线，它们独立于中间的主链。)
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\(\{\mathcal{T}_i\}_{i \in I}\)</span> be a family of topologies on a set <span class="math inline">\(X\)</span>. Then</p>
+<ol type="1">
+<li><span class="math inline">\(\mathcal{T}_{\text{inf}} = \bigcap_{i \in I} \mathcal{T}_i\)</span> is a topology on <span class="math inline">\(X\)</span>, which is the <em>greatest lower bound</em> of the family;</li>
+<li><span class="math inline">\(\mathcal{T}_{i_1} \cup \mathcal{T}_{i_2}\)</span> may not be a topology on <span class="math inline">\(X\)</span> for some <span class="math inline">\(i_1, i_2 \in I\)</span>;</li>
+<li><span class="math inline">\(\mathcal{T}_{\text{sup}} = \bigcap\{\mathcal{T} \text{ is a topology on } X : \mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i\}\)</span> is a topology on <span class="math inline">\(X\)</span>, which is the <em>least upper bound</em> of the family.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>证明 (1)</strong></p>
+<p>首先证明 <span class="math inline">\(\mathcal{T}_{\text{inf}}\)</span> 是 <span class="math inline">\(X\)</span> 上的一个拓扑：</p>
+<ol type="1">
+<li><strong>包含空集与全集：</strong> 对于所有的 <span class="math inline">\(i \in I\)</span>，由于 <span class="math inline">\(\mathcal{T}_i\)</span> 是拓扑，所以 <span class="math inline">\(\emptyset \in \mathcal{T}_i\)</span> 且 <span class="math inline">\(X \in \mathcal{T}_i\)</span>。因此，它们必然属于所有拓扑的交集：<span class="math inline">\(\emptyset, X \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}\)</span>。</li>
+<li><strong>任意并公理：</strong> 设 <span class="math inline">\(\{U_\alpha\}_{\alpha \in A}\)</span> 是 <span class="math inline">\(\mathcal{T}_{\text{inf}}\)</span> 的任意子族。这意味着对于每一个 <span class="math inline">\(i \in I\)</span>，都有 <span class="math inline">\(\{U_\alpha\}_{\alpha \in A} \subseteq \mathcal{T}_i\)</span>。因为每个 <span class="math inline">\(\mathcal{T}_i\)</span> 都是拓扑，所以 <span class="math inline">\(\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}_i\)</span>。由于这对于所有 <span class="math inline">\(i \in I\)</span> 都成立，故 <span class="math inline">\(\bigcup_{\alpha \in A} U_\alpha \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}\)</span>。</li>
+<li><strong>有限交公理：</strong> 设 <span class="math inline">\(U_1, U_2, \dots, U_n \in \mathcal{T}_{\text{inf}}\)</span>。类似地，对于所有的 <span class="math inline">\(i \in I\)</span>，这些集合都在 <span class="math inline">\(\mathcal{T}_i\)</span> 中。因为 <span class="math inline">\(\mathcal{T}_i\)</span> 是拓扑，<span class="math inline">\(\bigcap_{k=1}^n U_k \in \mathcal{T}_i\)</span>。因此，<span class="math inline">\(\bigcap_{k=1}^n U_k \in \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}\)</span>。 综上所述，<span class="math inline">\(\mathcal{T}_{\text{inf}}\)</span> 是一个拓扑。</li>
+</ol>
+<p>接着证明它是<strong>最大下界 (Greatest Lower Bound)</strong>：</p>
+<ul>
+<li><strong>下界：</strong> 根据交集的定义，显然对于任意 <span class="math inline">\(i \in I\)</span>，都有 <span class="math inline">\(\mathcal{T}_{\text{inf}} \subseteq \mathcal{T}_i\)</span>。所以它是该族的一个下界。</li>
+<li><strong>最大：</strong> 假设存在另一个拓扑 <span class="math inline">\(\mathcal{T}'\)</span>，使得对于所有 <span class="math inline">\(i \in I\)</span> 都有 <span class="math inline">\(\mathcal{T}' \subseteq \mathcal{T}_i\)</span>。那么 <span class="math inline">\(\mathcal{T}'\)</span> 中的任何元素必然也属于所有的 <span class="math inline">\(\mathcal{T}_i\)</span>，因此 <span class="math inline">\(\mathcal{T}' \subseteq \bigcap_{i \in I} \mathcal{T}_i = \mathcal{T}_{\text{inf}}\)</span>。这证明了 <span class="math inline">\(\mathcal{T}_{\text{inf}}\)</span> 是所有下界中最大的。</li>
+</ul>
+<hr>
+<p><strong>证明 (2)</strong></p>
+<p>我们需要构造一个反例来证明两个拓扑的并集未必是拓扑。 令集合 <span class="math inline">\(X = \{a, b, c\}\)</span>。 定义 <span class="math inline">\(X\)</span> 上的两个拓扑：</p>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_1 = \{\emptyset, X, \{a\}\}\)</span></li>
+<li><span class="math inline">\(\mathcal{T}_2 = \{\emptyset, X, \{b\}\}\)</span></li>
+</ul>
+<p>考虑它们的并集： <span class="math inline">\(\mathcal{T}_1 \cup \mathcal{T}_2 = \{\emptyset, X, \{a\}, \{b\}\}\)</span></p>
+<p>要使该并集成为拓扑，它必须对任意并运算封闭。然而： <span class="math inline">\(\{a\} \in \mathcal{T}_1 \cup \mathcal{T}_2\)</span> 且 <span class="math inline">\(\{b\} \in \mathcal{T}_1 \cup \mathcal{T}_2\)</span>，但是它们的并集 <span class="math inline">\(\{a\} \cup \{b\} = \{a, b\} \notin \mathcal{T}_1 \cup \mathcal{T}_2\)</span>。 因此，<span class="math inline">\(\mathcal{T}_1 \cup \mathcal{T}_2\)</span> 对并集不封闭，它<strong>不是</strong> <span class="math inline">\(X\)</span> 上的拓扑。</p>
+<hr>
+<p><strong>证明 (3)</strong></p>
+<p>令集合族 <span class="math inline">\(\mathbb{S} = \{\mathcal{T} : \mathcal{T} \text{ 是 } X \text{ 上的拓扑，且 } \mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i\}\)</span>。 首先，<span class="math inline">\(\mathbb{S}\)</span> 不是空集，因为离散拓扑 <span class="math inline">\(\mathcal{P}(X)\)</span> （包含 <span class="math inline">\(X\)</span> 的所有子集）一定是一个包含 <span class="math inline">\(\bigcup_{i \in I} \mathcal{T}_i\)</span> 的拓扑，所以 <span class="math inline">\(\mathcal{P}(X) \in \mathbb{S}\)</span>。</p>
+<p>根据定义，<span class="math inline">\(\mathcal{T}_{\text{sup}} = \bigcap_{\mathcal{T} \in \mathbb{S}} \mathcal{T}\)</span>。</p>
+<p>首先证明 <span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 是拓扑： 由于 <span class="math inline">\(\mathbb{S}\)</span> 是一族拓扑，根据 (1) 中的结论（任意一族拓扑的交集仍是拓扑），<span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 作为 <span class="math inline">\(\mathbb{S}\)</span> 中所有拓扑的交集，<strong>必然是一个拓扑</strong>。</p>
+<p>接着证明它是<strong>最小上界 (Least Upper Bound)</strong>：</p>
+<ul>
+<li><strong>上界：</strong> 对于任意给定的 <span class="math inline">\(i \in I\)</span> 和任意 <span class="math inline">\(\mathcal{T} \in \mathbb{S}\)</span>，根据 <span class="math inline">\(\mathbb{S}\)</span> 的定义有 <span class="math inline">\(\mathcal{T} \supseteq \bigcup_{i \in I} \mathcal{T}_i \supseteq \mathcal{T}_i\)</span>。因为 <span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 是所有这些 <span class="math inline">\(\mathcal{T}\)</span> 的交集，且每个 <span class="math inline">\(\mathcal{T}\)</span> 都包含 <span class="math inline">\(\mathcal{T}_i\)</span>，所以 <span class="math inline">\(\mathcal{T}_{\text{sup}} \supseteq \mathcal{T}_i\)</span>。因此，<span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 是该族的一个上界。</li>
+<li><strong>最小：</strong> 假设存在另一个拓扑 <span class="math inline">\(\mathcal{T}^*\)</span>，它是 <span class="math inline">\(\{\mathcal{T}_i\}_{i \in I}\)</span> 的上界，即对于所有 <span class="math inline">\(i \in I\)</span> 都有 <span class="math inline">\(\mathcal{T}^* \supseteq \mathcal{T}_i\)</span>。这意味着 <span class="math inline">\(\mathcal{T}^* \supseteq \bigcup_{i \in I} \mathcal{T}_i\)</span>。 因为 <span class="math inline">\(\mathcal{T}^*\)</span> 是一个满足该包含关系的拓扑，根据定义，<span class="math inline">\(\mathcal{T}^*\)</span> 属于集合族 <span class="math inline">\(\mathbb{S}\)</span>。 既然 <span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 是 <span class="math inline">\(\mathbb{S}\)</span> 中<strong>所有</strong>元素的交集，那么它必然是其中任何一个元素的子集，即 <span class="math inline">\(\mathcal{T}_{\text{sup}} \subseteq \mathcal{T}^*\)</span>。这证明了 <span class="math inline">\(\mathcal{T}_{\text{sup}}\)</span> 是所有上界中最小的。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> The collection <span class="math inline">\(\mathcal{T}_{\mathbb{R}^n}=\{\text{open \ subsets \ of } \mathbb{R}\}\)</span> is a topology on <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><span class="math inline">\(\mathcal{T}_{\mathbb{R}^n}\)</span> 为 <span class="math inline">\(\mathbb{R}^n\)</span> 中所有开集的集合族（即可以表示为任意多个开球或开区间（盒）的并集的集合）。证明其构成 <span class="math inline">\(\mathbb{R}^n\)</span> 上的拓扑，需验证拓扑空间的三个公理：</p>
+<ol type="1">
+<li><p>包含空集与全集： 空集 <span class="math inline">\(\emptyset\)</span> 可以视为零个开球的并集，故 <span class="math inline">\(\emptyset \in \mathcal{T}_{\mathbb{R}^n}\)</span>；全空间 <span class="math inline">\(\mathbb{R}^n\)</span> 可表示为空间中所有开球的并集（例如以所有点为中心，半径为 <span class="math inline">\(1\)</span> 的开球之并），故 <span class="math inline">\(\mathbb{R}^n \in \mathcal{T}_{\mathbb{R}^n}\)</span>。</p></li>
+<li><p>对任意并集封闭： 设 <span class="math inline">\(\{U_\alpha\}_{\alpha \in A}\)</span> 是 <span class="math inline">\(\mathcal{T}_{\mathbb{R}^n}\)</span> 中的任意一族子集。因为每个 <span class="math inline">\(U_\alpha\)</span> 都是一族开球的并集，所以这些 <span class="math inline">\(U_\alpha\)</span> 的并集 <span class="math inline">\(\bigcup_{\alpha \in A} U_\alpha\)</span> 显然也是一族开球的并集。根据定义，<span class="math inline">\(\bigcup_{\alpha \in A} U_\alpha \in \mathcal{T}_{\mathbb{R}^n}\)</span>。</p></li>
+<li><p>对有限交集封闭： 只需证明两个集合相交的情况。设 <span class="math inline">\(U_1, U_2 \in \mathcal{T}_{\mathbb{R}^n}\)</span>，若 <span class="math inline">\(U_1 \cap U_2 = \emptyset\)</span>，则属于 <span class="math inline">\(\mathcal{T}_{\mathbb{R}^n}\)</span>；若非空，任取 <span class="math inline">\(x \in U_1 \cap U_2\)</span>。 因为 <span class="math inline">\(x \in U_1\)</span> 且 <span class="math inline">\(x \in U_2\)</span>，由开集的定义，存在以 <span class="math inline">\(x\)</span> 为中心的开球 <span class="math inline">\(B(x, r_1) \subseteq U_1\)</span> 且 <span class="math inline">\(B(x, r_2) \subseteq U_2\)</span>。 取半径 <span class="math inline">\(r = \min(r_1, r_2) &gt; 0\)</span>，则有开球 <span class="math inline">\(B(x, r) \subseteq B(x, r_1) \cap B(x, r_2) \subseteq U_1 \cap U_2\)</span>。 这说明对于交集中的每一个点 <span class="math inline">\(x\)</span>，都存在一个开球完全包含于该交集中。因此 <span class="math inline">\(U_1 \cap U_2\)</span> 可以表示为这些包含在内的小开球的并集，故 <span class="math inline">\(U_1 \cap U_2 \in \mathcal{T}_{\mathbb{R}^n}\)</span>。</p></li>
+</ol>
+综上所述，<span class="math inline">\(\mathcal{T}_{\mathbb{R}^n}\)</span> 满足拓扑公理，确实构成了 <span class="math inline">\(\mathbb{R}^n\)</span> 上的一个拓扑。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Show that the collection <span class="math inline">\(\mathcal{B}_{\text{lower}} = \{[a, b[ : a, b \in \mathbb{R}\}\)</span> is a base for the lower limit topology <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> on <span class="math inline">\(\mathbb{R}\)</span> as <span class="math inline">\(\mathcal{T}_{\text{lower}} = \{\text{unions of }[a,b) \text{ for } a,b \in \mathbb{R}\}\)</span> , and that in <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> each member of <span class="math inline">\(\mathcal{B}_{\text{lower}}\)</span> is clopen. Show that <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> does not have a countable base.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 证明 <span class="math inline">\(\mathcal{B}_{\text{lower}}\)</span> 是一组拓扑基</strong></p>
+<ul>
+<li><p><strong>覆盖性：</strong> 对任意 <span class="math inline">\(x \in \mathbb{R}\)</span>，存在 <span class="math inline">\([x, x+1[ \in \mathcal{B}_{\text{lower}}\)</span> 使得 <span class="math inline">\(x \in [x, x+1[\)</span>，覆盖了整个 <span class="math inline">\(\mathbb{R}\)</span>。</p></li>
+<li><p><strong>交集条件：</strong> 设有两个基元素 <span class="math inline">\([a, b[\)</span> 和 <span class="math inline">\([c, d[\)</span>，且 <span class="math inline">\(x \in [a, b[ \cap [c, d[\)</span>。它们的交集为 <span class="math inline">\([a, b[ \cap [c, d[ = [\max(a, c), \min(b, d)[\)</span>。只要交集非空，它本身就依然属于 <span class="math inline">\(\mathcal{B}_{\text{lower}}\)</span>。因此显然存在包含 <span class="math inline">\(x\)</span> 且包含于该交集中的基元素。由它生成的即为下限拓扑 <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span>。</p></li>
+</ul>
+<p><strong>2. 证明基元素是既开又闭集 (Clopen)</strong></p>
+<p>设 <span class="math inline">\(B = [a, b[ \in \mathcal{B}_{\text{lower}}\)</span>。</p>
+<ul>
+<li><p><strong>开集：</strong> 因为 <span class="math inline">\(B\)</span> 本身是拓扑基中的元素，所以它在 <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> 中必然是开集。</p></li>
+<li><p><strong>闭集：</strong> 考虑 <span class="math inline">\(B\)</span> 的补集 <span class="math inline">\(\mathbb{R} \setminus [a, b[ = (-\infty, a[ \cup [b, +\infty[\)</span>。 注意到 <span class="math inline">\((-\infty, a[ = \bigcup_{n=1}^{\infty} [a-n, a[\)</span>，且 <span class="math inline">\([b, +\infty[ = \bigcup_{n=1}^{\infty} [b, b+n[\)</span>。补集的两部分均可表示为无穷多个基元素的并集，因此补集是开集。补集为开集，则原集合 <span class="math inline">\([a, b[\)</span> 为闭集。</p></li>
+</ul>
+<p><strong>3. 证明 <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> 不存在可数基</strong></p>
+<p>利用反证法。</p>
+<ul>
+<li><p>假设 <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> 存在一个可数的基 <span class="math inline">\(\mathcal{B}'\)</span>。</p></li>
+<li><p>对于任意 <span class="math inline">\(x \in \mathbb{R}\)</span>，集合 <span class="math inline">\([x, x+1[\)</span> 是包含 <span class="math inline">\(x\)</span> 的开集。根据基的定义，必定存在某个基元素 <span class="math inline">\(B_x \in \mathcal{B}'\)</span> 使得 <span class="math inline">\(x \in B_x \subseteq [x, x+1[\)</span>。</p></li>
+<li><p>因为 <span class="math inline">\(x \in B_x\)</span> 且 <span class="math inline">\(B_x\)</span> 包含在以 <span class="math inline">\(x\)</span> 为下限的区间内，所以 <span class="math inline">\(x\)</span> 是集合 <span class="math inline">\(B_x\)</span> 的唯一最小值，即 <span class="math inline">\(\min(B_x) = x\)</span>。</p></li>
+<li><p>如果实数 <span class="math inline">\(x \neq y\)</span>，那么对应的基元素必定不相同（<span class="math inline">\(B_x \neq B_y\)</span>），因为它们的最小值不同。</p></li>
+<li><p>这就建立了一个从不可数集 <span class="math inline">\(\mathbb{R}\)</span> 到可数集 <span class="math inline">\(\mathcal{B}'\)</span> 的单射（<span class="math inline">\(x \mapsto B_x\)</span>）。这要求 <span class="math inline">\(\mathcal{B}'\)</span> 的基数至少为不可数，与可数假设矛盾。故 <span class="math inline">\(\mathcal{T}_{\text{lower}}\)</span> 没有可数基。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\((X, \mathcal{T}_X)\)</span> and <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> be topological spaces.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(\mathcal{T}_X\)</span> is discrete, then which maps <span class="math inline">\(X \to Y\)</span> are continuous?</p></li>
+<li><p>If <span class="math inline">\(\mathcal{T}_Y\)</span> is discrete, then which maps <span class="math inline">\(X \to Y\)</span> are continuous?</p></li>
+<li><p>If <span class="math inline">\(\mathcal{T}_X\)</span> is trivial, then which maps <span class="math inline">\(X \to Y\)</span> are continuous?</p></li>
+<li><p>If <span class="math inline">\(\mathcal{T}_Y\)</span> is trivial, then which maps <span class="math inline">\(X \to Y\)</span> are continuous?</p></li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>根据连续映射的定义：映射 <span class="math inline">\(f: X \to Y\)</span> 是连续的，当且仅当对于 <span class="math inline">\(Y\)</span> 中的任意开集 <span class="math inline">\(V \in \mathcal{T}_Y\)</span>，其原像 <span class="math inline">\(f^{-1}(V)\)</span> 都是 <span class="math inline">\(X\)</span> 中的开集（即 <span class="math inline">\(f^{-1}(V) \in \mathcal{T}_X\)</span>）。</p>
+<ol type="1">
+<li><p><strong>所有的映射都是连续的。</strong> 因为 <span class="math inline">\(\mathcal{T}_X\)</span> 是离散拓扑，这意味着 <span class="math inline">\(X\)</span> 的所有子集都是开集。对于任意映射 <span class="math inline">\(f\)</span> 以及 <span class="math inline">\(Y\)</span> 中的任意开集 <span class="math inline">\(V\)</span>，其原像 <span class="math inline">\(f^{-1}(V)\)</span> 作为 <span class="math inline">\(X\)</span> 的一个子集，在 <span class="math inline">\(X\)</span> 中必然是开集。</p></li>
+<li><p><strong>局部常数映射（Locally constant maps）是连续的。</strong> 因为 <span class="math inline">\(\mathcal{T}_Y\)</span> 是离散拓扑，这意味着 <span class="math inline">\(Y\)</span> 中的所有子集（包括所有的单点集 <span class="math inline">\(\{y\}\)</span>）都是开集。为了使 <span class="math inline">\(f\)</span> 连续，对于任意 <span class="math inline">\(y \in Y\)</span>，其原像 <span class="math inline">\(f^{-1}(\{y\})\)</span> 必须在 <span class="math inline">\(X\)</span> 中是开集。这等价于要求映射 <span class="math inline">\(f\)</span> 在每一点的某个邻域内取值不变（即在 <span class="math inline">\(X\)</span> 的每个连通分支上都是常数）。</p></li>
+<li><p><strong>满足“对 <span class="math inline">\(Y\)</span> 中的任意开集 <span class="math inline">\(V\)</span>，<span class="math inline">\(f^{-1}(V) = \emptyset\)</span> 或 <span class="math inline">\(f^{-1}(V) = X\)</span>” 的映射是连续的（常数映射必然包含在内）。</strong> 因为 <span class="math inline">\(\mathcal{T}_X\)</span> 是平凡拓扑（密着拓扑），<span class="math inline">\(X\)</span> 中的开集仅有 <span class="math inline">\(\emptyset\)</span> 和 <span class="math inline">\(X\)</span> 自身。因此，若 <span class="math inline">\(f\)</span> 连续，对于 <span class="math inline">\(Y\)</span> 中的任何开集 <span class="math inline">\(V\)</span>，<span class="math inline">\(f^{-1}(V)\)</span> 只能是 <span class="math inline">\(\emptyset\)</span> 或 <span class="math inline">\(X\)</span>。所有的常数映射都天然满足这一条件；如果空间 <span class="math inline">\(Y\)</span> 至少满足 <span class="math inline">\(T_0\)</span> 分离公理，那么<strong>只有</strong>常数映射是连续的。</p></li>
+<li><p><strong>所有的映射都是连续的。</strong> 因为 <span class="math inline">\(\mathcal{T}_Y\)</span> 是平凡拓扑，<span class="math inline">\(Y\)</span> 中的开集只有 <span class="math inline">\(\emptyset\)</span> 和 <span class="math inline">\(Y\)</span>。对于任意的映射 <span class="math inline">\(f\)</span>，这两个开集的原像分别为 <span class="math inline">\(f^{-1}(\emptyset) = \emptyset\)</span> 和 <span class="math inline">\(f^{-1}(Y) = X\)</span>。由于 <span class="math inline">\(\emptyset\)</span> 和 <span class="math inline">\(X\)</span> 属于 <span class="math inline">\(X\)</span> 上的任何拓扑 <span class="math inline">\(\mathcal{T}_X\)</span>，原像总是开集，因此所有映射都必然连续。</p></li>
+</ol>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> A sequence <span class="math inline">\((p_n)_{n\in\mathbb{N}}\)</span> in a topological space <span class="math inline">\((X,\mathcal{T})\)</span> converges to <span class="math inline">\(p\in X\)</span>, denoted by <span class="math inline">\(p_n\to p\)</span>, iff <span class="math display">\[(\forall U \in \mathcal{N}_{X,p})(\exists A \in \mathcal{F}_{\mathbb{N}})(n \in A \implies p_n \in U)\]</span></p>
+<ol type="1">
+<li>Recall that in mathematical analysis a function is continuous iff it maps any convergent sequence to a convergent sequence. Show that it is not the case in general topological spaces.</li>
+<li>Recall that of Euclidean spaces a subset is closed iff it contains the limit of any convergent sequence. Show that it is not the case in general topological spaces.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>这两个问题都可以通过构造一个特定的拓扑空间——<strong>带有可数补拓扑（cocountable topology）的实数集</strong>来提供反例。</p>
+<p>设 <span class="math inline">\(X = \mathbb{R}\)</span>，其拓扑 <span class="math inline">\(\mathcal{T}_{cc}\)</span> 定义为：开集 <span class="math inline">\(U \in \mathcal{T}_{cc}\)</span> 当且仅当 <span class="math inline">\(U = \emptyset\)</span> 或 <span class="math inline">\(X \setminus U\)</span> 是可数集（即补集可数）。 在这个拓扑空间中，一个序列 <span class="math inline">\(x_n \to x\)</span> 当且仅当该序列<strong>最终为常数</strong>（即存在 <span class="math inline">\(N \in \mathbb{N}\)</span>，使得对所有 <span class="math inline">\(n \ge N\)</span> 都有 <span class="math inline">\(x_n = x\)</span>）。 （简要证明：如果 <span class="math inline">\(x_n \to x\)</span> 但序列中有无穷多项不等于 <span class="math inline">\(x\)</span>，设这些项构成集合 <span class="math inline">\(S = \{x_n : x_n \neq x\}\)</span>。因为 <span class="math inline">\(S\)</span> 是序列的子集，所以 <span class="math inline">\(S\)</span> 是可数集。此时 <span class="math inline">\(U = \mathbb{R} \setminus S\)</span> 是包含 <span class="math inline">\(x\)</span> 的开集，但 <span class="math inline">\(U\)</span> 却遗漏了序列中无穷多个不等于 <span class="math inline">\(x\)</span> 的项，这与 <span class="math inline">\(x_n \to x\)</span> 的定义矛盾。）</p>
+<p><strong>(1) 序列连续不蕴含拓扑连续的反例：</strong></p>
+<ul>
+<li><p>考虑恒等映射 <span class="math inline">\(f: (\mathbb{R}, \mathcal{T}_{cc}) \to (\mathbb{R}, \mathcal{T}_{\text{std}})\)</span>，其中 <span class="math inline">\(\mathcal{T}_{\text{std}}\)</span> 是实数集上的标准欧几里得拓扑。</p></li>
+<li><p>对于 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{cc})\)</span> 中的任意收敛序列 <span class="math inline">\(x_n \to x\)</span>，由上述性质可知它最终为常数 <span class="math inline">\(x\)</span>。因此映射后的序列 <span class="math inline">\(f(x_n) = x_n\)</span> 最终也为常数，自然在标准拓扑下收敛于 <span class="math inline">\(f(x) = x\)</span>。这说明映射 <span class="math inline">\(f\)</span> 将收敛序列映为了收敛序列。</p></li>
+<li><p>然而，映射 <span class="math inline">\(f\)</span> 并不是连续的。例如，区间 <span class="math inline">\((0, 1)\)</span> 是 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{\text{std}})\)</span> 中的开集，但它的原像 <span class="math inline">\(f^{-1}((0, 1)) = (0, 1)\)</span> 在 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{cc})\)</span> 中不是开集（因为其补集 <span class="math inline">\(\mathbb{R} \setminus (0, 1)\)</span> 是不可数的）。</p></li>
+</ul>
+<p><strong>(2) 包含所有收敛序列极限的集合不一定是闭集的反例：</strong></p>
+<ul>
+<li><p>在拓扑空间 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{cc})\)</span> 中，考虑子集 <span class="math inline">\(A = (0, 1)\)</span>。</p></li>
+<li><p>假设 <span class="math inline">\((x_n)\)</span> 是 <span class="math inline">\(A\)</span> 中的任意收敛序列，且在 <span class="math inline">\(\mathbb{R}\)</span> 中收敛于极限 <span class="math inline">\(x\)</span>。根据前面证明的性质，该序列最终必定等于常数 <span class="math inline">\(x\)</span>。由于序列的所有项都在 <span class="math inline">\(A\)</span> 中，所以常数项也就是极限 <span class="math inline">\(x\)</span> 也必然属于 <span class="math inline">\(A\)</span>。因此，<span class="math inline">\(A\)</span> 包含了其所有收敛序列的极限（即 <span class="math inline">\(A\)</span> 是序列闭集）。</p></li>
+<li><p>然而，<span class="math inline">\(A\)</span> 在该可数补拓扑下并不是闭集。根据定义，闭集的补集必须是开集，这意味着闭集本身必须是可数集或者是全集 <span class="math inline">\(\mathbb{R}\)</span>。由于 <span class="math inline">\(A = (0, 1)\)</span> 是一个不可数集，因此它在 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{cc})\)</span> 中不是闭集。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Find all topologies on <span class="math inline">\(X = \{a,b,c\}\)</span> up to homeomorphisms.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>在同胚意义下（即在集合元素的置换下等价），包含 3 个元素的集合 <span class="math inline">\(X = \{a, b, c\}\)</span> 上共有 9 种不同的拓扑结构等价类。我们可以按照其中开集的数量和包含结构进行分类列举（以下各举一例作为该同胚类的代表）：</p>
+<ul>
+<li><p><strong>1. 平凡拓扑（包含 2 个开集）：</strong> <span class="math inline">\(\mathcal{T}_1 = \{\emptyset, X\}\)</span></p></li>
+<li><p><strong>2. 仅含一个单元素开集（包含 3 个开集）：</strong> <span class="math inline">\(\mathcal{T}_2 = \{\emptyset, \{a\}, X\}\)</span></p></li>
+<li><p><strong>3. 仅含一个双元素开集（包含 3 个开集）：</strong> <span class="math inline">\(\mathcal{T}_3 = \{\emptyset, \{a, b\}, X\}\)</span></p></li>
+<li><p><strong>4. 包含嵌套的单元素和双元素开集（包含 4 个开集）：</strong> <span class="math inline">\(\mathcal{T}_4 = \{\emptyset, \{a\}, \{a, b\}, X\}\)</span></p></li>
+<li><p><strong>5. 包含互补的单元素和双元素开集（包含 4 个开集）：</strong> <span class="math inline">\(\mathcal{T}_5 = \{\emptyset, \{c\}, \{a, b\}, X\}\)</span></p></li>
+<li><p><strong>6. 由两个单元素开集生成的拓扑（包含 5 个开集）：</strong> <span class="math inline">\(\mathcal{T}_6 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, X\}\)</span></p></li>
+<li><p><strong>7. 由两个双元素开集生成的拓扑（包含 5 个开集）：</strong> <span class="math inline">\(\mathcal{T}_7 = \{\emptyset, \{a\}, \{a, b\}, \{a, c\}, X\}\)</span></p></li>
+<li><p><strong>8. 包含三个单元素/双元素特定组合的拓扑（包含 6 个开集）：</strong> <span class="math inline">\(\mathcal{T}_8 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, X\}\)</span></p></li>
+<li><p><strong>9. 离散拓扑（包含 8 个开集）：</strong> <span class="math inline">\(\mathcal{T}_9 = \{\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, X\}\)</span></p></li>
+</ul>
+<em>(补充：在包含 3 个元素的集合上，所有的拓扑空间总数为 29 个。通过 <span class="math inline">\(a, b, c\)</span> 元素的相互置换，这 29 个拓扑都可以归类到上述 9 种同胚等价类中的某一种。)</em>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-4" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4">Chapter 4</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Proposition: In <strong>Set</strong> all monomorphisms and epimorphisms are extremal.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>在范畴 <span class="math inline">\(\mathbf{Set}\)</span> 中，单射 (Monomorphism) 即为单射函数，满射 (Epimorphism) 即为满射函数，同构 (Isomorphism) 即为双射函数。</p>
+<p><strong>1. 证明所有单射都是极端单射 (Extremal Monomorphisms)</strong></p>
+<ul>
+<li><p>设 <span class="math inline">\(m: A \to B\)</span> 为一个单射。根据极端单射的定义，我们需要证明：若存在分解 <span class="math inline">\(m = f \circ e\)</span>，其中 <span class="math inline">\(e: A \to C\)</span> 是满射，则 <span class="math inline">\(e\)</span> 必定是同构。</p></li>
+<li><p>因为 <span class="math inline">\(m\)</span> 是单射，所以合成函数 <span class="math inline">\(f \circ e\)</span> 也是单射。</p></li>
+<li><p>假设存在 <span class="math inline">\(x, y \in A\)</span> 使得 <span class="math inline">\(e(x) = e(y)\)</span>，那么两边同时作用 <span class="math inline">\(f\)</span> 得到 <span class="math inline">\(f(e(x)) = f(e(y))\)</span>，即 <span class="math inline">\(m(x) = m(y)\)</span>。由于 <span class="math inline">\(m\)</span> 是单射，必然得出 <span class="math inline">\(x = y\)</span>。</p></li>
+<li><p>因此，<span class="math inline">\(e\)</span> 必定是单射。既然已知 <span class="math inline">\(e\)</span> 既是单射又是满射，那么 <span class="math inline">\(e\)</span> 就是一个双射（即 <span class="math inline">\(\mathbf{Set}\)</span> 中的同构）。故证明 <span class="math inline">\(m\)</span> 是极端单射。</p></li>
+</ul>
+<p><strong>2. 证明所有满射都是极端满射 (Extremal Epimorphisms)</strong></p>
+<ul>
+<li><p>设 <span class="math inline">\(e: A \to B\)</span> 为一个满射。根据极端满射的定义，我们需要证明：若存在分解 <span class="math inline">\(e = m \circ f\)</span>，其中 <span class="math inline">\(m: C \to B\)</span> 是单射，则 <span class="math inline">\(m\)</span> 必定是同构。</p></li>
+<li><p>因为 <span class="math inline">\(e\)</span> 是满射，所以对于任意的 <span class="math inline">\(b \in B\)</span>，都存在 <span class="math inline">\(a \in A\)</span> 使得 <span class="math inline">\(e(a) = b\)</span>。</p></li>
+<li><p>将分解 <span class="math inline">\(e = m \circ f\)</span> 代入，得到 <span class="math inline">\((m \circ f)(a) = b\)</span>，即 <span class="math inline">\(m(f(a)) = b\)</span>。这说明对于 <span class="math inline">\(B\)</span> 中的任意元素 <span class="math inline">\(b\)</span>，在 <span class="math inline">\(C\)</span> 中都存在至少一个元素 <span class="math inline">\(c = f(a)\)</span> 使得 <span class="math inline">\(m(c) = b\)</span>。</p></li>
+<li><p>因此，<span class="math inline">\(m\)</span> 必定是满射。既然已知 <span class="math inline">\(m\)</span> 是单射，现在又得出 <span class="math inline">\(m\)</span> 是满射，那么 <span class="math inline">\(m\)</span> 就是一个双射（即 <span class="math inline">\(\mathbf{Set}\)</span> 中的同构）。故证明 <span class="math inline">\(e\)</span> 是极端满射。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Proposition: In Set the endomorphisms are maps <span class="math inline">\(f: X \to X\)</span> for some <span class="math inline">\(X \in \mathbf{Set}\)</span>; the class of endomorphisms of <span class="math inline">\(X\)</span> is denoted <span class="math inline">\(\text{Map}(X;X)\)</span>; the idempotents are projections; the automorphisms are bijections <span class="math inline">\(f: X \to X\)</span>. The automorphism group of <span class="math inline">\(X \in \mathbf{Set}\)</span> is its permutation group <span class="math inline">\(S_X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 自同态与自同构</strong></p>
+<ul>
+<li><p>在范畴 <span class="math inline">\(\mathbf{Set}\)</span> 中，对象为集合，态射为函数。根据范畴论定义，对象 <span class="math inline">\(X\)</span> 的自同态是从 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(X\)</span> 的态射，即普通的函数 <span class="math inline">\(f: X \to X\)</span>。</p></li>
+<li><p>自同构是可逆的自同态。在 <span class="math inline">\(\mathbf{Set}\)</span> 中，态射可逆当且仅当该函数是双射。所有从 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(X\)</span> 的双射在函数复合运算下构成一个群，这正是 <span class="math inline">\(X\)</span> 的对称群（或置换群）<span class="math inline">\(S_X\)</span>。</p></li>
+</ul>
+<p><strong>2. 证明幂等元是分裂的 (All idempotents in Set are split)</strong></p>
+<ul>
+<li><p>设 <span class="math inline">\(e: X \to X\)</span> 是 <span class="math inline">\(\mathbf{Set}\)</span> 中的一个幂等元，即满足 <span class="math inline">\(e \circ e = e\)</span>（对所有 <span class="math inline">\(x \in X\)</span>，有 <span class="math inline">\(e(e(x)) = e(x)\)</span>）。</p></li>
+<li><p>要证明 <span class="math inline">\(e\)</span> 是分裂的，需构造一个对象（集合）<span class="math inline">\(A\)</span> 及映射 <span class="math inline">\(r: X \to A\)</span> (收缩) 和 <span class="math inline">\(s: A \to X\)</span> (截面)，使得 <span class="math inline">\(r \circ s = \text{id}_A\)</span> 且 <span class="math inline">\(s \circ r = e\)</span>。</p></li>
+<li><p>取 <span class="math inline">\(A\)</span> 为映射 <span class="math inline">\(e\)</span> 的像集，即 <span class="math inline">\(A = \text{Im}(e) = \{e(x) \mid x \in X\}\)</span>。</p></li>
+<li><p>定义截面 <span class="math inline">\(s: A \to X\)</span> 为包含映射，即对任意 <span class="math inline">\(a \in A\)</span>，<span class="math inline">\(s(a) = a\)</span>。</p></li>
+<li><p>定义收缩 <span class="math inline">\(r: X \to A\)</span> 为 <span class="math inline">\(e\)</span> 限制其上域后的函数，即对任意 <span class="math inline">\(x \in X\)</span>，<span class="math inline">\(r(x) = e(x)\)</span>。</p></li>
+<li><p>验证 <span class="math inline">\(r \circ s = \text{id}_A\)</span>：任取 <span class="math inline">\(a \in A\)</span>，因 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(e\)</span> 的像集，必存在 <span class="math inline">\(x \in X\)</span> 使 <span class="math inline">\(a = e(x)\)</span>。于是代入计算得 <span class="math inline">\(r(s(a)) = r(a) = e(a) = e(e(x)) = e(x) = a\)</span>。</p></li>
+<li><p>验证 <span class="math inline">\(s \circ r = e\)</span>：任取 <span class="math inline">\(x \in X\)</span>，计算得 <span class="math inline">\(s(r(x)) = s(e(x))\)</span>。由于 <span class="math inline">\(e(x) \in A\)</span>，包含映射 <span class="math inline">\(s\)</span> 不改变其值，所以 <span class="math inline">\(s(e(x)) = e(x)\)</span>。</p></li>
+<li><p>因此，<span class="math inline">\(\mathbf{Set}\)</span> 中的任意幂等元 <span class="math inline">\(e\)</span> 都可以通过其像集分裂，这种操作相当于先将 <span class="math inline">\(X\)</span> 投影（投射并收缩）到其像集 <span class="math inline">\(A\)</span> 上，然后再将 <span class="math inline">\(A\)</span> 嵌入回 <span class="math inline">\(X\)</span> 中。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Proposition: In <strong>Set</strong> the empty set <span class="math inline">\(\emptyset\)</span> is an initial object and any singleton is a terminal object, the isomorphism class of which denoted by <span class="math inline">\(\ast\)</span>. There is no zero object or morphism in <strong>Set</strong>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>在范畴 <span class="math inline">\(\mathbf{Set}\)</span> 中，对象是集合，态射是函数。</p>
+<p><strong>1. 证明空集 <span class="math inline">\(\emptyset\)</span> 是初始对象 (Initial Object)</strong></p>
+<ul>
+<li><p>初始对象要求：对于 <span class="math inline">\(\mathbf{Set}\)</span> 中的任意对象（集合）<span class="math inline">\(X\)</span>，存在唯一的态射（函数）<span class="math inline">\(f: \emptyset \to X\)</span>。</p></li>
+<li><p>根据函数的定义，函数是从定义域到到达域的笛卡尔积的子集。由于 <span class="math inline">\(\emptyset \times X = \emptyset\)</span>，唯一可能的子集就是空集本身。这个“空函数”满足函数的所有条件（“对于定义域中的每个元素”这一前提是空虚地为真）。因此，存在且仅存在一个从 <span class="math inline">\(\emptyset\)</span> 到 <span class="math inline">\(X\)</span> 的函数。故空集是初始对象。</p></li>
+</ul>
+<p><strong>2. 证明任意单元素集合 <span class="math inline">\(\{*\}\)</span> 是终结对象 (Terminal Object)</strong></p>
+<ul>
+<li><p>终结对象要求：对于 <span class="math inline">\(\mathbf{Set}\)</span> 中的任意对象（集合）<span class="math inline">\(X\)</span>，存在唯一的态射（函数）<span class="math inline">\(f: X \to \{*\}\)</span>。</p></li>
+<li><p>对于 <span class="math inline">\(X\)</span> 中的任意元素 <span class="math inline">\(x\)</span>，由于到达域中只有一个元素 <span class="math inline">\(*\)</span>，我们别无选择，只能将所有 <span class="math inline">\(x\)</span> 映射到该唯一元素，即定义 <span class="math inline">\(f(x) = *\)</span>。这种映射方式是唯一确定的，因此对于任何集合 <span class="math inline">\(X\)</span>，存在且仅存在一个到单元素集合的函数。故单元素集合是终结对象。</p></li>
+</ul>
+<p><strong>3. 证明不存在零对象 (Zero Object)</strong></p>
+<ul>
+<li><p>零对象的定义为：在范畴中既是初始对象又是终结对象的对象。</p></li>
+<li><p>根据范畴论的性质，任意两个初始对象彼此同构，任意两个终结对象也彼此同构。在 <span class="math inline">\(\mathbf{Set}\)</span> 中，这意味着任何零对象必须同时与空集同构（存在双射），且与单元素集合同构。显然，空集（势为0）与单元素集合（势为1）之间不存在双射，不可能同构。因此 <span class="math inline">\(\mathbf{Set}\)</span> 中不存在零对象。</p></li>
+</ul>
+<p><strong>4. 证明不存在零态射 (Zero Morphism)</strong></p>
+<ul>
+<li><p>若一个范畴存在零态射，则对于范畴内的任意两个对象 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span>，同态集 <span class="math inline">\(\text{Hom}(X, Y)\)</span> 非空（必须至少包含一个零态射）。</p></li>
+<li><p>然而，在 <span class="math inline">\(\mathbf{Set}\)</span> 中，若取 <span class="math inline">\(X\)</span> 为任意非空集合，<span class="math inline">\(Y = \emptyset\)</span>，则不存在任何从非空集合映射到空集的函数。这意味着同态集 <span class="math inline">\(\text{Hom}(X, \emptyset)\)</span> 是空集。既然对于某些对象对连态射都不存在，自然无法在全局定义零态射。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> What are the monomorphisms, epimorphisms, and bimorphisms in <span class="math inline">\(\mathbf{Set}_*\)</span>? Which of them are split?
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>在点集范畴 <span class="math inline">\(\mathbf{Set}_*\)</span> 中，对象是带有基点的集合 <span class="math inline">\((X, x_0)\)</span>，态射是保基点的函数，即满足 <span class="math inline">\(f(x_0) = y_0\)</span> 的函数 <span class="math inline">\(f: X \to Y\)</span>。</p>
+<p><strong>1. 单射、满射与双态射的刻画</strong></p>
+<ul>
+<li><p><strong>单射 (Monomorphisms):</strong> 在 <span class="math inline">\(\mathbf{Set}_*\)</span> 中，单射恰好是<strong>单射函数</strong> (Injective functions)。证明思路与在 <span class="math inline">\(\mathbf{Set}\)</span> 中相同，若态射非单射，总可以通过构造从自由点集出发的不同态射使其复合相等来得出矛盾。</p></li>
+<li><p><strong>满射 (Epimorphisms):</strong> 在 <span class="math inline">\(\mathbf{Set}_*\)</span> 中，满射恰好是<strong>满射函数</strong> (Surjective functions)。若 <span class="math inline">\(f: (X, x_0) \to (Y, y_0)\)</span> 不是满射，即存在 <span class="math inline">\(y \in Y \setminus \text{Im}(f)\)</span>。我们可以构造两个从 <span class="math inline">\(Y\)</span> 到两点集 <span class="math inline">\((\{0, 1\}, 0)\)</span> 的保基点函数 <span class="math inline">\(g_1, g_2\)</span>：令 <span class="math inline">\(g_1\)</span> 将 <span class="math inline">\(Y\)</span> 全映射到 <span class="math inline">\(0\)</span>；令 <span class="math inline">\(g_2(y) = 1\)</span>，其余映射到 <span class="math inline">\(0\)</span>。此时 <span class="math inline">\(g_1 \circ f = g_2 \circ f\)</span> 但 <span class="math inline">\(g_1 \neq g_2\)</span>，说明 <span class="math inline">\(f\)</span> 不是满射态射。</p></li>
+<li><p><strong>双态射 (Bimorphisms):</strong> 既是单射态射又是满射态射的态射。因此，双态射恰好是<strong>双射保基点函数</strong> (Bijective basepoint-preserving functions)。</p></li>
+</ul>
+<p><strong>2. 分裂性 (Splitness)</strong></p>
+<ul>
+<li><p><strong>分裂单射 (Split Monomorphisms):</strong> <span class="math inline">\(\mathbf{Set}_*\)</span> 中的<strong>所有单射都是分裂的</strong>。设 <span class="math inline">\(f: X \to Y\)</span> 是单射，我们需要构造左逆 <span class="math inline">\(g: Y \to X\)</span> 使得 <span class="math inline">\(g \circ f = \text{id}_X\)</span>。对于 <span class="math inline">\(y \in \text{Im}(f)\)</span>，由于 <span class="math inline">\(f\)</span> 是单射，存在唯一的 <span class="math inline">\(x\)</span> 使 <span class="math inline">\(f(x)=y\)</span>，定义 <span class="math inline">\(g(y)=x\)</span>。对于 <span class="math inline">\(y \notin \text{Im}(f)\)</span>，统一将其映射到基点 <span class="math inline">\(x_0\)</span> 即可。因为已知 <span class="math inline">\(f(x_0)=y_0\)</span>，从而 <span class="math inline">\(g(y_0)=x_0\)</span>，这保证了 <span class="math inline">\(g\)</span> 是一个合法的保基点态射。</p></li>
+<li><p><strong>分裂满射 (Split Epimorphisms):</strong> 假设选择公理 (Axiom of Choice) 成立，<span class="math inline">\(\mathbf{Set}_*\)</span> 中的<strong>所有满射也都是分裂的</strong>。设 <span class="math inline">\(f: X \to Y\)</span> 是满射，我们需要构造右逆 <span class="math inline">\(g: Y \to X\)</span> 使得 <span class="math inline">\(f \circ g = \text{id}_Y\)</span>。对于基点 <span class="math inline">\(y_0\)</span>，我们严格规定 <span class="math inline">\(g(y_0) = x_0\)</span>（这是合法的，因为 <span class="math inline">\(f(x_0)=y_0\)</span>）。对于 <span class="math inline">\(Y\)</span> 中的其他元素 <span class="math inline">\(y \neq y_0\)</span>，利用选择公理在非空的原像集 <span class="math inline">\(f^{-1}(y)\)</span> 中任选一个元素定义为 <span class="math inline">\(g(y)\)</span>。这样构造的 <span class="math inline">\(g\)</span> 满足保基点性质且为 <span class="math inline">\(f\)</span> 的右逆。</p></li>
+<li><p><strong>分裂双态射 (Split Bimorphisms):</strong> 显然<strong>所有双态射都是分裂的</strong>（它们在 <span class="math inline">\(\mathbf{Set}_*\)</span> 中就是同构态射）。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-11" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-11">Chapter 11</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\(\mathcal{T}_1\)</span> be a coarser topology than <span class="math inline">\(\mathcal{T}_2\)</span> on a set <span class="math inline">\(X\)</span>.</p>
+<ol type="1">
+<li>Is any connected subspace of <span class="math inline">\((X, \mathcal{T}_1)\)</span> also connected under the subspace topology induced from <span class="math inline">\(\mathcal{T}_2\)</span>? Or the other way around?</li>
+<li>Let <span class="math inline">\(\mathcal{T}_1\)</span> be the Zariski topology on <span class="math inline">\(\mathbb{R}^2\)</span> and let <span class="math inline">\(\mathcal{T}_2\)</span> be the standard topology on <span class="math inline">\(\mathbb{R}^2\)</span>. Find a connected subspace of <span class="math inline">\(\mathbb{R}^2\)</span> equipped with one of <span class="math inline">\(\mathcal{T}_i\)</span> that is disconnected with respect to the other topology.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<ol type="1">
+<li><strong>不一定；反过来成立。</strong></li>
+</ol>
+<ul>
+<li><p><strong><span class="math inline">\((X, \mathcal{T}_1)\)</span> 中连通不一定在 <span class="math inline">\(\mathcal{T}_2\)</span> 中连通</strong>：因为 <span class="math inline">\(\mathcal{T}_1 \subseteq \mathcal{T}_2\)</span>（<span class="math inline">\(\mathcal{T}_2\)</span> 是更精细的拓扑，拥有更多的开集），所以更容易在 <span class="math inline">\(\mathcal{T}_2\)</span> 中找到能够分离该子空间的开集。例如对包含两个以上的元素的集合，<span class="math inline">\(\mathcal{T}_1\)</span> 取平凡拓扑（连通），<span class="math inline">\(\mathcal{T}_2\)</span> 取离散拓扑（完全不连通）。</p></li>
+<li><p><strong><span class="math inline">\((X, \mathcal{T}_2)\)</span> 中连通可推导出在 <span class="math inline">\(\mathcal{T}_1\)</span> 中连通</strong>：考虑恒等映射 <span class="math inline">\(id: (X, \mathcal{T}_2) \to (X, \mathcal{T}_1)\)</span>。因为开集 <span class="math inline">\(\mathcal{T}_1 \subseteq \mathcal{T}_2\)</span>，该恒等映射是连续映射。根据连通集在连续映射下的像仍为连通集的性质，<span class="math inline">\(\mathcal{T}_2\)</span> 中的连通子空间在 <span class="math inline">\(\mathcal{T}_1\)</span> 中必定连通。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>例子：双曲线 <span class="math inline">\(S = \{ (x,y) \in \mathbb{R}^2 \mid x^2 - y^2 = 1 \}\)</span>。</strong></li>
+</ol>
+<ul>
+<li><p>Zariski 拓扑 <span class="math inline">\(\mathcal{T}_1\)</span> 是比标准拓扑 <span class="math inline">\(\mathcal{T}_2\)</span> 更粗的拓扑。根据第 (1) 问的结论，我们需要寻找一个在 <span class="math inline">\(\mathcal{T}_1\)</span> 中连通但在 <span class="math inline">\(\mathcal{T}_2\)</span> 中不连通的集合。</p></li>
+<li><p>在标准拓扑 <span class="math inline">\(\mathcal{T}_2\)</span> 下，<span class="math inline">\(S\)</span> 被分成了左右两支，它可以表示为 <span class="math inline">\(S = (S \cap \{(x,y) \mid x &gt; 0\}) \cup (S \cap \{(x,y) \mid x &lt; 0\})\)</span>。这是两个不相交的非空相对开集的并，因此 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(\mathcal{T}_2\)</span> 下是<strong>不连通的</strong>。</p></li>
+<li><p>在 Zariski 拓扑 <span class="math inline">\(\mathcal{T}_1\)</span> 下，<span class="math inline">\(S\)</span> 是由多项式 <span class="math inline">\(f(x,y) = x^2 - y^2 - 1\)</span> 定义的代数集。因为 <span class="math inline">\(x^2 - y^2 - 1\)</span> 在实系数多项式环 <span class="math inline">\(\mathbb{R}[x,y]\)</span> 中是不可约多项式，所以 <span class="math inline">\(S\)</span> 是一个不可约代数集（不可约空间）。由于所有的不可约拓扑空间都一定是连通空间，因此 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(\mathcal{T}_1\)</span> 下是<strong>连通的</strong>。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Sketch <span class="math inline">\(X\)</span> which is the <strong>complement</strong> of <span class="math display">\[ \bigcup_{n=1}^{\infty} \left\{\frac{1}{4n-2}, 1 - \frac{1}{4n-2}\right\} \times \left[\frac{1}{6n-3}, 1\right] \cup \left\{\frac{1}{4n}, 1 - \frac{1}{4n}\right\} \times \left[0, 1 - \frac{1}{6n}\right] \]</span> in <span class="math inline">\([0, 1] \times [0, 1]\)</span>. Find its components and path-components and justify your results.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 空间 <span class="math inline">\(X\)</span> 的草图与描述</strong></p>
+<p><span class="math inline">\(X\)</span> 是在单位正方形 <span class="math inline">\([0, 1] \times [0, 1]\)</span> 中挖去两组交替的无穷多条垂直线段后得到的空间：</p>
+<ul>
+<li><strong>第一组（顶部相连）</strong>：横坐标为 <span class="math inline">\(x = \frac{1}{4n-2}\)</span> 或 <span class="math inline">\(1 - \frac{1}{4n-2}\)</span>，线段从顶部 <span class="math inline">\(y=1\)</span> 向下延伸到 <span class="math inline">\(y = \frac{1}{6n-3}\)</span>。随着 <span class="math inline">\(n \to \infty\)</span>，这些线段分别向边界 <span class="math inline">\(x=0\)</span> 和 <span class="math inline">\(x=1\)</span> 逼近，且底部越来越接近 <span class="math inline">\(y=0\)</span>。</li>
+<li><strong>第二组（底部相连）</strong>：横坐标为 <span class="math inline">\(x = \frac{1}{4n}\)</span> 或 <span class="math inline">\(1 - \frac{1}{4n}\)</span>，线段从底部 <span class="math inline">\(y=0\)</span> 向上延伸到 <span class="math inline">\(y = 1 - \frac{1}{6n}\)</span>。随着 <span class="math inline">\(n \to \infty\)</span>，这些线段也向边界 <span class="math inline">\(x=0\)</span> 和 <span class="math inline">\(x=1\)</span> 逼近，且顶部越来越接近 <span class="math inline">\(y=1\)</span>。</li>
+</ul>
+<p>直观上，<span class="math inline">\(X\)</span> 中间部分（<span class="math inline">\(0 &lt; x &lt; 1\)</span>）形成了一条连续蜿蜒、上下折叠的“走廊”，并且在边界处（<span class="math inline">\(x=0\)</span> 和 <span class="math inline">\(x=1\)</span>）保留了完整的垂直线段 <span class="math inline">\(\{0\} \times [0, 1]\)</span> 和 <span class="math inline">\(\{1\} \times [0, 1]\)</span>。这本质上是“拓扑正弦曲线”（Topologist’s Sine Curve）的双侧变体。</p>
+<p><strong>2. 连通分支 (Components)</strong></p>
+<p><span class="math inline">\(X\)</span> 只有 <strong>1个连通分支</strong>，即 <span class="math inline">\(X\)</span> 本身（意味着 <span class="math inline">\(X\)</span> 是连通空间）。</p>
+<p><strong>证明：</strong> 令中间的“走廊”部分为 <span class="math inline">\(U = X \cap ((0, 1) \times [0, 1])\)</span>。由于在 <span class="math inline">\(U\)</span> 中总是可以绕过被挖去的线段末端（即在线段下方或上方通过），因此 <span class="math inline">\(U\)</span> 内任意两点可用折线相连，即 <span class="math inline">\(U\)</span> 是道路连通的，从而 <span class="math inline">\(U\)</span> 是连通的。 考察边界线段 <span class="math inline">\(L = \{0\} \times [0, 1]\)</span> 和 <span class="math inline">\(R = \{1\} \times [0, 1]\)</span>，它们显然包含在 <span class="math inline">\(X\)</span> 中。 因为走廊 <span class="math inline">\(U\)</span> 在向 <span class="math inline">\(x=0\)</span> 逼近时，其 <span class="math inline">\(y\)</span> 坐标在 <span class="math inline">\(0\)</span> 和 <span class="math inline">\(1\)</span> 之间剧烈且无限次地上下震荡，这导致 <span class="math inline">\(L\)</span> 上的每一点都是 <span class="math inline">\(U\)</span> 的极限点。同理，<span class="math inline">\(R\)</span> 上的每一点也是 <span class="math inline">\(U\)</span> 的极限点。因此有 <span class="math inline">\(L \subset \overline{U}\)</span> 且 <span class="math inline">\(R \subset \overline{U}\)</span>。 根据拓扑学性质，由于 <span class="math inline">\(U\)</span> 是连通的，且 <span class="math inline">\(U \subset X \subset \overline{U}\)</span>，因此 <span class="math inline">\(X\)</span> 必然是连通的。</p>
+<p><strong>3. 道路连通分支 (Path-components)</strong></p>
+<p><span class="math inline">\(X\)</span> 共有 <strong>3个道路连通分支</strong>，分别是：<span class="math inline">\(L = \{0\} \times [0, 1]\)</span>，<span class="math inline">\(R = \{1\} \times [0, 1]\)</span>，以及 <span class="math inline">\(U = X \cap ((0, 1) \times [0, 1])\)</span>。</p>
+<p><strong>证明：</strong></p>
+<ul>
+<li><span class="math inline">\(L, R, U\)</span> 各自显然是内部道路连通的。</li>
+<li><strong>反证法证明 <span class="math inline">\(L\)</span> 与 <span class="math inline">\(U\)</span> 不道路连通</strong>：假设存在一条连续路径 <span class="math inline">\(\gamma: [0, 1] \to X\)</span> 连接 <span class="math inline">\(L\)</span> 中的某点与 <span class="math inline">\(U\)</span> 中的某点。设 <span class="math inline">\(t_0\)</span> 为路径最后一次处于 <span class="math inline">\(L\)</span> 上的时刻。当 <span class="math inline">\(t \to t_0^+\)</span> 时，<span class="math inline">\(\gamma(t)\)</span> 的横坐标 <span class="math inline">\(x(t) \to 0\)</span>。为了使得路径留在 <span class="math inline">\(X\)</span> 中不被阻挡，当 <span class="math inline">\(x(t)\)</span> 从右向左穿越 <span class="math inline">\(x = \frac{1}{4n-2}\)</span> 时，<span class="math inline">\(y(t)\)</span> 必须小于 <span class="math inline">\(\frac{1}{6n-3}\)</span>（被迫接近 0）；而当 <span class="math inline">\(x(t)\)</span> 穿越更接近 0 的 <span class="math inline">\(x = \frac{1}{4n}\)</span> 时，<span class="math inline">\(y(t)\)</span> 必须大于 <span class="math inline">\(1 - \frac{1}{6n}\)</span>（被迫接近 1）。</li>
+<li>这意味着随着 <span class="math inline">\(t \to t_0^+\)</span>，<span class="math inline">\(y(t)\)</span> 必须在 0 和 1 附近无限次地来回突变，无法收敛到任何极限值，这违背了路径 <span class="math inline">\(\gamma\)</span> 在 <span class="math inline">\(t_0\)</span> 处的连续性。</li>
+<li>因此，<span class="math inline">\(L\)</span> 不能与 <span class="math inline">\(U\)</span> 道路连通。同理可严格证明 <span class="math inline">\(R\)</span> 也不能与 <span class="math inline">\(U\)</span> 道路连通。<span class="math inline">\(L\)</span> 与 <span class="math inline">\(R\)</span> 之间被 <span class="math inline">\(U\)</span> 隔断，自然也不互相道路连通。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/toposinwave.jpg" class="img-fluid figure-img"></p>
+<figcaption>Topologist’s sine wave</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> The topologist’s sine curve and the closed topologist’s sine curve is connected but not path-connected.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>为了证明这个命题，我们首先明确拓扑正弦曲线 (Topologist’s sine curve) 及其闭包的定义。 令 <span class="math inline">\(S = \{(x, \sin(1/x)) \mid 0 &lt; x \le 1\}\)</span> 为 <span class="math inline">\(x&gt;0\)</span> 时的连续曲线部分。 拓扑正弦曲线通常定义为 <span class="math inline">\(T = S \cup \{(0,0)\}\)</span>。 闭拓扑正弦曲线定义为 <span class="math inline">\(S\)</span> 的闭包，即 <span class="math inline">\(\overline{T} = S \cup (\{0\} \times [-1, 1])\)</span>。</p>
+<p><strong>1. 证明连通性 (Connectedness)</strong></p>
+<ul>
+<li><strong><span class="math inline">\(S\)</span> 的连通性：</strong> 函数 <span class="math inline">\(f: (0, 1] \to \mathbb{R}^2\)</span> 定义为 <span class="math inline">\(f(x) = (x, \sin(1/x))\)</span> 是连续函数。由于区间 <span class="math inline">\((0, 1]\)</span> 是连通的，连通空间在连续映射下的像必定连通，故 <span class="math inline">\(S = f((0, 1])\)</span> 是连通空间。</li>
+<li><strong><span class="math inline">\(T\)</span> 和 <span class="math inline">\(\overline{T}\)</span> 的连通性：</strong> 根据拓扑学的一个基本定理，如果一个子空间 <span class="math inline">\(A\)</span> 是连通的，那么满足 <span class="math inline">\(A \subseteq B \subseteq \overline{A}\)</span> 的任意子空间 <span class="math inline">\(B\)</span> 也是连通的。因为 <span class="math inline">\(S \subset T \subset \overline{T} = \overline{S}\)</span>，且 <span class="math inline">\(S\)</span> 是连通的，所以 <span class="math inline">\(T\)</span> 和 <span class="math inline">\(\overline{T}\)</span>（闭拓扑正弦曲线）都是连通的。</li>
+</ul>
+<p><strong>2. 证明非道路连通性 (Not path-connected)</strong></p>
+<p>我们通过反证法证明更广泛的 <span class="math inline">\(\overline{T}\)</span> 不是道路连通的（这自然蕴含了其子空间 <span class="math inline">\(T\)</span> 也不是道路连通的）。假设 <span class="math inline">\(\overline{T}\)</span> 是道路连通的。</p>
+<ul>
+<li><p>假设存在一条连续路径 <span class="math inline">\(p: [0, 1] \to \overline{T}\)</span>，设 <span class="math inline">\(p(t) = (x(t), y(t))\)</span>。我们假定该路径连接了 <span class="math inline">\(y\)</span> 轴上的点和 <span class="math inline">\(S\)</span> 中的点，即 <span class="math inline">\(p(0) \in \{0\} \times [-1, 1]\)</span> 且 <span class="math inline">\(p(1) \in S\)</span>。</p></li>
+<li><p>由于 <span class="math inline">\(x(t)\)</span> 是从 <span class="math inline">\([0, 1]\)</span> 到 <span class="math inline">\(\mathbb{R}\)</span> 的连续函数，原像集合 <span class="math inline">\(A = \{t \in [0, 1] \mid x(t) = 0\}\)</span> 是一个闭集。已知 <span class="math inline">\(p(0)\)</span> 的 <span class="math inline">\(x\)</span> 坐标为 0，所以 <span class="math inline">\(0 \in A\)</span>，即 <span class="math inline">\(A\)</span> 是非空有界闭集。</p></li>
+<li><p>令 <span class="math inline">\(t_0 = \max A\)</span>（由于 <span class="math inline">\(p(1) \in S\)</span>，即 <span class="math inline">\(x(1) &gt; 0\)</span>，因此 <span class="math inline">\(t_0 &lt; 1\)</span>）。根据定义，对于所有的 <span class="math inline">\(t \in (t_0, 1]\)</span>，都有 <span class="math inline">\(x(t) &gt; 0\)</span>。这意味着当 <span class="math inline">\(t &gt; t_0\)</span> 时，路径完全位于曲线 <span class="math inline">\(S\)</span> 上，满足 <span class="math inline">\(y(t) = \sin(1/x(t))\)</span>。</p></li>
+<li><p>因为路径 <span class="math inline">\(p(t)\)</span> 在 <span class="math inline">\(t_0\)</span> 处连续，当 <span class="math inline">\(t \to t_0^+\)</span> 时，<span class="math inline">\(x(t) \to 0^+\)</span>，且极限 <span class="math inline">\(\lim_{t \to t_0^+} y(t) = y(t_0)\)</span> 必须存在且有限。</p></li>
+<li><p>然而，由于 <span class="math inline">\(x(t)\)</span> 是连续的，当 <span class="math inline">\(t\)</span> 从右侧趋近于 <span class="math inline">\(t_0\)</span> 时，<span class="math inline">\(x(t)\)</span> 会连续地取遍某个区间 <span class="math inline">\((0, \epsilon)\)</span> 内的所有值（介值定理）。因此，<span class="math inline">\(1/x(t)\)</span> 会趋于正无穷大，导致 <span class="math inline">\(\sin(1/x(t))\)</span> 在 <span class="math inline">\(-1\)</span> 和 <span class="math inline">\(1\)</span> 之间无限次高频震荡。</p></li>
+<li><p>这种震荡导致极限 <span class="math inline">\(\lim_{t \to t_0^+} \sin(1/x(t))\)</span> 根本不存在，这与 <span class="math inline">\(y(t)\)</span> 在 <span class="math inline">\(t_0\)</span> 处的连续性产生了不可调和的矛盾。</p></li>
+<li><p>因此，不存在这样的连续路径，<span class="math inline">\(\overline{T}\)</span> 以及 <span class="math inline">\(T\)</span> 均不是道路连通的。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Is there an open subset of <span class="math inline">\(\mathbb{R}^2\)</span> that is connected but not path-connected?
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>不存在。</strong>在 <span class="math inline">\(\mathbb{R}^n\)</span>（包括 <span class="math inline">\(\mathbb{R}^2\)</span>）中，任何开的连通子集必然也是道路连通的。这可以推广到任何局部道路连通空间。</p>
+<p><strong>证明步骤如下：</strong></p>
+<ul>
+<li>假设 <span class="math inline">\(U\)</span> 是 <span class="math inline">\(\mathbb{R}^2\)</span> 中的一个非空、连通的开集。在 <span class="math inline">\(U\)</span> 中任取一点 <span class="math inline">\(x_0\)</span>。</li>
+<li>定义 <span class="math inline">\(V = \{x \in U \mid x \text{ 可以通过 } U \text{ 内的连续路径与 } x_0 \text{ 相连}\}\)</span>。我们的目标是证明 <span class="math inline">\(V = U\)</span>。</li>
+<li><strong>证明 <span class="math inline">\(V\)</span> 是开集：</strong> 对于任意 <span class="math inline">\(y \in V\)</span>，由于 <span class="math inline">\(U\)</span> 是开集，存在以 <span class="math inline">\(y\)</span> 为中心且完全包含在 <span class="math inline">\(U\)</span> 中的开圆盘 <span class="math inline">\(B(y, r) \subseteq U\)</span>。因为开圆盘本身是凸集（自然是道路连通的），<span class="math inline">\(B(y, r)\)</span> 中的任意一点都可以与 <span class="math inline">\(y\)</span> 道路相连。由于 <span class="math inline">\(y \in V\)</span>（<span class="math inline">\(y\)</span> 与 <span class="math inline">\(x_0\)</span> 道路相连），将路径拼接可知，<span class="math inline">\(B(y, r)\)</span> 中的任意一点都能与 <span class="math inline">\(x_0\)</span> 道路相连。因此 <span class="math inline">\(B(y, r) \subseteq V\)</span>，这证明了 <span class="math inline">\(V\)</span> 是开集。</li>
+<li><strong>证明 <span class="math inline">\(U \setminus V\)</span> 是开集：</strong> 对于任意 <span class="math inline">\(z \in U \setminus V\)</span>（即 <span class="math inline">\(z \in U\)</span> 但不能与 <span class="math inline">\(x_0\)</span> 道路相连），由于 <span class="math inline">\(U\)</span> 是开集，同样存在开圆盘 <span class="math inline">\(B(z, r) \subseteq U\)</span>。假设 <span class="math inline">\(B(z, r)\)</span> 中存在某点能与 <span class="math inline">\(x_0\)</span> 道路相连，那么 <span class="math inline">\(z\)</span> 可以先在圆盘内与该点相连，再与 <span class="math inline">\(x_0\)</span> 相连，这就导致 <span class="math inline">\(z \in V\)</span>，产生矛盾。因此，<span class="math inline">\(B(z, r)\)</span> 中的所有点都不能与 <span class="math inline">\(x_0\)</span> 道路相连，即 <span class="math inline">\(B(z, r) \subseteq U \setminus V\)</span>。这证明了 <span class="math inline">\(U \setminus V\)</span> 也是开集。</li>
+<li><strong>利用连通性得出结论：</strong> 现在我们将空间 <span class="math inline">\(U\)</span> 写成了两个不相交的开集之并：<span class="math inline">\(U = V \cup (U \setminus V)\)</span>。由于 <span class="math inline">\(x_0 \in V\)</span>，可知 <span class="math inline">\(V\)</span> 是非空开集。因为已知 <span class="math inline">\(U\)</span> 是连通空间，根据连通空间的定义，它不能表示为两个非空的不相交开集之并。因此，另一部分 <span class="math inline">\(U \setminus V\)</span> 必须为空集 <span class="math inline">\(\emptyset\)</span>。</li>
+<li>结论：<span class="math inline">\(U \setminus V = \emptyset\)</span> 意味着 <span class="math inline">\(V = U\)</span>。即 <span class="math inline">\(U\)</span> 中的所有点都可以与给定的点 <span class="math inline">\(x_0\)</span> 道路相连，因此 <span class="math inline">\(U\)</span> 是道路连通的。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Show that <span class="math inline">\(([0,1]^2, \mathcal{T}_{\text{lexi}})\)</span> with the lexicographical order topology is locally connected but not locally path-connected. What are its path-components?
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 局部连通性 (Locally connected)</strong></p>
+<ul>
+<li>空间 <span class="math inline">\(X = ([0,1]^2, \le_{\text{lexi}})\)</span> 是一个线性连续统（Linear Continuum）：它具有全序关系，满足最小上界性质（Least Upper Bound Property），并且在任意两点之间总存在第三点。</li>
+<li>在字典序拓扑 <span class="math inline">\(\mathcal{T}_{\text{lexi}}\)</span> 中，其基本开集是由开区间 <span class="math inline">\(((x_1, y_1), (x_2, y_2))\)</span> 以及边界处的半开区间构成的。</li>
+<li>对于任何线性连续统，其上的任意区间都是连通集。</li>
+<li>由于 <span class="math inline">\(X\)</span> 拥有一个完全由连通集（即这些区间）构成的拓扑基，空间中的每一点都有连通的局部基。因此 <span class="math inline">\(X\)</span> 是<strong>局部连通的</strong>。</li>
+</ul>
+<p><strong>2. 道路连通分支 (Path-components)</strong></p>
+<p><span class="math inline">\(X\)</span> 的道路连通分支是所有的垂直线段 <span class="math inline">\(P_x = \{x\} \times [0, 1]\)</span>，其中 <span class="math inline">\(x \in [0, 1]\)</span>。</p>
+<p><strong>证明：</strong></p>
+<ul>
+<li>首先，对于任意固定的 <span class="math inline">\(x\)</span>，子空间 <span class="math inline">\(P_x = \{x\} \times [0, 1]\)</span> 在字典序拓扑下诱导的子空间拓扑，等价于 <span class="math inline">\([0, 1]\)</span> 上的标准实数拓扑。因此 <span class="math inline">\(P_x\)</span> 本身是同胚于标准闭区间 <span class="math inline">\([0, 1]\)</span> 的，所以是道路连通的。</li>
+<li>其次，假设存在一条连续路径 <span class="math inline">\(\gamma: [0, 1] \to X\)</span> 连接了具有不同 <span class="math inline">\(x\)</span> 坐标的两点 <span class="math inline">\((x_1, y_1)\)</span> 和 <span class="math inline">\((x_2, y_2)\)</span>，且不妨设 <span class="math inline">\(x_1 &lt; x_2\)</span>。</li>
+<li>因为 <span class="math inline">\([0, 1]\)</span> 是连通且紧致的，<span class="math inline">\(\gamma([0, 1])\)</span> 必然是 <span class="math inline">\(X\)</span> 中的连通紧致子集。在线性连续统中，它必定包含两点之间的整个闭区间 <span class="math inline">\(I = [(x_1, y_1), (x_2, y_2)]\)</span>。</li>
+<li>该区间 <span class="math inline">\(I\)</span> 内部包含了不可数个互不相交的非空开集（例如对于所有 <span class="math inline">\(x \in (x_1, x_2)\)</span>，取 <span class="math inline">\(U_x = \{x\} \times (1/3, 2/3)\)</span>）。如果一个拓扑空间包含不可数个互不相交的开集，那么它绝不可能是可分空间（Non-separable）。</li>
+<li>然而，连续映射会保持可分性。<span class="math inline">\([0, 1]\)</span> 是可分空间，其连续像 <span class="math inline">\(\gamma([0, 1])\)</span> 也必须是可分空间。这就与 <span class="math inline">\(I \subseteq \gamma([0, 1])\)</span> 的不可分性产生了矛盾。</li>
+<li>因此，任何连续路径都不能跨越不同的 <span class="math inline">\(x\)</span> 坐标，道路只能在单一的垂直线段上移动。结论得证。</li>
+</ul>
+<p><strong>3. 非局部道路连通 (Not locally path-connected)</strong></p>
+<ul>
+<li>如果一个空间是局部道路连通的，那么它的任意一点都必须拥有一个由<strong>道路连通的开集</strong>构成的局部基。</li>
+<li>考虑底边上的点 <span class="math inline">\(p = (1/2, 0)\)</span>（对于任何 <span class="math inline">\(0 &lt; x \le 1\)</span> 的 <span class="math inline">\((x, 0)\)</span> 均同理）。</li>
+<li>任取 <span class="math inline">\(p\)</span> 的一个开邻域 <span class="math inline">\(U\)</span>。根据字典序拓扑的定义，<span class="math inline">\(U\)</span> 必须包含一个形如 <span class="math inline">\(((x_1, y_1), (1/2, 0)]\)</span> 的基开集，其中必然满足 <span class="math inline">\(x_1 &lt; 1/2\)</span>。</li>
+<li>由第 2 问可知，在 <span class="math inline">\(U\)</span> 中包含点 <span class="math inline">\(p\)</span> 的最大道路连通子集（即道路连通分支）只能沿着垂直方向延伸，因此它必定是垂直线段 <span class="math inline">\(\{1/2\} \times [0, \epsilon)\)</span> 的某个子集。</li>
+<li>但是，集合 <span class="math inline">\(\{1/2\} \times [0, \epsilon)\)</span> 在字典序拓扑下<strong>不是开集</strong>。因为任何包含 <span class="math inline">\((1/2, 0)\)</span> 的开集，其左端点都必须跨越到 <span class="math inline">\(x &lt; 1/2\)</span> 的区域。</li>
+<li>这意味着点 <span class="math inline">\(p\)</span> 的任何开邻域都不包含能将 <span class="math inline">\(p\)</span> 包裹在内的道路连通开集。因此 <span class="math inline">\(X\)</span> <strong>不是局部道路连通的</strong>。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Let <span class="math inline">\(Y = [0, 1] \cap \mathbb{Q}\)</span> and let <span class="math inline">\(X = CY\)</span> be the cone of <span class="math inline">\(Y\)</span>.</p>
+<ol type="1">
+<li>Show that <span class="math inline">\(X\)</span> is path-connected and find all points where it is locally connected.</li>
+<li>Find a subspace of <span class="math inline">\(\mathbb{R}^2\)</span> that is path-connected but nowhere locally connected.</li>
+</ol>
+<details>
+<summary style="color:gray;cursor:pointer;">
+[点击展开解答]
+</summary>
+<p><strong>第一题 (1)</strong></p>
+<p><strong>设 <span class="math inline">\(Y = [0,1] \cap \mathbb{Q}\)</span>，且 <span class="math inline">\(X = CY\)</span> 是 <span class="math inline">\(Y\)</span> 的锥。证明 <span class="math inline">\(X\)</span> 是道路连通的，并求出 <span class="math inline">\(X\)</span> 中所有局部连通的点。</strong></p>
+<p><strong>证明：</strong> 设锥 <span class="math inline">\(X = CY = (Y \times [0,1]) / (Y \times \{1\})\)</span>，商映射为 <span class="math inline">\(q: Y \times [0,1] \to X\)</span>。记锥点为 <span class="math inline">\(* = q(Y \times \{1\})\)</span>。</p>
+<p><strong>(a) 证明 <span class="math inline">\(X\)</span> 是道路连通的：</strong> 对于任意点 <span class="math inline">\(x \in X\)</span>，存在 <span class="math inline">\((y, t) \in Y \times [0,1]\)</span> 使得 <span class="math inline">\(x = q(y, t)\)</span>。</p>
+<p>定义映射 <span class="math inline">\(\gamma_x: [0, 1-t] \to X\)</span> 为：</p>
+<p><span class="math display">\[
+\gamma_x(s) = q(y, t+s)
+\]</span></p>
+<p>因为 <span class="math inline">\(q\)</span> 是连续的，所以 <span class="math inline">\(\gamma_x\)</span> 是 <span class="math inline">\(X\)</span> 中的一条连续道路。</p>
+<p>注意到 <span class="math inline">\(\gamma_x(0) = q(y, t) = x\)</span>，且 <span class="math inline">\(\gamma_x(1-t) = q(y, 1) = *\)</span>。</p>
+<p>因此，<span class="math inline">\(X\)</span> 中的每个点都可以通过道路连接到锥点 <span class="math inline">\(*\)</span>。由于道路连通性是一个等价关系，<span class="math inline">\(X\)</span> 中的任意两点都可以通过 <span class="math inline">\(*\)</span> 互相连接。故 <span class="math inline">\(X\)</span> 是道路连通的。</p>
+<p><strong>(b) 寻找所有局部连通点：</strong></p>
+<p><strong>断言：</strong> 锥点 <span class="math inline">\(*\)</span> 是 <span class="math inline">\(X\)</span> 中<strong>唯一</strong>的局部连通点。</p>
+<p><em>步骤 1：锥点 <span class="math inline">\(*\)</span> 是局部连通的。</em></p>
+<p><span class="math inline">\(*\)</span> 在 <span class="math inline">\(X\)</span> 中的一个基本开邻域系由以下形式的集合给出：</p>
+<p><span class="math display">\[
+U_a = q(Y \times (a, 1]), \quad \text{其中 } a \in [0, 1)
+\]</span></p>
+<p>对于任意 <span class="math inline">\(a \in [0,1)\)</span> 和任意 <span class="math inline">\(x = q(y, t) \in U_a\)</span>（其中 <span class="math inline">\(t &gt; a\)</span>），线段 <span class="math inline">\(q(\{y\} \times [t, 1])\)</span> 完全位于 <span class="math inline">\(U_a\)</span> 内，并将 <span class="math inline">\(x\)</span> 连接到 <span class="math inline">\(*\)</span>。因此，每个 <span class="math inline">\(U_a\)</span> 都是道路连通的（因而是连通的）。由于 <span class="math inline">\(*\)</span> 拥有由连通集构成的邻域基底，因此 <span class="math inline">\(X\)</span> 在 <span class="math inline">\(*\)</span> 处是局部连通的。</p>
+<p><em>步骤 2：<span class="math inline">\(X\)</span> 中的其他点均非局部连通。</em></p>
+<p>设 <span class="math inline">\(x = q(y_0, t_0) \in X\)</span>，其中 <span class="math inline">\(t_0 &lt; 1\)</span>。 任取 <span class="math inline">\(x\)</span> 的一个不包含 <span class="math inline">\(*\)</span> 的邻域 <span class="math inline">\(W\)</span>。根据商拓扑的定义，存在 <span class="math inline">\(Y\)</span> 中包含 <span class="math inline">\(y_0\)</span> 的开集 <span class="math inline">\(V\)</span>，以及区间 <span class="math inline">\((a, b)\)</span> 满足 <span class="math inline">\(0 \le a &lt; t_0 &lt; b &lt; 1\)</span>，使得：</p>
+<p><span class="math display">\[
+x \in U = q(V \times (a, b)) \subset W
+\]</span></p>
+<p>设 <span class="math inline">\(C\)</span> 为 <span class="math inline">\(U\)</span> 中包含 <span class="math inline">\(x\)</span> 的连通分支。我们考虑投影映射 <span class="math inline">\(\pi: V \times (a, b) \to V\)</span>，定义为 <span class="math inline">\(\pi(y, t) = y\)</span>。由于 <span class="math inline">\(U\)</span> 不与锥点相交，<span class="math inline">\(q\)</span> 限制在 <span class="math inline">\(V \times (a, b)\)</span> 上是一个到其像的同胚。因此，<span class="math inline">\(q^{-1}(C)\)</span> 在 <span class="math inline">\(V \times (a, b)\)</span> 中是连通的。</p>
+<p>因为 <span class="math inline">\(\pi\)</span> 是连续的，所以像 <span class="math inline">\(\pi(q^{-1}(C))\)</span> 必定在 <span class="math inline">\(V\)</span> 中连通。然而，<span class="math inline">\(V \subset Y \subset \mathbb{Q}\)</span>，而有理数子空间是完全不连通的。因此，连通子集 <span class="math inline">\(\pi(q^{-1}(C))\)</span> 必定是一个单点集，即 <span class="math inline">\(\{y_0\}\)</span>。</p>
+<p>这意味着 <span class="math inline">\(C \subset q(\{y_0\} \times (a, b))\)</span>。</p>
+<p>若 <span class="math inline">\(C\)</span> 要成为 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(X\)</span> 中的邻域，<span class="math inline">\(C\)</span> 必须包含 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(X\)</span> 中的某个开集。但是 <span class="math inline">\(q(\{y_0\} \times (a, b))\)</span> 在 <span class="math inline">\(X\)</span> 中的内部为空，因为 <span class="math inline">\(\{y_0\}\)</span> 在 <span class="math inline">\(Y\)</span> 中不是开集（<span class="math inline">\(Y\)</span> 没有孤立点）。因此，<span class="math inline">\(C\)</span> 不能是 <span class="math inline">\(x\)</span> 的邻域。</p>
+<p>因为 <span class="math inline">\(W\)</span> 是任取的，所以 <span class="math inline">\(x\)</span> 不存在连通邻域基。因此 <span class="math inline">\(X\)</span> 在 <span class="math inline">\(x\)</span> 处不是局部连通的。</p>
+<p><strong>第(1)问结论：</strong> <span class="math inline">\(X\)</span> 是道路连通的，且唯一的局部连通点是锥点 <span class="math inline">\(*\)</span>。</p>
+<hr>
+<p><strong>第二题 (2)</strong></p>
+<p><strong>求 <span class="math inline">\(\mathbb{R}^2\)</span> 中的一个子空间，使其道路连通但处处非局部连通 (nowhere locally connected)。</strong></p>
+<p><strong>解答：</strong> 定义子空间 <span class="math inline">\(X \subset \mathbb{R}^2\)</span> 为两个“有理扇 (rational fans)”的并集：</p>
+<p><span class="math display">\[
+X = \bigcup_{q \in \mathbb{Q} \cap [0,1]} L_1(q) \ \cup \ \bigcup_{q \in \mathbb{Q} \cap [0,1]} L_2(q)
+\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(L_1(q)\)</span> 是连接 <span class="math inline">\((0,0)\)</span> 和 <span class="math inline">\((1, q)\)</span> 的闭线段。</li>
+<li><span class="math inline">\(L_2(q)\)</span> 是连接 <span class="math inline">\((1,0)\)</span> 和 <span class="math inline">\((0, -q)\)</span> 的闭线段。</li>
+</ul>
+<p><strong>性质证明：</strong></p>
+<p><strong>(a) <span class="math inline">\(X\)</span> 是道路连通的：</strong></p>
+<p>设 <span class="math inline">\(F_1 = \bigcup L_1(q)\)</span>（左扇）和 <span class="math inline">\(F_2 = \bigcup L_2(q)\)</span>（右扇）。</p>
+<p><span class="math inline">\(F_1\)</span> 中的每个点都通过直线段连接到顶点 <span class="math inline">\((0,0)\)</span>。</p>
+<p><span class="math inline">\(F_2\)</span> 中的每个点都通过直线段连接到顶点 <span class="math inline">\((1,0)\)</span>。</p>
+<p>注意到当 <span class="math inline">\(q=0\)</span> 时，<span class="math inline">\(L_1(0)\)</span> 和 <span class="math inline">\(L_2(0)\)</span> 表示的是同一条沿着 <span class="math inline">\(x\)</span> 轴连接 <span class="math inline">\((0,0)\)</span> 和 <span class="math inline">\((1,0)\)</span> 的水平线段。由于 <span class="math inline">\(F_1 \cap F_2 \neq \emptyset\)</span>，<span class="math inline">\(X\)</span> 中的任意一点都可以连接到 <span class="math inline">\((0,0)\)</span>，<span class="math inline">\((0,0)\)</span> 进而连接到 <span class="math inline">\((1,0)\)</span>，<span class="math inline">\((1,0)\)</span> 又可以连接到 <span class="math inline">\(F_2\)</span> 中的任意一点。因此，<span class="math inline">\(X\)</span> 是道路连通的。</p>
+<p><strong>(b) <span class="math inline">\(X\)</span> 是处处非局部连通的：</strong></p>
+<p>任取点 <span class="math inline">\(p \in X\)</span>。设 <span class="math inline">\(B(p, \epsilon)\)</span> 为 <span class="math inline">\(\mathbb{R}^2\)</span> 中以 <span class="math inline">\(p\)</span> 为中心，<span class="math inline">\(\epsilon\)</span> 为半径的开圆盘。我们在子空间拓扑下考察开邻域 <span class="math inline">\(U = B(p, \epsilon) \cap X\)</span>。</p>
+<p><strong>情形 1：<span class="math inline">\(p \neq (0,0)\)</span> 且 <span class="math inline">\(p \neq (1,0)\)</span>。</strong></p>
+<p>选择足够小的 <span class="math inline">\(\epsilon\)</span>，使得 <span class="math inline">\(B(p, \epsilon)\)</span> 不包含 <span class="math inline">\((0,0)\)</span> 或 <span class="math inline">\((1,0)\)</span>。</p>
+<p>交集 <span class="math inline">\(U\)</span> 由一族互不相交的线段片段构成。由于 <span class="math inline">\(\mathbb{Q}\)</span> 是完全不连通的且在 <span class="math inline">\(\mathbb{R}\)</span> 中稠密，在任意两条有理线段之间都存在对应于无理斜率的空隙。因此，<span class="math inline">\(U\)</span> 中包含 <span class="math inline">\(p\)</span> 的连通分支仅仅是包含 <span class="math inline">\(p\)</span> 的那单一一条线段片段本身。该片段在 <span class="math inline">\(X\)</span> 中不是开集，因为围绕 <span class="math inline">\(p\)</span> 的任何开圆盘都会截取到与其无限接近的无数条其他有理线段。因此，<span class="math inline">\(U\)</span> 不包含 <span class="math inline">\(p\)</span> 的连通邻域。</p>
+<p><strong>情形 2：<span class="math inline">\(p = (0,0)\)</span>（对于 <span class="math inline">\((1,0)\)</span> 的论证是对称的）。</strong></p>
+<p>选择 <span class="math inline">\(\epsilon &lt; 1\)</span>。邻域 <span class="math inline">\(U = B((0,0), \epsilon) \cap X\)</span> 包含了来自 <span class="math inline">\(F_1\)</span> 和 <span class="math inline">\(F_2\)</span> 的线段。</p>
+<p><span class="math inline">\(U\)</span> 内部来自 <span class="math inline">\(F_1\)</span> 的线段都在 <span class="math inline">\((0,0)\)</span> 处交汇，形成一个连通集。然而，<span class="math inline">\(U\)</span> 也会与来自 <span class="math inline">\(F_2\)</span> 的无限多条线段相交（这些线段在 <span class="math inline">\((0, -q)\)</span> 处穿过 <span class="math inline">\(y\)</span> 轴）。由于顶点 <span class="math inline">\((0,0)\)</span> 和 <span class="math inline">\((1,0)\)</span> 相距为 1，<span class="math inline">\(U\)</span> 内部的 <span class="math inline">\(F_2\)</span> 线段与 <span class="math inline">\(U\)</span> 内部的 <span class="math inline">\(F_1\)</span> 线段在局部是完全互不相交的。</p>
+因此，<span class="math inline">\((0,0)\)</span> 在 <span class="math inline">\(U\)</span> 中的连通分支恰好是 <span class="math inline">\(B((0,0), \epsilon) \cap F_1\)</span>。但这一个分支在 <span class="math inline">\(X\)</span> 中不是开集：围绕 <span class="math inline">\((0,0)\)</span> 的任何任意小的开圆盘都会包含 <span class="math inline">\(F_2\)</span> 中的点（因为当 <span class="math inline">\(q \to 0\)</span> 时，<span class="math inline">\(y\)</span> 轴截距 <span class="math inline">\((0, -q)\)</span> 会无限逼近 <span class="math inline">\((0,0)\)</span>）。因此，不存在包含 <span class="math inline">\((0,0)\)</span> 的连通邻域。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>Exercise:</strong> Show that the topological spaces <span class="math inline">\(\mathbb{R}, \mathbb{R}^2, [0, 1], [0, 1[\)</span>, and <span class="math inline">\(\mathbb{S}^1\)</span> are pairwise non-homeomorphic (Proposition 11.4.3.1).
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>要证明这些空间两两不同胚，我们主要利用拓扑不变量：<strong>紧致性 (Compactness)</strong> 和 <strong>割点 (Cut Points)</strong> 性质。如果两个空间同胚，它们必须在这些性质上保持一致。</p>
+<p><strong>1. 利用紧致性进行第一轮分组</strong></p>
+<p>我们将这五个空间分为两组：</p>
+<ul>
+<li><strong>紧致空间组</strong>：<span class="math inline">\([0, 1]\)</span> 和 <span class="math inline">\(\mathbb{S}^1\)</span>。根据 Heine-Borel 定理，它们在 <span class="math inline">\(\mathbb{R}^n\)</span> 中是闭且有界的。</li>
+<li><strong>非紧致空间组</strong>：<span class="math inline">\(\mathbb{R}\)</span>，<span class="math inline">\(\mathbb{R}^2\)</span> 和 <span class="math inline">\([0, 1[\)</span>。它们或者是无界的，或者不是闭集。</li>
+</ul>
+<p>由于紧致性是同胚不变量，紧致组中的任何空间都不同胚于非紧致组中的任何空间。</p>
+<p><strong>2. 区分紧致空间：<span class="math inline">\([0, 1]\)</span> vs <span class="math inline">\(\mathbb{S}^1\)</span></strong></p>
+<p>我们利用<strong>割点</strong>（移除该点后空间不再连通的点）来区分：</p>
+<ul>
+<li><strong><span class="math inline">\(\mathbb{S}^1\)</span></strong>：圆周上的任意一点都不是割点。移除任何一个点后，剩余部分仍与开区间 <span class="math inline">\((0, 1)\)</span> 同胚，是连通的。</li>
+<li><strong><span class="math inline">\([0, 1]\)</span></strong>：包含大量的割点。例如，移除 <span class="math inline">\(1/2\)</span> 后，空间分裂为 <span class="math inline">\([0, 1/2) \cup (1/2, 1]\)</span>，不再连通。</li>
+</ul>
+<p>因此，<span class="math inline">\([0, 1] \not\cong \mathbb{S}^1\)</span>。</p>
+<p><strong>3. 区分非紧致空间：<span class="math inline">\(\mathbb{R}\)</span>，<span class="math inline">\(\mathbb{R}^2\)</span> 和 <span class="math inline">\([0, 1[\)</span></strong></p>
+<p>同样利用割点性质：</p>
+<ul>
+<li><p><strong><span class="math inline">\(\mathbb{R}^2\)</span></strong>：平面上没有割点。移除任何一点后，剩余部分仍然是道路连通的（从而连通）。因此 <span class="math inline">\(\mathbb{R}^2\)</span> 与 <span class="math inline">\(\mathbb{R}\)</span> 和 <span class="math inline">\([0, 1[\)</span> 均不同胚。</p></li>
+<li><p><strong><span class="math inline">\(\mathbb{R}\)</span> vs <span class="math inline">\([0, 1[\)</span></strong>：</p>
+<ul>
+<li><p>在 <strong><span class="math inline">\(\mathbb{R}\)</span></strong> 中，<strong>每一个点</strong>都是割点。移除任意一点 <span class="math inline">\(x\)</span>，空间都会分裂成两个连通分支 <span class="math inline">\((-\infty, x)\)</span> 和 <span class="math inline">\((x, \infty)\)</span>。</p></li>
+<li><p>在 <strong><span class="math inline">\([0, 1[\)</span></strong> 中，点 <span class="math inline">\(0\)</span> <strong>不是割点</strong>。移除 <span class="math inline">\(0\)</span> 后，剩余部分为 <span class="math inline">\((0, 1)\)</span>，它仍然是连通的。</p></li>
+</ul></li>
+</ul>
+由于“是否存在非割点”是一个拓扑性质，故 <span class="math inline">\(\mathbb{R} \not\cong [0, 1[\)</span>。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="chapter-12" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-12">Chapter 12</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> For each of the 9 topologies (up to homeomorphism) on <span class="math inline">\(X = \{a,b,c\}\)</span> determine whether it satisfies the <span class="math inline">\(\mathbf{T}_i\)</span> axiom for <span class="math inline">\(i \in \{0, 1, 2, 3, 4\}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<ul>
+<li><strong><span class="math inline">\(\mathbf{T}_3\)</span></strong> 要求“点与闭集可分离”，即标准定义中的<strong>正则 (Regular)</strong>，它<strong>不预设</strong>满足 <span class="math inline">\(\mathbf{T}_1\)</span>。</li>
+<li><strong><span class="math inline">\(\mathbf{T}_4\)</span></strong> 要求“闭集与闭集可分离”，即标准定义中的<strong>正规 (Normal)</strong>，它也<strong>不预设</strong>满足 <span class="math inline">\(\mathbf{T}_1\)</span>。</li>
+</ul>
+<p>在这个定义体系下，著名的蕴含关系 <span class="math inline">\(\mathbf{T}_4 \implies \mathbf{T}_3 \implies \mathbf{T}_2 \implies \mathbf{T}_1 \implies \mathbf{T}_0\)</span> <strong>不再成立</strong>。我们需要对这 9 种拓扑（记为 <span class="math inline">\(\mathcal{T}_1 \sim \mathcal{T}_9\)</span>）根据新定义逐一重新严格判定。</p>
+<p><strong>同胚意义下的 9 种拓扑及其闭集：</strong></p>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_1 = \{\emptyset, X\}\)</span> （闭集：<span class="math inline">\(X, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_2 = \{\emptyset, \{a\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_3 = \{\emptyset, \{a, b\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{c\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_4 = \{\emptyset, \{a\}, \{a, b\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \{c\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_5 = \{\emptyset, \{a\}, \{b, c\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \{a\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_6 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \{a,c\}, \{c\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_7 = \{\emptyset, \{a\}, \{a, b\}, \{a, c\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \{c\}, \{b\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_8 = \{\emptyset, \{a\}, \{b\}, \{a, b\}, \{a, c\}, X\}\)</span> （闭集：<span class="math inline">\(X, \{b,c\}, \{a,c\}, \{c\}, \{b\}, \emptyset\)</span>）</li>
+<li><span class="math inline">\(\mathcal{T}_9 = \mathcal{P}(X)\)</span> （离散拓扑，所有子集都是闭集）</li>
+</ul>
+<p><strong>判定结果与解析：</strong></p>
+<ul>
+<li><p><strong><span class="math inline">\(\mathbf{T}_0\)</span> (任意两点至少有一点有不含另一点的邻域)：</strong> 满足：<strong><span class="math inline">\(\mathcal{T}_4, \mathcal{T}_6, \mathcal{T}_7, \mathcal{T}_8, \mathcal{T}_9\)</span></strong>。</p></li>
+<li><p><strong><span class="math inline">\(\mathbf{T}_1\)</span> (任意两点互相可分离) &amp; <span class="math inline">\(\mathbf{T}_2\)</span> (任意两点有不相交邻域)：</strong> 满足：只有 <strong><span class="math inline">\(\mathcal{T}_9\)</span></strong>。 （有限集上满足 <span class="math inline">\(\mathbf{T}_1\)</span> 必须是离散拓扑，<span class="math inline">\(\mathbf{T}_2\)</span> 要求更强自然也只有离散拓扑）。</p></li>
+<li><p><strong><span class="math inline">\(\mathbf{T}_3\)</span> (任意点与不包含它的闭集有不相交邻域)：</strong> 满足：<strong><span class="math inline">\(\mathcal{T}_1, \mathcal{T}_5, \mathcal{T}_9\)</span></strong>。</p>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_1\)</span>：唯一闭集是 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(\emptyset\)</span>。点只与 <span class="math inline">\(\emptyset\)</span> 不相交，开邻域 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(\emptyset\)</span> 互不相交，<strong>空真 (vacuously)</strong> 满足。</li>
+<li><span class="math inline">\(\mathcal{T}_5\)</span>：点 <span class="math inline">\(a\)</span> 与闭集 <span class="math inline">\(\{b,c\}\)</span> 可被开集 <span class="math inline">\(\{a\}\)</span> 与 <span class="math inline">\(\{b,c\}\)</span> 分离；点 <span class="math inline">\(b, c\)</span> 与闭集 <span class="math inline">\(\{a\}\)</span> 可被开集 <span class="math inline">\(\{b,c\}\)</span> 与 <span class="math inline">\(\{a\}\)</span> 分离。满足。</li>
+<li>其它均不满足。例如 <span class="math inline">\(\mathcal{T}_2\)</span> 中点 <span class="math inline">\(a\)</span> 与闭集 <span class="math inline">\(\{b,c\}\)</span> 互不相交，包含 <span class="math inline">\(a\)</span> 的开集有 <span class="math inline">\(\{a\}\)</span> 和 <span class="math inline">\(X\)</span>，包含 <span class="math inline">\(\{b,c\}\)</span> 的开集只有 <span class="math inline">\(X\)</span>，它们的交集绝不为空。</li>
+</ul></li>
+<li><p><strong><span class="math inline">\(\mathbf{T}_4\)</span> (任意两个不相交的闭集有不相交邻域)：</strong> 满足：<strong><span class="math inline">\(\mathcal{T}_1, \mathcal{T}_2, \mathcal{T}_3, \mathcal{T}_4, \mathcal{T}_5, \mathcal{T}_6, \mathcal{T}_9\)</span></strong>。</p>
+<ul>
+<li><span class="math inline">\(\mathcal{T}_1, \mathcal{T}_2, \mathcal{T}_3, \mathcal{T}_4, \mathcal{T}_6\)</span>：在这些拓扑中，<strong>不存在</strong>两个非空且互不相交的闭集（它们的所有非空闭集都有交集）。因此，“如果两个闭集不相交，则…” 这个条件前件为假，逻辑上<strong>空真 (vacuously)</strong> 满足 <span class="math inline">\(\mathbf{T}_4\)</span>。</li>
+<li><span class="math inline">\(\mathcal{T}_5\)</span>：不相交的闭集只有 <span class="math inline">\(\{a\}\)</span> 和 <span class="math inline">\(\{b,c\}\)</span>，它们分别被开集 <span class="math inline">\(\{a\}\)</span> 和 <span class="math inline">\(\{b,c\}\)</span> 完美分离，满足。</li>
+<li>不满足：<span class="math inline">\(\mathcal{T}_7, \mathcal{T}_8\)</span>。例如在 <span class="math inline">\(\mathcal{T}_7\)</span> 和 <span class="math inline">\(\mathcal{T}_8\)</span> 中，<span class="math inline">\(\{b\}\)</span> 和 <span class="math inline">\(\{c\}\)</span> 是不相交的闭集，但在 <span class="math inline">\(\mathcal{T}_7\)</span> 中包含它们的最小开集分别是 <span class="math inline">\(\{a,b\}\)</span> 和 <span class="math inline">\(\{a,c\}\)</span>，交集 <span class="math inline">\(\{a\} \neq \emptyset\)</span>；在 <span class="math inline">\(\mathcal{T}_8\)</span> 中包含 <span class="math inline">\(\{c\}\)</span> 的开集只有 <span class="math inline">\(X\)</span>，与任何包含 <span class="math inline">\(\{b\}\)</span> 的非空开集必定相交，无法分离。</li>
+</ul></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\(X\)</span> be a topological space with the natural quotient map <span class="math inline">\(\pi: X \to (\text{Conn } X, \mathcal{T}_{\text{conn}})\)</span>.</p>
+<ol type="1">
+<li>Show that <span class="math inline">\((\text{Conn } X, \mathcal{T}_{\text{conn}})\)</span> is <span class="math inline">\(\text{T}_1\)</span>.</li>
+<li>Does <span class="math inline">\((\text{Conn } X, \mathcal{T}_{\text{conn}})\)</span> being <span class="math inline">\(\text{T}_2\)</span> imply that <span class="math inline">\(\text{Conn } X = \text{QConn } X\)</span>?</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>(1) 证明 <span class="math inline">\((\text{Conn } X, \mathcal{T}_{\text{conn}})\)</span> 是 <span class="math inline">\(\text{T}_1\)</span> 空间：</strong></p>
+<ul>
+<li><p>一个拓扑空间是 <span class="math inline">\(\text{T}_1\)</span> 空间的等价条件是它的所有单点集都是闭集。</p></li>
+<li><p>设 <span class="math inline">\(C \in \text{Conn } X\)</span> 是商空间中的任意一点。由定义可知，它对应于原空间 <span class="math inline">\(X\)</span> 中的一个连通分支（connected component）。</p></li>
+<li><p>根据拓扑学基本性质，空间中的连通分支总是闭集（因为连通集的闭包仍然是连通集，而连通分支被定义为极大的连通子集）。因此 <span class="math inline">\(C\)</span> 在 <span class="math inline">\(X\)</span> 中是闭集。</p></li>
+<li><p>根据商拓扑的定义，商空间中的子集 <span class="math inline">\(\{C\}\)</span> 是闭集当且仅当其在映射 <span class="math inline">\(\pi\)</span> 下的原像 <span class="math inline">\(\pi^{-1}(\{C\}) = C\)</span> 在 <span class="math inline">\(X\)</span> 中是闭集。</p></li>
+<li><p>由于 <span class="math inline">\(\pi^{-1}(\{C\})\)</span> 确实是闭集，所以 <span class="math inline">\(\{C\}\)</span> 在 <span class="math inline">\(\mathcal{T}_{\text{conn}}\)</span> 中是闭集。这证明了该商空间是 <span class="math inline">\(\text{T}_1\)</span> 的。</p></li>
+</ul>
+<p><strong>(2) 不一定（不能推导）。</strong></p>
+<ul>
+<li><p><strong>概念转换：</strong> <span class="math inline">\(X\)</span> 的拟连通分支（<span class="math inline">\(\text{QConn } X\)</span>，即包含某点的所有既开又闭集的交集）与连通分支重合，等价于要求：在商空间 <span class="math inline">\(Y = \text{Conn } X\)</span> 中，任意两个不同的点都能被既开又闭集（clopen set）严格分离。具有这种性质的空间被称为<strong>完全分离空间（totally separated space）</strong>。</p></li>
+<li><p><strong>已知条件：</strong> 商空间 <span class="math inline">\(Y = \text{Conn } X\)</span> 的所有连通分支显然都是单点集本身，这意味着 <span class="math inline">\(Y\)</span> 必然是一个<strong>完全不连通空间（totally disconnected space）</strong>。</p></li>
+<li><p><strong>反证逻辑：</strong> 如果题目中的推导成立，就意味着“任何满足 <span class="math inline">\(\text{T}_2\)</span>（Hausdorff）的完全不连通空间，都必定是完全分离空间”。然而在一般点集拓扑中，这是<strong>不成立</strong>的。存在许多满足 <span class="math inline">\(\text{T}_2\)</span> 分离公理且完全不连通，但由于缺乏足够的既开又闭集，从而无法把所有点完全分离的反例。</p></li>
+<li><p>因此，即使 <span class="math inline">\((\text{Conn } X, \mathcal{T}_{\text{conn}})\)</span> 是 <span class="math inline">\(\text{T}_2\)</span> 的，也不能保证它含有足够的既开又闭集，进而无法保证 <span class="math inline">\(\text{Conn } X = \text{QConn } X\)</span>。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Fill a topological space in each blank cell of the chart by examples of spaces which satisfies certain <span class="math inline">\(\mathbf{T}_i\)</span> axioms and give a brief explanation to each.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><span class="math inline">\(\neg \mathbf{T}_0\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\mathbf{T}_0 \wedge \neg \mathbf{T}_1\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\mathbf{T}_1 \wedge \neg \mathbf{T}_2\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\mathbf{T}_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(\neg \mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\(X_1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(X_2\)</span></td>
+<td style="text-align: left;">cofinite</td>
+<td style="text-align: left;"><span class="math inline">\(\mathbb{R}_K\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><span class="math inline">\(\mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\(M \times \{0,1\}\)</span></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Moore</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(\neg \mathbf{T}_3 \wedge \mathbf{T}_4\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\(X_5\)</span></td>
+<td style="text-align: left;">Sierpinski</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><span class="math inline">\(\mathbf{T}_3 \wedge \mathbf{T}_4\)</span></strong></td>
+<td style="text-align: left;">trivial</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">metric</td>
+</tr>
+</tbody>
+</table>
+<p><strong>空白处填补的具体例子与简要解释：</strong></p>
+<ul>
+<li><p><strong>1. <span class="math inline">\(X_1\)</span> (对应 <span class="math inline">\(\neg \mathbf{T}_0\)</span> 且 <span class="math inline">\(\neg \mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span>)</strong></p>
+<p><strong>定义：</strong> 有限空间 <span class="math inline">\(X_1=\{a,b,c,d\}\)</span>，拓扑 <span class="math inline">\(\mathcal{T}=\{\emptyset, \{a\}, \{a,b,c\}, \{a,d\}, X_1\}\)</span>。</p>
+<p><strong>解释：</strong> 点 <span class="math inline">\(b\)</span> 和 <span class="math inline">\(c\)</span> 拥有完全相同的开邻域，无法被拓扑区分，因此不满足 <span class="math inline">\(\mathbf{T}_0\)</span>。空间中存在不相交的闭集 <span class="math inline">\(\{d\}\)</span> 与 <span class="math inline">\(\{b,c\}\)</span>，但任何包含它们的开集（如 <span class="math inline">\(\{a,d\}\)</span> 和 <span class="math inline">\(\{a,b,c\}\)</span>）的交集都至少包含点 <span class="math inline">\(a\)</span>，无法分离，故不满足 <span class="math inline">\(\mathbf{T}_4\)</span>。同理，点 <span class="math inline">\(b\)</span> 与不包含它的闭集 <span class="math inline">\(\{d\}\)</span> 也没有不相交的开邻域，故不满足 <span class="math inline">\(\mathbf{T}_3\)</span>。</p></li>
+<li><p><strong>2. <span class="math inline">\(X_2\)</span> (对应 <span class="math inline">\(\mathbf{T}_0 \wedge \neg \mathbf{T}_1\)</span> 且 <span class="math inline">\(\neg \mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span>)</strong></p>
+<p><strong>定义：</strong> 有限空间 <span class="math inline">\(X_2=\{a,b,c\}\)</span>，拓扑 <span class="math inline">\(\mathcal{T}=\{\emptyset, \{a\}, \{a,b\}, \{a,c\}, X_2\}\)</span>。</p>
+<p><strong>解释：</strong> 任意两点都能找到只包含其中一点的开集，故满足 <span class="math inline">\(\mathbf{T}_0\)</span>；但单点集 <span class="math inline">\(\{a\}\)</span> 不是闭集，故不满足 <span class="math inline">\(\mathbf{T}_1\)</span>。空间中存在不相交的闭集 <span class="math inline">\(\{b\}\)</span> 与 <span class="math inline">\(\{c\}\)</span>，但包含它们的开集必然都包含点 <span class="math inline">\(a\)</span>，无法用不相交开集分离，故不满足 <span class="math inline">\(\mathbf{T}_4\)</span>。点 <span class="math inline">\(b\)</span> 与闭集 <span class="math inline">\(\{c\}\)</span> 亦同理无法分离，故不满足 <span class="math inline">\(\mathbf{T}_3\)</span>。</p></li>
+<li><p><strong>3. <span class="math inline">\(\mathbb{R}_K\)</span> (对应 <span class="math inline">\(\mathbf{T}_2\)</span> 且 <span class="math inline">\(\neg \mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span>)</strong></p>
+<p><strong>定义：</strong> 实数集上的 <span class="math inline">\(\mathbf{K}\)</span>-拓扑空间 <span class="math inline">\(\mathbb{R}_K\)</span>。</p>
+<p><strong>解释：</strong> <span class="math inline">\(\mathbf{K}\)</span>-拓扑比标准实数拓扑更精细，所以它显然是 <span class="math inline">\(\mathbf{T}_2\)</span>（Hausdorff）的。但点 <span class="math inline">\(0\)</span> 与闭集 <span class="math inline">\(K = \{1/n \mid n \in \mathbb{Z}^+\}\)</span> 无法由不相交的开集分离，故不满足 <span class="math inline">\(\mathbf{T}_3\)</span>（非正则）。由于该空间满足 <span class="math inline">\(\mathbf{T}_1\)</span>，如果它正规（<span class="math inline">\(\mathbf{T}_4\)</span>）则必定正则，既然非正则，自然也不满足 <span class="math inline">\(\mathbf{T}_4\)</span>。</p></li>
+<li><p><strong>4. <span class="math inline">\(M \times \{0,1\}\)</span> (对应 <span class="math inline">\(\neg \mathbf{T}_0\)</span> 且 <span class="math inline">\(\mathbf{T}_3 \wedge \neg \mathbf{T}_4\)</span>)</strong></p>
+<p><strong>定义：</strong> 莫尔平面 (Moore plane) <span class="math inline">\(M\)</span> 与带有平凡拓扑的二点空间 <span class="math inline">\(\{0,1\}\)</span> 的乘积空间。</p>
+<p><strong>解释：</strong> 由于乘上了一个平凡拓扑空间（等价于将 Moore 平面上的每一个点“双倍化”为不可区分的一对），空间中存在完全无法区分的点对，故不满足 <span class="math inline">\(\mathbf{T}_0\)</span>。然而，由于 Moore 平面本身是正则且非正规的，乘积空间完全继承了这两个性质，能够分离点与闭集（<span class="math inline">\(\mathbf{T}_3\)</span>），但存在无法分离的不相交闭集（<span class="math inline">\(\neg \mathbf{T}_4\)</span>）。</p></li>
+<li><p><strong>5. <span class="math inline">\(X_5\)</span> (对应 <span class="math inline">\(\neg \mathbf{T}_0\)</span> 且 <span class="math inline">\(\neg \mathbf{T}_3 \wedge \mathbf{T}_4\)</span>)</strong></p>
+<p><strong>定义：</strong> 有限空间 <span class="math inline">\(X_5=\{a,b,c\}\)</span>，拓扑 <span class="math inline">\(\mathcal{T}=\{\emptyset, \{a\}, X_5\}\)</span>。</p>
+<p><strong>解释：</strong> 点 <span class="math inline">\(b\)</span> 和 <span class="math inline">\(c\)</span> 拓扑不可区分，故不满足 <span class="math inline">\(\mathbf{T}_0\)</span>。该空间的闭集只有 <span class="math inline">\(X_5, \{b,c\}, \emptyset\)</span>。因为不存在两个非空且不相交的闭集，所以“如果两闭集不相交，则可分离”的前提为假，逻辑上空真地（vacuously）满足了正规性 <span class="math inline">\(\mathbf{T}_4\)</span>。但是，点 <span class="math inline">\(a\)</span> 与闭集 <span class="math inline">\(\{b,c\}\)</span> 无法被分离（包含 <span class="math inline">\(\{b,c\}\)</span> 的唯一开集是 <span class="math inline">\(X_5\)</span>），所以不满足 <span class="math inline">\(\mathbf{T}_3\)</span>。</p></li>
+</ul>
+<p><strong>Moore Plane 定义：</strong></p>
+<p>Moore Plane 的底层集合是上半平面及其边界： <span class="math display">\[
+X = \{ (x, y) \in \mathbb{R}^2 : y \ge 0 \}
+\]</span></p>
+<p>它的拓扑（记为 <span class="math inline">\(\mathcal{T}\)</span>）通过定义以下两类点的邻域基来给出：</p>
+<ul>
+<li>对于上半平面内的点 <span class="math inline">\((y &gt; 0)\)</span>：其邻域基与标准欧几里得拓扑相同，即包含在该点附近的标准开圆盘。</li>
+<li>对于 <span class="math inline">\(x\)</span> 轴上的点 <span class="math inline">\((x, 0)\)</span>：其邻域基定义为以 <span class="math inline">\((x, r)\)</span> 为圆心且切于 <span class="math inline">\(x\)</span> 轴于点 <span class="math inline">\((x, 0)\)</span> 的开圆盘 <span class="math inline">\(D\)</span> 加上切点 <span class="math inline">\((x, 0)\)</span> 本身。即：<span class="math inline">\(B_r(x, 0) = \{ (x, 0) \} \cup \{ (u, v) \in \mathbb{R}^2 : (u-x)^2 + (v-r)^2 &lt; r^2 \}\)</span>。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> <span class="math display">\[
+\begin{aligned}
+\mathbf{T}_5 &amp;\implies \mathbf{T}_4 \\
+\mathbf{T}_4 \land \mathbf{T}_3 &amp;\implies \mathbf{T}_{3\frac{1}{2}} \\
+\mathbf{T}_4 \land \mathbf{T}_1 &amp;\implies \mathbf{T}_{3\frac{1}{2}} \implies \mathbf{T}_3 \\
+\mathbf{T}_3 \land \mathbf{T}_2 &amp;\implies \mathbf{T}_{2\frac{1}{2}} \\
+\mathbf{T}_3 \land \mathbf{T}_0 &amp;\implies \mathbf{T}_{2\frac{1}{2}} \implies \mathbf{T}_2 \implies \mathbf{T}_1 \implies \mathbf{T}_0
+\end{aligned} \qquad (175)
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><em>Proof:</em></p>
+<p><span class="math inline">\(\mathbf{T}_5 \implies \mathbf{T}_4\)</span>. Any two disjoint closed sets are separated.</p>
+<p><span class="math inline">\(\mathbf{T}_3 \land \mathbf{T}_0 \implies \mathbf{T}_2\)</span>. Let <span class="math inline">\(p, q \in X\)</span> be two distinct points. By <span class="math inline">\(\mathbf{T}_0\)</span>, there is <span class="math inline">\(U \in \mathcal{T}\)</span> containing exactly one of <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>, and we assume without loss of generality that <span class="math inline">\(q \in U\)</span> but <span class="math inline">\(p \notin U\)</span>. By <span class="math inline">\(\mathbf{T}_3\)</span>, there is <span class="math inline">\(V \in \mathcal{N}_q\)</span> and <span class="math inline">\(W \in \mathcal{N}_{X \setminus U}\)</span> with <span class="math inline">\(W \cap V = \emptyset\)</span>. In particular, <span class="math inline">\(W \in \mathcal{N}_p\)</span> and <span class="math inline">\(X\)</span> satisfies <span class="math inline">\(\mathbf{T}_2\)</span>.</p>
+<p><span class="math inline">\(\mathbf{T}_3 \land \mathbf{T}_2 \implies \mathbf{T}_{2\frac{1}{2}}\)</span>. Let <span class="math inline">\(p, q \in X\)</span> be two distinct points. By <span class="math inline">\(\mathbf{T}_2\)</span>, there are <span class="math inline">\(U \in \mathcal{N}_p\)</span> and <span class="math inline">\(V \in \mathcal{N}_q\)</span> such that <span class="math inline">\(U \cap V = \emptyset\)</span>. By <span class="math inline">\(\mathbf{T}_3\)</span>, there is <span class="math inline">\(U_1 \in \mathcal{N}_p\)</span> and <span class="math inline">\(V_1 \in \mathcal{N}_q\)</span> such that <span class="math inline">\(\overline{U_1} \subseteq U\)</span> and <span class="math inline">\(\overline{V_1} \subseteq V\)</span>. Then <span class="math inline">\(\overline{U_1} \cap \overline{V_1} \subseteq U \cap V = \emptyset\)</span> and <span class="math inline">\(X\)</span> satisfies <span class="math inline">\(\mathbf{T}_{2\frac{1}{2}}\)</span>.</p>
+<p><span class="math inline">\(\mathbf{T}_{2\frac{1}{2}} \implies \mathbf{T}_2 \implies \mathbf{T}_1 \implies \mathbf{T}_0\)</span>. Being separated by neighborhoods <span class="math inline">\(\implies\)</span> separated <span class="math inline">\(\implies\)</span> topologically disjoint. <span class="math inline">\(\blacksquare\)</span></p>
+<p>下面补充图片中省略的证明部分。在证明前需明确，<strong>Urysohn引理 (Urysohn’s Lemma)</strong> 是 <span class="math inline">\(\mathbf{T}_4\)</span> 空间的核心性质：在 <span class="math inline">\(\mathbf{T}_4\)</span> 空间中，任意两个不相交的闭集 <span class="math inline">\(A, B\)</span> 都可以被连续函数严格分离（即存在连续函数 <span class="math inline">\(f: X \to [0,1]\)</span> 使得 <span class="math inline">\(f(A)=0, f(B)=1\)</span>）。</p>
+<ul>
+<li><p><strong>证明 <span class="math inline">\(\mathbf{T}_4 \wedge \mathbf{T}_1 \implies \mathbf{T}_{3\frac{1}{2}}\)</span>：</strong> 任取点 <span class="math inline">\(p \in X\)</span> 和不包含 <span class="math inline">\(p\)</span> 的闭集 <span class="math inline">\(B\)</span>。 因为空间满足 <span class="math inline">\(\mathbf{T}_1\)</span> 公理，所以单点集 <span class="math inline">\(\{p\}\)</span> 是闭集。 此时 <span class="math inline">\(\{p\}\)</span> 和 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(X\)</span> 中两个不相交的闭集。 因为空间同时满足 <span class="math inline">\(\mathbf{T}_4\)</span> 公理，根据 Urysohn 引理，存在连续函数 <span class="math inline">\(f: X \to [0,1]\)</span>，使得 <span class="math inline">\(f(\{p\}) = 0\)</span> 且 <span class="math inline">\(f(B) = 1\)</span>。 这就证明了点 <span class="math inline">\(p\)</span> 与不相交的闭集 <span class="math inline">\(B\)</span> 可以被连续函数分离，即空间满足 <span class="math inline">\(\mathbf{T}_{3\frac{1}{2}}\)</span>。</p></li>
+<li><p><strong>证明 <span class="math inline">\(\mathbf{T}_4 \wedge \mathbf{T}_3 \implies \mathbf{T}_{3\frac{1}{2}}\)</span>：</strong> 任取点 <span class="math inline">\(p \in X\)</span> 和不包含 <span class="math inline">\(p\)</span> 的闭集 <span class="math inline">\(B\)</span>。 因为空间满足 <span class="math inline">\(\mathbf{T}_3\)</span> 公理，存在开邻域 <span class="math inline">\(U \in \mathcal{N}_p\)</span> 和 <span class="math inline">\(V \in \mathcal{N}_B\)</span> 使得 <span class="math inline">\(U \cap V = \emptyset\)</span>。 由 <span class="math inline">\(U \cap V = \emptyset\)</span> 且 <span class="math inline">\(V\)</span> 是开集可知，<span class="math inline">\(U \subseteq X \setminus V\)</span>，且 <span class="math inline">\(X \setminus V\)</span> 是闭集。 因此，<span class="math inline">\(U\)</span> 的闭包 <span class="math inline">\(\overline{U} \subseteq X \setminus V\)</span>。 又因为 <span class="math inline">\(B \subseteq V\)</span>，所以 <span class="math inline">\(\overline{U} \cap B = \emptyset\)</span>。 现在我们得到了两个不相交的闭集：<span class="math inline">\(\overline{U}\)</span> 和 <span class="math inline">\(B\)</span>。 因为空间满足 <span class="math inline">\(\mathbf{T}_4\)</span> 公理，根据 Urysohn 引理，存在连续函数 <span class="math inline">\(f: X \to [0,1]\)</span> 使得 <span class="math inline">\(f(\overline{U}) = 0\)</span> 且 <span class="math inline">\(f(B) = 1\)</span>。 由于 <span class="math inline">\(p \in U \subseteq \overline{U}\)</span>，显然有 <span class="math inline">\(f(p) = 0\)</span>。 这同样满足了 <span class="math inline">\(\mathbf{T}_{3\frac{1}{2}}\)</span> 的定义。</p></li>
+<li><p><strong>证明 <span class="math inline">\(\mathbf{T}_{3\frac{1}{2}} \implies \mathbf{T}_3\)</span>：</strong> 任取点 <span class="math inline">\(p \in X\)</span> 和不包含 <span class="math inline">\(p\)</span> 的闭集 <span class="math inline">\(B\)</span>。 因为空间满足 <span class="math inline">\(\mathbf{T}_{3\frac{1}{2}}\)</span>，存在连续函数 <span class="math inline">\(f: X \to \mathbb{R}\)</span>，使得 <span class="math inline">\(f(p) = 0\)</span> 且 <span class="math inline">\(f(B) = 1\)</span>（此处依定义 <span class="math inline">\(f(B)=1\)</span> 代表 <span class="math inline">\(\forall x \in B, f(x)=1\)</span>）。 在实数空间 <span class="math inline">\(\mathbb{R}\)</span> 中，选取两个不相交的开区间：<span class="math inline">\(I_1 = (-\infty, 1/2)\)</span> 和 <span class="math inline">\(I_2 = (1/2, \infty)\)</span>。 令 <span class="math inline">\(U = f^{-1}(I_1)\)</span>，<span class="math inline">\(V = f^{-1}(I_2)\)</span>。 因为 <span class="math inline">\(f\)</span> 是连续函数，开集在连续映射下的原像仍是开集，所以 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(X\)</span> 中的开集。 由于 <span class="math inline">\(f(p) = 0 \in I_1\)</span>，所以 <span class="math inline">\(p \in U\)</span>（即 <span class="math inline">\(U \in \mathcal{N}_p\)</span>）。 由于对于任意 <span class="math inline">\(x \in B\)</span> 都有 <span class="math inline">\(f(x) = 1 \in I_2\)</span>，所以 <span class="math inline">\(B \subseteq V\)</span>（即 <span class="math inline">\(V \in \mathcal{N}_B\)</span>）。 又因为 <span class="math inline">\(I_1 \cap I_2 = \emptyset\)</span>，显然有其原像 <span class="math inline">\(U \cap V = \emptyset\)</span>。 这就证明了点与不相交闭集可以被不相交的开邻域分离，因此空间满足 <span class="math inline">\(\mathbf{T}_3\)</span>。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Proposition: A topological space <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{T}_1\)</span> iff every subset of <span class="math inline">\(X\)</span> is the intersection of all its neighborhoods.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>证明：</strong></p>
+<p>记子集 <span class="math inline">\(A\)</span> 的所有开邻域的集合族为 <span class="math inline">\(\mathcal{N}(A)\)</span>，即我们需要证明的等价条件为 <span class="math inline">\(A = \bigcap_{U \in \mathcal{N}(A)} U\)</span>。</p>
+<ul>
+<li><p><strong>必要性 (<span class="math inline">\(\implies\)</span>)：假设 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\mathbf{T}_1\)</span> 空间，证明任意子集 <span class="math inline">\(A\)</span> 等于其所有邻域的交集。</strong></p>
+<p>对于任意子集 <span class="math inline">\(A \subseteq X\)</span>，根据邻域的定义，显然有 <span class="math inline">\(A \subseteq \bigcap_{U \in \mathcal{N}(A)} U\)</span>。</p>
+<p>为了证明反向包含关系 <span class="math inline">\(\bigcap_{U \in \mathcal{N}(A)} U \subseteq A\)</span>，我们任取一个不在 <span class="math inline">\(A\)</span> 中的点 <span class="math inline">\(x \notin A\)</span>。</p>
+<p>在 <span class="math inline">\(\text{T}_1\)</span> 空间中，任何单点集都是闭集，因此单点集 <span class="math inline">\(\{x\}\)</span> 是闭集。</p>
+<p>那么它的补集 <span class="math inline">\(V = X \setminus \{x\}\)</span> 必然是一个开集。</p>
+<p>因为 <span class="math inline">\(x \notin A\)</span>，所以 <span class="math inline">\(A\)</span> 完全包含在这个开集 <span class="math inline">\(V\)</span> 中（即 <span class="math inline">\(A \subseteq V\)</span>）。这意味着 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(A\)</span> 的一个开邻域，即 <span class="math inline">\(V \in \mathcal{N}(A)\)</span>。</p>
+<p>由于 <span class="math inline">\(V\)</span> 的构造排除了 <span class="math inline">\(x\)</span>（<span class="math inline">\(x \notin V\)</span>），点 <span class="math inline">\(x\)</span> 自然也不存在于 <span class="math inline">\(A\)</span> 的所有邻域的交集之中。</p>
+<p>因此，对于任意 <span class="math inline">\(x \notin A\)</span>，都有 <span class="math inline">\(x \notin \bigcap_{U \in \mathcal{N}(A)} U\)</span>，推导出 <span class="math inline">\(\bigcap_{U \in \mathcal{N}(A)} U \subseteq A\)</span>。两者结合即证 <span class="math inline">\(A = \bigcap_{U \in \mathcal{N}(A)} U\)</span>。</p></li>
+<li><p><strong>充分性 (<span class="math inline">\(\impliedby\)</span>)：假设 <span class="math inline">\(X\)</span> 的任意子集都等于其所有邻域的交集，证明 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\mathbf{T}_1\)</span> 空间。</strong></p>
+<p>在空间 <span class="math inline">\(X\)</span> 中任取两个不相同的点 <span class="math inline">\(x, y\)</span>（<span class="math inline">\(x \neq y\)</span>）。考虑由单点构成的子集 <span class="math inline">\(A = \{y\}\)</span>。</p>
+<p>根据已知假设，<span class="math inline">\(\{y\} = \bigcap_{U \in \mathcal{N}(\{y\})} U\)</span>。</p>
+<p>因为 <span class="math inline">\(x \neq y\)</span>，所以 <span class="math inline">\(x \notin \{y\}\)</span>，这意味着 <span class="math inline">\(x\)</span> 不能包含在 <span class="math inline">\(\{y\}\)</span> 的所有邻域的交集之中。</p>
+<p>由此可知，必定存在 <span class="math inline">\(\{y\}\)</span> 的至少一个开邻域 <span class="math inline">\(V \in \mathcal{N}(\{y\})\)</span>（这是一个包含 <span class="math inline">\(y\)</span> 的开集），使得 <span class="math inline">\(x \notin V\)</span>。</p>
+<p>同理（交换 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的角色），利用子集 <span class="math inline">\(\{x\}\)</span> 也必定能找到一个包含 <span class="math inline">\(x\)</span> 的开集而不包含 <span class="math inline">\(y\)</span>。</p>
+<p>任意两点都存在不包含对方的开邻域，这正是 <span class="math inline">\(\text{T}_1\)</span> 空间的定义。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\(X\)</span> be a topological space with a relation <span class="math inline">\(p \sim q\)</span> such that <span class="math inline">\(p \sim q\)</span> iff</p>
+<p><span class="math display">\[(\forall U \in \mathcal{N}_p)(\forall V \in \mathcal{N}_q)(U \cap V \neq \emptyset).\]</span></p>
+<ol type="1">
+<li>Is “<span class="math inline">\(\sim\)</span>” an equivalence relation?</li>
+<li>Show that <span class="math inline">\((X, \mathcal{T}_X)\)</span> is Hausdorff iff “<span class="math inline">\(\sim\)</span>” is the identity.</li>
+</ol>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<ol type="1">
+<li><strong>不一定（一般情况下不是）。</strong></li>
+</ol>
+<p>虽然该关系显然满足自反性（因为 <span class="math inline">\(p \in U \cap V\)</span>，所以 <span class="math inline">\(p \sim p\)</span>）和对称性（<span class="math inline">\(U \cap V = V \cap U\)</span>，所以 <span class="math inline">\(p \sim q \implies q \sim p\)</span>），但它不一定满足<strong>传递性</strong>。我们可以构造一个简单的反例来证明：</p>
+<ul>
+<li><p>考虑包含三个点的空间 <span class="math inline">\(X = \{1, 2, 3\}\)</span>，赋予其拓扑 <span class="math inline">\(\mathcal{T} = \{\emptyset, \{1\}, \{3\}, \{1, 3\}, \{1, 2, 3\}\}\)</span>。</p></li>
+<li><p>点 <span class="math inline">\(1\)</span> 的最小开邻域是 <span class="math inline">\(\{1\}\)</span>，点 <span class="math inline">\(3\)</span> 的最小开邻域是 <span class="math inline">\(\{3\}\)</span>，而点 <span class="math inline">\(2\)</span> 的唯一开邻域是整个空间 <span class="math inline">\(\{1, 2, 3\}\)</span>。</p></li>
+<li><p>因为对于 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(2\)</span> 的任意邻域交集必定包含 <span class="math inline">\(1\)</span>，即 <span class="math inline">\(\{1\} \cap \{1, 2, 3\} = \{1\} \neq \emptyset\)</span>，我们有 <span class="math inline">\(1 \sim 2\)</span>。</p></li>
+<li><p>同理对于 <span class="math inline">\(2\)</span> 和 <span class="math inline">\(3\)</span>，它们任意邻域交集必定包含 <span class="math inline">\(3\)</span>，即 <span class="math inline">\(\{1, 2, 3\} \cap \{3\} = \{3\} \neq \emptyset\)</span>，我们有 <span class="math inline">\(2 \sim 3\)</span>。</p></li>
+<li><p>但是对于点 <span class="math inline">\(1\)</span> 和点 <span class="math inline">\(3\)</span>，它们分别存在开邻域 <span class="math inline">\(\{1\}\)</span> 和 <span class="math inline">\(\{3\}\)</span>，且满足 <span class="math inline">\(\{1\} \cap \{3\} = \emptyset\)</span>。根据关系的定义，这说明 <span class="math inline">\(1 \not\sim 3\)</span>。</p></li>
+<li><p>由此可见 <span class="math inline">\(1 \sim 2\)</span> 且 <span class="math inline">\(2 \sim 3\)</span> 不能推导出 <span class="math inline">\(1 \sim 3\)</span>，即该关系不满足传递性，故不是一个等价关系。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>证明如下：</strong></li>
+</ol>
+<ul>
+<li><p>首先，我们分析关系 <span class="math inline">\(p \sim q\)</span> 的逻辑否定。<span class="math inline">\(p \not\sim q\)</span> 等价于：存在 <span class="math inline">\(U \in \mathcal{N}_p\)</span> 和 <span class="math inline">\(V \in \mathcal{N}_q\)</span>，使得 <span class="math inline">\(U \cap V = \emptyset\)</span>。这正是“两个点可以被不相交的开邻域分离”的数学表达。</p></li>
+<li><p><strong>证明充分性 (<span class="math inline">\(\implies\)</span>)：</strong> 假设 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 是 Hausdorff 空间（即 <span class="math inline">\(\text{T}_2\)</span> 空间）。由 Hausdorff 空间的定义，对于空间中任意两个不同的点 <span class="math inline">\(p \neq q\)</span>，都存在它们各自的开邻域 <span class="math inline">\(U \in \mathcal{N}_p\)</span> 和 <span class="math inline">\(V \in \mathcal{N}_q\)</span> 使得 <span class="math inline">\(U \cap V = \emptyset\)</span>。这也就意味着对于任意的 <span class="math inline">\(p \neq q\)</span>，都有 <span class="math inline">\(p \not\sim q\)</span>。另一方面，当 <span class="math inline">\(p=q\)</span> 时，显然包含 <span class="math inline">\(p\)</span> 的任意两个邻域的交集都至少包含 <span class="math inline">\(p\)</span> 本身（不为空），即 <span class="math inline">\(p \sim p\)</span>。因此，“<span class="math inline">\(\sim\)</span>” 当且仅当两点相同时成立，即它是恒等关系 (identity relation)。</p></li>
+<li><p><strong>证明必要性 (<span class="math inline">\(\impliedby\)</span>)：</strong> 假设 “<span class="math inline">\(\sim\)</span>” 是一个恒等关系。这意味着对于空间中的任意两点 <span class="math inline">\(p, q\)</span>，都有 <span class="math inline">\(p \sim q \iff p = q\)</span>。它的逆否命题自然也成立：<span class="math inline">\(p \neq q \iff p \not\sim q\)</span>。根据我们前面得出的 <span class="math inline">\(p \not\sim q\)</span> 的等价条件，对于任意两个不同的点 <span class="math inline">\(p \neq q\)</span>，必然存在不相交的开邻域 <span class="math inline">\(U \in \mathcal{N}_p\)</span> 和 <span class="math inline">\(V \in \mathcal{N}_q\)</span> 使得 <span class="math inline">\(U \cap V = \emptyset\)</span>。这完全符合 Hausdorff 空间的定义，因此 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 是 Hausdorff 空间。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Proposition: A topological space <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{T}_4\)</span></p>
+<ul>
+<li>iff every neighborhood of a closed set contains a closed neighborhood;</li>
+<li>iff any disjoint closed sets in <span class="math inline">\(X\)</span> are separated by closed neighborhoods;</li>
+<li>iff any disjoint closed sets in <span class="math inline">\(X\)</span> are separated by a function.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>我们将分别证明这三个等价条件。设 <span class="math inline">\(X\)</span> 是一个拓扑空间，回顾 <span class="math inline">\(\text{T}_4\)</span> 的定义：任意两个不相交的闭集可以被不相交的开邻域分离。</p>
+<p><strong>1. 证明 <span class="math inline">\(\text{T}_4 \iff\)</span> 闭集的每个邻域都包含一个闭邻域</strong></p>
+<ul>
+<li><strong><span class="math inline">\(\implies\)</span> (必要性)：</strong> 假设 <span class="math inline">\(X\)</span> 满足 <span class="math inline">\(\text{T}_4\)</span>。设 <span class="math inline">\(A\)</span> 是闭集，<span class="math inline">\(U\)</span> 是 <span class="math inline">\(A\)</span> 的一个开邻域（即 <span class="math inline">\(A \subseteq U\)</span>）。那么 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(X \setminus U\)</span> 是两个不相交的闭集。根据 <span class="math inline">\(\text{T}_4\)</span> 定义，存在不相交的开集 <span class="math inline">\(V\)</span> 和 <span class="math inline">\(W\)</span>，使得 <span class="math inline">\(A \subseteq V\)</span> 且 <span class="math inline">\(X \setminus U \subseteq W\)</span>。由 <span class="math inline">\(V \cap W = \emptyset\)</span> 可知 <span class="math inline">\(V \subseteq X \setminus W\)</span>。因为 <span class="math inline">\(X \setminus W\)</span> 是闭集，所以 <span class="math inline">\(V\)</span> 的闭包 <span class="math inline">\(\overline{V} \subseteq X \setminus W\)</span>。又因为 <span class="math inline">\(X \setminus U \subseteq W\)</span>，两边取补集得到 <span class="math inline">\(X \setminus W \subseteq U\)</span>。因此 <span class="math inline">\(A \subseteq V \subseteq \overline{V} \subseteq U\)</span>。这里 <span class="math inline">\(\overline{V}\)</span> 就是包含在 <span class="math inline">\(U\)</span> 中的 <span class="math inline">\(A\)</span> 的闭邻域。</li>
+<li><strong><span class="math inline">\(\impliedby\)</span> (充分性)：</strong> 设 <span class="math inline">\(A, B\)</span> 是两个不相交的闭集。那么 <span class="math inline">\(A \subseteq X \setminus B\)</span>，且 <span class="math inline">\(X \setminus B\)</span> 是一个开集，即它是 <span class="math inline">\(A\)</span> 的一个开邻域。根据假设，存在一个包含 <span class="math inline">\(A\)</span> 的闭邻域（即存在开集 <span class="math inline">\(V\)</span> 使得 <span class="math inline">\(A \subseteq V \subseteq \overline{V}\)</span>）且 <span class="math inline">\(\overline{V} \subseteq X \setminus B\)</span>。令 <span class="math inline">\(W = X \setminus \overline{V}\)</span>，则 <span class="math inline">\(W\)</span> 是开集，且 <span class="math inline">\(B \subseteq W\)</span>。此时 <span class="math inline">\(V\)</span> 和 <span class="math inline">\(W\)</span> 就是分离 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 的不相交开集，故 <span class="math inline">\(X\)</span> 满足 <span class="math inline">\(\text{T}_4\)</span>。</li>
+</ul>
+<p><strong>2. 证明 <span class="math inline">\(\text{T}_4 \iff\)</span> 任意不相交闭集可以被闭邻域分离</strong></p>
+<ul>
+<li><strong><span class="math inline">\(\implies\)</span> (必要性)：</strong> 设 <span class="math inline">\(A, B\)</span> 为不相交闭集。由第 1 问的结论，<span class="math inline">\(X \setminus B\)</span> 是 <span class="math inline">\(A\)</span> 的开邻域，故存在开集 <span class="math inline">\(U \supseteq A\)</span> 使得 <span class="math inline">\(\overline{U} \subseteq X \setminus B\)</span>。此时 <span class="math inline">\(X \setminus \overline{U}\)</span> 成了 <span class="math inline">\(B\)</span> 的开邻域。再次利用第 1 问的结论，存在开集 <span class="math inline">\(V \supseteq B\)</span> 使得 <span class="math inline">\(\overline{V} \subseteq X \setminus \overline{U}\)</span>。这意味着 <span class="math inline">\(\overline{U} \cap \overline{V} = \emptyset\)</span>。因此，<span class="math inline">\(\overline{U}\)</span> 和 <span class="math inline">\(\overline{V}\)</span> 就是分离 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 的不相交闭邻域。</li>
+<li><strong><span class="math inline">\(\impliedby\)</span> (充分性)：</strong> 如果任意不相交闭集 <span class="math inline">\(A, B\)</span> 能被闭邻域分离（即存在开集 <span class="math inline">\(U \supseteq A\)</span> 和 <span class="math inline">\(V \supseteq B\)</span> 使得 <span class="math inline">\(\overline{U} \cap \overline{V} = \emptyset\)</span>），那么显然有 <span class="math inline">\(U \cap V = \emptyset\)</span>。这直接满足了 <span class="math inline">\(\text{T}_4\)</span> 空间的基本定义（被不相交开集分离）。</li>
+</ul>
+<p><strong>3. 证明 <span class="math inline">\(\text{T}_4 \iff\)</span> 任意不相交闭集可以被连续函数分离</strong></p>
+<ul>
+<li><strong><span class="math inline">\(\implies\)</span> (必要性)：</strong> 这正是著名的 <strong>Urysohn 引理 (Urysohn’s Lemma)</strong> 的直接陈述。该引理断言：对于 <span class="math inline">\(\text{T}_4\)</span> 空间中的任意两个不相交闭集 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span>，必定存在一个连续函数 <span class="math inline">\(f: X \to [0, 1]\)</span>，使得对于所有 <span class="math inline">\(x \in A\)</span> 有 <span class="math inline">\(f(x) = 0\)</span>，对于所有 <span class="math inline">\(y \in B\)</span> 有 <span class="math inline">\(f(y) = 1\)</span>。这就实现了闭集被函数严格分离。</li>
+<li><strong><span class="math inline">\(\impliedby\)</span> (充分性)：</strong> 假设 <span class="math inline">\(A, B\)</span> 是不相交闭集，且存在连续函数 <span class="math inline">\(f: X \to \mathbb{R}\)</span> 使得 <span class="math inline">\(f(A) = 0\)</span> 且 <span class="math inline">\(f(B) = 1\)</span>。我们可以在实数轴 <span class="math inline">\(\mathbb{R}\)</span> 中选取两个不相交的开区间，例如 <span class="math inline">\(I_1 = (-\infty, 1/3)\)</span> 和 <span class="math inline">\(I_2 = (2/3, \infty)\)</span>。令 <span class="math inline">\(U = f^{-1}(I_1)\)</span>，<span class="math inline">\(V = f^{-1}(I_2)\)</span>。由于 <span class="math inline">\(f\)</span> 是连续函数，开集的原像 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span> 必定也是开集。并且 <span class="math inline">\(A \subseteq U\)</span>，<span class="math inline">\(B \subseteq V\)</span> 且 <span class="math inline">\(U \cap V = \emptyset\)</span>。这就证明了 <span class="math inline">\(X\)</span> 满足 <span class="math inline">\(\text{T}_4\)</span>。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Show that a topological space is <span class="math inline">\(\text{T}_3\)</span> iff any disjoint point and closed subset are separated by closed neighborhoods.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>我们将分别证明该命题的必要性与充分性。回忆前面确立的 <span class="math inline">\(\text{T}_3\)</span>（正则空间）定义：任意点与不包含它的闭集，可以被不相交的开邻域分离。</p>
+<ul>
+<li><p><strong>必要性 (<span class="math inline">\(\implies\)</span>)：假设 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\mathbf{T}_3\)</span> 空间。</strong></p>
+<p>设 <span class="math inline">\(x \in X\)</span>，且 <span class="math inline">\(F\)</span> 是不包含 <span class="math inline">\(x\)</span> 的闭集。</p>
+<p>根据 <span class="math inline">\(\text{T}_3\)</span> 的定义，存在不相交的开集 <span class="math inline">\(U_1\)</span> 和 <span class="math inline">\(V\)</span>，使得 <span class="math inline">\(x \in U_1\)</span> 且 <span class="math inline">\(F \subseteq V\)</span>。</p>
+<p>因为 <span class="math inline">\(U_1\)</span> 是开集且 <span class="math inline">\(U_1 \cap V = \emptyset\)</span>，由闭包性质很容易推导得出 <span class="math inline">\(U_1 \cap \overline{V} = \emptyset\)</span>。</p>
+<p>现在考虑点 <span class="math inline">\(x\)</span> 和闭集 <span class="math inline">\(X \setminus U_1\)</span>。因为 <span class="math inline">\(x \in U_1\)</span>，所以 <span class="math inline">\(x \notin X \setminus U_1\)</span>。</p>
+<p>再次利用 <span class="math inline">\(\text{T}_3\)</span> 公理，必然存在不相交的开集 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(W\)</span>，使得 <span class="math inline">\(x \in U\)</span> 且 <span class="math inline">\(X \setminus U_1 \subseteq W\)</span>。</p>
+<p>由 <span class="math inline">\(U \cap W = \emptyset\)</span> 可知 <span class="math inline">\(U \subseteq X \setminus W\)</span>，进而有 <span class="math inline">\(\overline{U} \subseteq X \setminus W\)</span>（因为 <span class="math inline">\(X \setminus W\)</span> 是闭集）。</p>
+<p>又因为 <span class="math inline">\(X \setminus U_1 \subseteq W\)</span> 等价于 <span class="math inline">\(X \setminus W \subseteq U_1\)</span>，所以我们得到 <span class="math inline">\(\overline{U} \subseteq U_1\)</span>。</p>
+<p>结合前面得出的 <span class="math inline">\(U_1 \cap \overline{V} = \emptyset\)</span> 以及 <span class="math inline">\(\overline{U} \subseteq U_1\)</span>，我们可以直接推导出 <span class="math inline">\(\overline{U} \cap \overline{V} = \emptyset\)</span>。</p>
+<p>这里，<span class="math inline">\(\overline{U}\)</span> 和 <span class="math inline">\(\overline{V}\)</span> 正是分离了点 <span class="math inline">\(x\)</span> 和闭集 <span class="math inline">\(F\)</span> 的不相交的闭邻域。</p></li>
+<li><p><strong>充分性 (<span class="math inline">\(\impliedby\)</span>)：假设任意不相交的点和闭集能被闭邻域分离。</strong></p>
+<p>设 <span class="math inline">\(x \in X\)</span> 且 <span class="math inline">\(F\)</span> 是不包含 <span class="math inline">\(x\)</span> 的闭集。</p>
+<p>根据假设，存在点 <span class="math inline">\(x\)</span> 的闭邻域 <span class="math inline">\(A\)</span> 和闭集 <span class="math inline">\(F\)</span> 的闭邻域 <span class="math inline">\(B\)</span>，使得 <span class="math inline">\(A \cap B = \emptyset\)</span>。</p>
+<p>根据闭邻域的定义，其内部必定包含该点/集合的开邻域。即存在开集 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span>，使得 <span class="math inline">\(x \in U \subseteq A\)</span> 且 <span class="math inline">\(F \subseteq V \subseteq B\)</span>。</p>
+<p>因为 <span class="math inline">\(A \cap B = \emptyset\)</span>，其子集显然也有 <span class="math inline">\(U \cap V = \emptyset\)</span>。</p>
+<p>因此，点 <span class="math inline">\(x\)</span> 与闭集 <span class="math inline">\(F\)</span> 被不相交的开集 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(V\)</span> 严格分离，这直接证明了空间 <span class="math inline">\(X\)</span> 满足 <span class="math inline">\(\text{T}_3\)</span> 公理。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<section id="the-prove-of-urysohns-lemma-and-tietze-exension-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="the-prove-of-urysohns-lemma-and-tietze-exension-theorem">The Prove of Urysohn’s lemma and Tietze exension theorem</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Urysohn’s lemma:</strong> In a <span class="math inline">\(\text{T}_4\)</span> space any two disjoint closed subsets are separated by a function.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>简要证明步骤如下：</p>
+<ul>
+<li>设 <span class="math inline">\(X\)</span> 是一个 <span class="math inline">\(\text{T}_4\)</span> 空间，<span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 是两个不相交的闭子集。</li>
+<li>应用前置引理，我们可以构造一族开子集 <span class="math inline">\((U_s)_{s \in [0,1]}\)</span> 和一族闭子集 <span class="math inline">\((F_s)_{s \in [0,1]}\)</span>，使得 <span class="math inline">\(U_0 = \emptyset\)</span>，<span class="math inline">\(F_0 = A\)</span>，<span class="math inline">\(U_1 = B^C\)</span>（<span class="math inline">\(B\)</span> 的补集），<span class="math inline">\(F_1 = X\)</span>。</li>
+<li>这族集合满足单调性：对于任意的 <span class="math inline">\(s_0, s_1 \in [0,1]\)</span>，如果 <span class="math inline">\(s_0 &lt; s_1\)</span>，则有 <span class="math inline">\(U_{s_0} \subseteq F_{s_0} \subseteq U_{s_1} \subseteq F_{s_1}\)</span>。</li>
+<li>定义函数 <span class="math inline">\(f: X \to \mathbb{R}\)</span> 为： <span class="math display">\[ f(p) = \inf\{s \in [0,1] : p \in U_s\} \]</span></li>
+<li>为了证明 <span class="math inline">\(f\)</span> 的连续性，我们观察到：如果 <span class="math inline">\(f(p) &lt; s\)</span>，因为存在 <span class="math inline">\(x \in (f(p), s)\)</span> 使得 <span class="math inline">\(p \in U_x\)</span>，所以 <span class="math inline">\(p \in U_s\)</span>；如果 <span class="math inline">\(f(p) = s\)</span>，则 <span class="math inline">\(p\)</span> 是否在 <span class="math inline">\(U_s\)</span> 中无法确定；如果 <span class="math inline">\(f(p) &gt; s\)</span>，则 <span class="math inline">\(p \notin U_s\)</span>。</li>
+<li>因此对于任意 <span class="math inline">\(s \in [0,1]\)</span>，有： <span class="math display">\[ \{f &lt; s\} \subseteq U_s \subseteq F_s \subseteq \{f \le s\} \]</span> 这是因为 <span class="math inline">\(F_s \subseteq \bigcap_{t \in ]s,1]} U_t \subseteq \bigcap_{t \in ]s,1]} \{f \le t\} = \{f \le s\}\)</span>。</li>
+<li>我们断言，对于任意 <span class="math inline">\(s \in [0,1]\)</span>： <span class="math display">\[ \{f &lt; s\} = \bigcup_{t \in [0,s[} U_t, \quad \{f \le s\} = \bigcap_{t \in ]s,1]} F_t \]</span> 由于集合族 <span class="math inline">\(\{[0, s[ : s \in [0, 1]\} \cup \{]s, 1] : s \in [0, 1]\}\)</span> 构成了 <span class="math inline">\(\mathcal{T}_{[0,1]}\)</span> 的子基，这直接蕴含了 <span class="math inline">\(f\)</span> 的连续性。</li>
+<li>上述断言的严格证明如下： <span class="math display">\[ \bigcup_{t \in [0,s[} U_t \subseteq \bigcup_{t \in [0,s[} \{f \le t\} = \{f &lt; s\} = \bigcup_{t \in [0,s[} \{f &lt; t\} \subseteq \bigcup_{t \in [0,s[} U_t \]</span> <span class="math display">\[ \bigcap_{t \in ]s,1]} F_t \subseteq \bigcap_{t \in ]s,1]} \{f \le t\} = \{f \le s\} = \bigcap_{t \in ]s,1]} \{f &lt; t\} \subseteq \bigcap_{t \in ]s,1]} F_t \]</span></li>
+<li>最后，在 <span class="math inline">\(\{f &lt; s\} \subseteq U_s \subseteq F_s \subseteq \{f \le s\}\)</span> 中取 <span class="math inline">\(s \in \{0, 1\}\)</span>，我们可以得到 <span class="math inline">\(f(A) = 0\)</span>，<span class="math inline">\(f(B) = 1\)</span>，且 <span class="math inline">\(f(X) = [0, 1]\)</span>，从而完成了连续分离函数的构造与证明。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Tietze extension Theorem</strong> Let <span class="math inline">\(A\)</span> be a closed subset of a <span class="math inline">\(\text{T}_4\)</span> space <span class="math inline">\(X\)</span>. Then any continuous function <span class="math inline">\(f: A \to \mathbb{R}\)</span> has an extension <span class="math inline">\(g: X \to \mathbb{R}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>Tietze 扩张定理的经典证明通常分为两步：首先证明有界函数的情形，然后再将其推广到无界函数的情形。该定理的核心工具是 Urysohn 引理。</p>
+<p><strong>1. 步骤一：有界函数的情形</strong></p>
+<p>假设 <span class="math inline">\(f: A \to [-c, c]\)</span> 是有界的连续函数（<span class="math inline">\(c &gt; 0\)</span>）。我们将构造一个连续函数序列 <span class="math inline">\(\{g_n\}\)</span>，使得它们的级数在 <span class="math inline">\(X\)</span> 上一致收敛，且在 <span class="math inline">\(A\)</span> 上收敛于 <span class="math inline">\(f\)</span>。</p>
+<ul>
+<li><p><strong>构造 <span class="math inline">\(g_1\)</span>：</strong> 定义 <span class="math inline">\(A_1 = \{x \in A \mid f(x) \le -c/3\}\)</span> 和 <span class="math inline">\(B_1 = \{x \in A \mid f(x) \ge c/3\}\)</span>。由于 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(A\)</span> 上连续且 <span class="math inline">\(A\)</span> 是闭集，所以 <span class="math inline">\(A_1\)</span> 和 <span class="math inline">\(B_1\)</span> 是 <span class="math inline">\(X\)</span> 中两个不相交的闭集。根据 Urysohn 引理（因为 <span class="math inline">\(X\)</span> 是 <span class="math inline">\(\text{T}_4\)</span> 空间），存在连续函数 <span class="math inline">\(g_1: X \to [-c/3, c/3]\)</span>，使得对于 <span class="math inline">\(x \in A_1\)</span> 有 <span class="math inline">\(g_1(x) = -c/3\)</span>，对于 <span class="math inline">\(x \in B_1\)</span> 有 <span class="math inline">\(g_1(x) = c/3\)</span>。 此时，考虑差值函数 <span class="math inline">\(f_1 = f - g_1|_A\)</span>，可以验证对于所有的 <span class="math inline">\(x \in A\)</span>，都有 <span class="math inline">\(|f_1(x)| \le \frac{2c}{3}\)</span>。</p></li>
+<li><p><strong>归纳构造 <span class="math inline">\(g_n\)</span>：</strong> 假设我们已经构造了 <span class="math inline">\(g_1, g_2, \dots, g_{n-1}\)</span>，使得对于 <span class="math inline">\(x \in A\)</span>，其余项 <span class="math inline">\(f_{n-1} = f - \sum_{i=1}^{n-1} g_i|_A\)</span> 满足 <span class="math inline">\(|f_{n-1}(x)| \le c(\frac{2}{3})^{n-1}\)</span>。 我们将上述针对 <span class="math inline">\(c\)</span> 的构造方法应用于边界为 <span class="math inline">\(c(\frac{2}{3})^{n-1}\)</span> 的函数 <span class="math inline">\(f_{n-1}\)</span> 上。可以找到一个连续函数 <span class="math inline">\(g_n: X \to [-\frac{c}{3}(\frac{2}{3})^{n-1}, \frac{c}{3}(\frac{2}{3})^{n-1}]\)</span>，使得在 <span class="math inline">\(A\)</span> 上，新余项 <span class="math inline">\(f_n = f_{n-1} - g_n|_A\)</span> 满足 <span class="math inline">\(|f_n(x)| \le c(\frac{2}{3})^n\)</span>。</p></li>
+<li><p><strong>级数收敛：</strong> 由此我们得到一个连续函数序列 <span class="math inline">\(\{g_n\}\)</span>，对于所有 <span class="math inline">\(x \in X\)</span>，满足 <span class="math inline">\(|g_n(x)| \le \frac{c}{3}(\frac{2}{3})^{n-1}\)</span>。 由于级数 <span class="math inline">\(\sum_{n=1}^{\infty} \frac{c}{3}(\frac{2}{3})^{n-1} = c\)</span> 收敛，根据 Weierstrass M-判别法，函数项级数 <span class="math inline">\(g(x) = \sum_{n=1}^{\infty} g_n(x)\)</span> 在 <span class="math inline">\(X\)</span> 上一致收敛。 因为每一项 <span class="math inline">\(g_n\)</span> 都是连续的，一致收敛的极限函数 <span class="math inline">\(g: X \to [-c, c]\)</span> 也是连续的。 对于任意 <span class="math inline">\(x \in A\)</span>，我们有 <span class="math inline">\(|f(x) - \sum_{i=1}^n g_i(x)| = |f_n(x)| \le c(\frac{2}{3})^n\)</span>。令 <span class="math inline">\(n \to \infty\)</span>，得到 <span class="math inline">\(g(x) = f(x)\)</span>。因此，<span class="math inline">\(g\)</span> 是 <span class="math inline">\(f\)</span> 在 <span class="math inline">\(X\)</span> 上的连续扩张。</p></li>
+</ul>
+<p><strong>2. 步骤二：无界函数的情形</strong></p>
+<p>如果 <span class="math inline">\(f: A \to \mathbb{R}\)</span> 是无界的连续函数，我们可以利用同胚映射将其转化为有界情形。</p>
+<ul>
+<li><p><strong>转化至有界：</strong> 考虑同胚映射 <span class="math inline">\(h: \mathbb{R} \to (-1, 1)\)</span>，例如 <span class="math inline">\(h(t) = \frac{t}{1+|t|}\)</span>。那么复合函数 <span class="math inline">\(h \circ f: A \to (-1, 1)\)</span> 也是连续的，并且是有界的（值域包含于 <span class="math inline">\([-1, 1]\)</span>）。</p></li>
+<li><p><strong>应用有界结论：</strong> 根据步骤一，存在连续扩张 <span class="math inline">\(G: X \to [-1, 1]\)</span>，使得对于任意 <span class="math inline">\(x \in A\)</span>，有 <span class="math inline">\(G(x) = h(f(x))\)</span>。 这里的问题是，<span class="math inline">\(G(x)\)</span> 在 <span class="math inline">\(X \setminus A\)</span> 上的取值可能达到边界 <span class="math inline">\(1\)</span> 或 <span class="math inline">\(-1\)</span>。为了应用 <span class="math inline">\(h^{-1}\)</span>，我们需要将 <span class="math inline">\(G\)</span> 的值域严格限制在 <span class="math inline">\((-1, 1)\)</span> 内，同时不改变它在 <span class="math inline">\(A\)</span> 上的值。</p></li>
+<li><p><strong>修正扩张函数：</strong> 定义闭集 <span class="math inline">\(D = \{x \in X \mid |G(x)| = 1\}\)</span>。因为对于 <span class="math inline">\(x \in A\)</span> 有 <span class="math inline">\(G(x) \in (-1, 1)\)</span>，所以 <span class="math inline">\(D \cap A = \emptyset\)</span>。 再次利用 Urysohn 引理，由于 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(D\)</span> 是不相交的闭集，存在连续函数 <span class="math inline">\(\phi: X \to [0, 1]\)</span>，使得 <span class="math inline">\(\phi(D) = 0\)</span> 且 <span class="math inline">\(\phi(A) = 1\)</span>。 定义修正后的函数 <span class="math inline">\(G^*(x) = \phi(x)G(x)\)</span>。显然 <span class="math inline">\(G^*\)</span> 依然连续。 对于 <span class="math inline">\(x \in A\)</span>，<span class="math inline">\(\phi(x) = 1\)</span>，故 <span class="math inline">\(G^*(x) = G(x) = h(f(x))\)</span>。 对于任意 <span class="math inline">\(x \in X\)</span>，如果 <span class="math inline">\(x \in D\)</span>，则 <span class="math inline">\(G^*(x) = 0 \cdot G(x) = 0 \in (-1, 1)\)</span>；如果 <span class="math inline">\(x \notin D\)</span>，则 <span class="math inline">\(|G(x)| &lt; 1\)</span>，故 <span class="math inline">\(|G^*(x)| \le |G(x)| &lt; 1\)</span>。因此 <span class="math inline">\(G^*(x)\)</span> 的值域严格位于 <span class="math inline">\((-1, 1)\)</span> 内。</p></li>
+<li><p><strong>得出最终扩张：</strong> 最后，定义 <span class="math inline">\(g(x) = h^{-1}(G^*(x))\)</span>。由于 <span class="math inline">\(h^{-1}: (-1, 1) \to \mathbb{R}\)</span> 连续且 <span class="math inline">\(G^*\)</span> 连续，所以 <span class="math inline">\(g: X \to \mathbb{R}\)</span> 是连续函数。并且对于 <span class="math inline">\(x \in A\)</span>，有 <span class="math inline">\(g(x) = h^{-1}(h(f(x))) = f(x)\)</span>。这就完成了对于任意实值连续函数的扩张证明。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="chapter-13" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-13">Chapter 13</h2>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Let <span class="math inline">\(X\)</span> be a topological space with <span class="math inline">\(K\)</span> and <span class="math inline">\(L\)</span> compact subspaces. Is <span class="math inline">\(K \cap L\)</span> compact?</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>不一定。</strong>在一般的拓扑空间中，两个紧致子空间的交集不一定是紧致的。（注：如果 <span class="math inline">\(X\)</span> 是 Hausdorff 空间，则该命题成立，因为 Hausdorff 空间中的紧集必定是闭集，而紧集的闭子集依然是紧集。但在非 Hausdorff 空间中该性质可能失效。）</p>
+<p><strong>反例构造：</strong></p>
+<p>考虑集合 <span class="math inline">\(X = \mathbb{Z} \cup \{-\infty, +\infty\}\)</span>。我们在 <span class="math inline">\(X\)</span> 上定义如下拓扑 <span class="math inline">\(\mathcal{T}\)</span>：</p>
+<ul>
+<li>对于普通的整数点 <span class="math inline">\(n \in \mathbb{Z}\)</span>，其单点集 <span class="math inline">\(\{n\}\)</span> 都是开集（即 <span class="math inline">\(\mathbb{Z}\)</span> 上的诱导拓扑是离散拓扑）。</li>
+<li>包含 <span class="math inline">\(-\infty\)</span> 的开邻域形式为 <span class="math inline">\(\{-\infty\} \cup (\mathbb{Z} \setminus F_1)\)</span>，其中 <span class="math inline">\(F_1\)</span> 是 <span class="math inline">\(\mathbb{Z}\)</span> 的有限子集。</li>
+<li>包含 <span class="math inline">\(+\infty\)</span> 的开邻域形式为 <span class="math inline">\(\{+\infty\} \cup (\mathbb{Z} \setminus F_2)\)</span>，其中 <span class="math inline">\(F_2\)</span> 是 <span class="math inline">\(\mathbb{Z}\)</span> 的有限子集。</li>
+</ul>
+<p>现在考察子空间 <span class="math inline">\(K = \mathbb{Z} \cup \{-\infty\}\)</span> 和 <span class="math inline">\(L = \mathbb{Z} \cup \{+\infty\}\)</span>。</p>
+<ul>
+<li><strong>证明 <span class="math inline">\(K\)</span> 是紧致的：</strong> 对于 <span class="math inline">\(K\)</span> 的任意开覆盖 <span class="math inline">\(\mathcal{C}\)</span>，必然存在一个开集 <span class="math inline">\(U \in \mathcal{C}\)</span> 覆盖了点 <span class="math inline">\(-\infty\)</span>。根据我们定义的拓扑，<span class="math inline">\(U\)</span> 必须包含 <span class="math inline">\(\mathbb{Z}\)</span> 中除有限个点以外的所有整数。对于未被 <span class="math inline">\(U\)</span> 覆盖的有限个整数，我们只需从 <span class="math inline">\(\mathcal{C}\)</span> 中再选出有限个对应的开集即可将它们完全覆盖。因此，<span class="math inline">\(K\)</span> 存在有限子覆盖，即 <span class="math inline">\(K\)</span> 是紧致的。</li>
+<li><strong>证明 <span class="math inline">\(L\)</span> 是紧致的：</strong> 同理可证，任何覆盖 <span class="math inline">\(+\infty\)</span> 的开集都会“吞噬”掉几乎所有的整数，剩下的有限个点用有限个开集即可覆盖，故 <span class="math inline">\(L\)</span> 也是紧致的。</li>
+<li><strong>考察交集 <span class="math inline">\(K \cap L\)</span>：</strong> 计算交集得到 <span class="math inline">\(K \cap L = \mathbb{Z}\)</span>。对于子空间 <span class="math inline">\(\mathbb{Z}\)</span>，我们构造一个由所有单点集组成的开覆盖：<span class="math inline">\(\mathcal{C}' = \{\{n\} \mid n \in \mathbb{Z}\}\)</span>（由于单点集是开集，这是一个合法的开覆盖）。显然，这个无限的开覆盖无法提取出任何有限子覆盖来覆盖整个无限集 <span class="math inline">\(\mathbb{Z}\)</span>。因此，<span class="math inline">\(K \cap L\)</span> <strong>不是紧致的</strong>。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Which of the following are compact? (1) the space of rational numbers; (2) <span class="math inline">\(\mathbb{S}^n\)</span> with a finite number of points removed; (3) the torus with an open disc removed; (4) the Klein bottle; (5) the Möbius strip with its boundary circle removed; (6) <span class="math inline">\((\mathbb{R}, \mathcal{T}_{\text{cof}})\)</span>; (7) <span class="math inline">\((\mathbb{R}, \mathcal{T}_{\text{lower}})\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p>紧致的空间有：<strong>(3), (4), (6)</strong>。</p>
+<p>简要分析与证明如下：</p>
+<ul>
+<li><p><strong>(1) 有理数空间 <span class="math inline">\(\mathbb{Q}\)</span>：</strong> <strong>非紧致。</strong> 它可以看作是 <span class="math inline">\(\mathbb{R}\)</span> 的子空间，由于它在 <span class="math inline">\(\mathbb{R}\)</span> 中既不闭也无界，故不是紧致的。也可以通过构造开覆盖来证明：例如选取无理数 <span class="math inline">\(a\)</span>，构造覆盖 <span class="math inline">\(U_n = (-\infty, a - 1/n) \cap \mathbb{Q} \cup (a + 1/n, +\infty) \cap \mathbb{Q}\)</span>，该覆盖没有有限子覆盖。</p></li>
+<li><p><strong>(2) 移除有限个点的 <span class="math inline">\(\mathbb{S}^n\)</span>：</strong> <strong>非紧致。</strong> <span class="math inline">\(\mathbb{S}^n\)</span> 移除哪怕只有一个点，剩余空间也同胚于 <span class="math inline">\(\mathbb{R}^n\)</span>。<span class="math inline">\(\mathbb{R}^n\)</span> 是非紧致的（无界）。移除更多的点相当于在 <span class="math inline">\(\mathbb{R}^n\)</span> 中再挖去有限个点，依然无法成为紧致空间。</p></li>
+<li><p><strong>(3) 移除一个开圆盘的环面 (the torus)：</strong> <strong>紧致。</strong> 标准的环面 <span class="math inline">\(T^2\)</span> 是紧致空间。移除一个开圆盘等价于在 <span class="math inline">\(T^2\)</span> 中取该开圆盘补集，即取了一个<strong>闭子集</strong>。在拓扑学中，紧致空间的任意闭子集必然是紧致的。</p></li>
+<li><p><strong>(4) 克莱因瓶 (the Klein bottle)：</strong> <strong>紧致。</strong> 克莱因瓶是一个闭曲面（紧致且无边界的二维流形）。它可以由一个紧致的闭正方形通过边缘粘合（商映射）得到。因为紧致集在连续映射下的像仍是紧致的，故克莱因瓶是紧致的。</p></li>
+<li><p><strong>(5) 移除边界圆的莫比乌斯带：</strong> <strong>非紧致。</strong> 带有边界的莫比乌斯带是紧致的。其边界同胚于圆 <span class="math inline">\(\mathbb{S}^1\)</span>（闭集），将其移除后，剩余空间是一个开流形（同胚于开圆柱面），它不再是闭集，因此不紧致。</p></li>
+<li><p><strong>(6) 带有余有限拓扑的实数集 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{\text{cof}})\)</span>：</strong> <strong>紧致。</strong> 设 <span class="math inline">\(\mathcal{C}\)</span> 为其任意一个开覆盖。任取覆盖中的一个非空开集 <span class="math inline">\(U_0 \in \mathcal{C}\)</span>。根据余有限拓扑的定义，<span class="math inline">\(\mathbb{R} \setminus U_0\)</span> 是一个有限集，设为 <span class="math inline">\(\{x_1, x_2, \dots, x_k\}\)</span>。对于这 <span class="math inline">\(k\)</span> 个点，我们从 <span class="math inline">\(\mathcal{C}\)</span> 中分别为其找到包含它的开集 <span class="math inline">\(U_1, U_2, \dots, U_k\)</span>。那么 <span class="math inline">\(\{U_0, U_1, \dots, U_k\}\)</span> 就构成了原覆盖的一个有限子覆盖。</p></li>
+<li><p><strong>(7) 下限拓扑实数集 <span class="math inline">\((\mathbb{R}, \mathcal{T}_{\text{lower}})\)</span> (Sorgenfrey line)：</strong> <strong>非紧致。</strong> 基本开集形如 <span class="math inline">\([a, b)\)</span>。我们可以构造一个开覆盖 <span class="math inline">\(\mathcal{C} = \{[-n, n) \mid n \in \mathbb{Z}^+\}\)</span>。显然 <span class="math inline">\(\mathcal{C}\)</span> 覆盖了整个 <span class="math inline">\(\mathbb{R}\)</span>，但 <span class="math inline">\(\mathcal{C}\)</span> 的任意有限子集的并集只能形如 <span class="math inline">\([-N, N)\)</span>（其中 <span class="math inline">\(N\)</span> 是子集中的最大整数），无法覆盖整个 <span class="math inline">\(\mathbb{R}\)</span>，故不存在有限子覆盖。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Proposition: The space <span class="math inline">\([0, 1]^{[0, 1]}\)</span> is compact but not sequentially compact.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>证明分为两部分：证明其紧致，以及证明其非序列紧致。</strong></p>
+<ul>
+<li><strong>1. 证明空间是紧致的 (Compact)</strong></li>
+</ul>
+<p>空间 <span class="math inline">\([0, 1]^{[0, 1]}\)</span> 可以看作是不可数个闭区间 <span class="math inline">\([0, 1]\)</span> 的笛卡尔积 <span class="math inline">\(\prod_{x \in [0,1]} [0,1]\)</span>，并赋予乘积拓扑。 根据 <strong>Tychonoff 定理 (Tychonoff theorem)</strong>，任意个紧致空间的乘积空间在乘积拓扑下依然是紧致的。由于在标准实数拓扑下闭区间 <span class="math inline">\([0, 1]\)</span> 是紧致的，因此其乘积空间 <span class="math inline">\([0, 1]^{[0, 1]}\)</span> 必定是紧致空间。</p>
+<ul>
+<li><strong>2. 证明空间不是序列紧致的 (Not sequentially compact)</strong></li>
+</ul>
+<p>在乘积空间 <span class="math inline">\([0, 1]^{[0, 1]}\)</span> 中，函数序列的收敛等价于<strong>逐点收敛 (pointwise convergence)</strong>。若空间是序列紧致的，则任意函数序列都应存在一个逐点收敛的子序列。我们将通过构造一个没有收敛子序列的函数序列来得出矛盾：</p>
+<p>考虑函数序列 <span class="math inline">\((f_n)_{n=1}^\infty\)</span>，其中 <span class="math inline">\(f_n: [0, 1] \to [0, 1]\)</span> 定义为 <span class="math inline">\(x\)</span> 的二进制展开中的第 <span class="math inline">\(n\)</span> 位数字（只能取 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span>）。其代数解析式为图片中给出的： <span class="math display">\[ f_n(x) = \lfloor 2^n x \rfloor - 2\lfloor 2^{n-1} x \rfloor \]</span></p>
+<p>任取该序列的任意一个子序列 <span class="math inline">\((f_{n_k})_{k=1}^\infty\)</span>。我们要证明这个子序列在 <span class="math inline">\([0, 1]\)</span> 上绝不可能是逐点收敛的。这就要求我们能在 <span class="math inline">\([0, 1]\)</span> 中找到至少一个点 <span class="math inline">\(x_0\)</span>，使得在该点取值的实数数列 <span class="math inline">\((f_{n_k}(x_0))_{k=1}^\infty\)</span> 发散。</p>
+<p>我们通过直接指定 <span class="math inline">\(x_0\)</span> 的每一位二进制数字来构造它： - 对于该子序列中下标为偶数项的那些位，令其数字为 0，即要求 <span class="math inline">\(f_{n_{2k}}(x_0) = 0\)</span>。 - 对于该子序列中下标为奇数项的那些位，令其数字为 1，即要求 <span class="math inline">\(f_{n_{2k-1}}(x_0) = 1\)</span>。 - 对于不在子序列下标集 <span class="math inline">\(\{n_k\}_{k=1}^\infty\)</span> 中的所有其他位置，不妨全取 0。</p>
+<p>以此规则，我们可以唯一确定一个位于 <span class="math inline">\([0, 1]\)</span> 中的实数（显式表达为 <span class="math inline">\(x_0 = \sum_{k=1}^{\infty} 2^{-n_{2k-1}}\)</span>。由于它不以无限个 1 结尾，其二进制表示是唯一的，上述函数取值完全良定义）。</p>
+<p>现在，我们将这个构造出的 <span class="math inline">\(x_0\)</span> 代入我们抽取的子序列中，考察其取值序列： <span class="math display">\[ (f_{n_k}(x_0))_{k=1}^\infty = (1, 0, 1, 0, 1, 0, \dots) \]</span> 这个数列在 0 和 1 之间不断震荡，显然是不收敛的。</p>
+由于对于<strong>任意给定的</strong>子序列 <span class="math inline">\((f_{n_k})\)</span>，我们<strong>总能找到</strong>相应的点 <span class="math inline">\(x_0\)</span> 让其发散，这说明原序列 <span class="math inline">\((f_n)\)</span> 没有任何一个子序列能够逐点收敛。 因此，空间 <span class="math inline">\([0, 1]^{[0, 1]}\)</span> 不是序列紧致的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Exercise:</strong> Compare the topologies <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span>, <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span>, and <span class="math inline">\(\mathcal{T}_{\text{uni}}\)</span> on <span class="math inline">\([0,1]^{\mathbb{N}}\)</span>. Which of them are compact?</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解答]
+</summary>
+<p><strong>1. 拓扑的比较 (Comparison of topologies)</strong></p>
+<p>在无穷乘积空间 <span class="math inline">\([0,1]^{\mathbb{N}}\)</span> 上，这三种拓扑满足严格的包含关系（粗细关系）： <span class="math display">\[\mathcal{T}_{\text{prod}} \subsetneq \mathcal{T}_{\text{uni}} \subsetneq \mathcal{T}_{\text{box}}\]</span></p>
+<ul>
+<li><p><strong><span class="math inline">\(\mathcal{T}_{\text{prod}} \subsetneq \mathcal{T}_{\text{uni}}\)</span></strong>： 乘积拓扑 <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span> 的基本开集只限制有限个坐标。一致拓扑 <span class="math inline">\(\mathcal{T}_{\text{uni}}\)</span> 是由一致度量 <span class="math inline">\(\bar{\rho}(x, y) = \sup \{|x_n - y_n|\}\)</span> 诱导的。乘积拓扑中的任何基本开集都包含一致度量下的开球，因此 <span class="math inline">\(\mathcal{T}_{\text{prod}} \subseteq \mathcal{T}_{\text{uni}}\)</span>。 它是严格包含的，因为一致拓扑中的开球 <span class="math inline">\(B_{\bar{\rho}}(x, \epsilon) = \prod_{n=1}^\infty (x_n-\epsilon, x_n+\epsilon) \cap [0,1]\)</span> 同时严格限制了所有的无限个坐标，这在乘积拓扑中不是开集。</p></li>
+<li><p><strong><span class="math inline">\(\mathcal{T}_{\text{uni}} \subsetneq \mathcal{T}_{\text{box}}\)</span></strong>： 一致拓扑中的开球本质上是一个每个维度上“半径”都相同的箱子，这显然是箱拓扑 <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span> 的基本开集，因此 <span class="math inline">\(\mathcal{T}_{\text{uni}} \subseteq \mathcal{T}_{\text{box}}\)</span>。 它也是严格包含的，因为箱拓扑允许每个维度有不同的“半径”。例如，集合 <span class="math inline">\(U = \prod_{n=1}^\infty [0, 1/n)\)</span> 在 <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span> 中是开集，但在 <span class="math inline">\(\mathcal{T}_{\text{uni}}\)</span> 中不是（它无法包含任何半径为 <span class="math inline">\(\epsilon &gt; 0\)</span> 的一致开球）。</p></li>
+</ul>
+<p><strong>2. 紧致性 (Compactness)</strong></p>
+<p><strong>只有乘积拓扑 <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span> 是紧致的。</strong></p>
+<ul>
+<li><p><strong>对于 <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span> (紧致)</strong>： 根据 <strong>Tychonoff 定理 (Tychonoff theorem)</strong>，任意多个紧致空间的乘积在乘积拓扑下依然是紧致的。由于闭区间 <span class="math inline">\([0,1]\)</span> 是紧致的，<span class="math inline">\([0,1]^{\mathbb{N}}\)</span> 在 <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span> 下必定紧致。</p></li>
+<li><p><strong>对于 <span class="math inline">\(\mathcal{T}_{\text{uni}}\)</span> (非紧致)</strong>： 一致拓扑可度量化（由度量 <span class="math inline">\(\bar{\rho}\)</span> 给出）。在度量空间中，紧致性等价于序列紧致性。我们可以构造一个序列：<span class="math inline">\(x^{(n)}\)</span> 的第 <span class="math inline">\(n\)</span> 个坐标为 <span class="math inline">\(1\)</span>，其余坐标全为 <span class="math inline">\(0\)</span>。对于任意 <span class="math inline">\(m \neq n\)</span>，它们之间的一致距离 <span class="math inline">\(\bar{\rho}(x^{(m)}, x^{(n)}) = 1\)</span>。因此，该序列的任何子序列都不是柯西列，自然也没有收敛子序列。所以它不是序列紧致的，从而也不是紧致的。</p></li>
+<li><p><strong>对于 <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span> (非紧致)</strong>： <strong>方法一</strong>：利用上述结论。因为拓扑越精细，开集越多，就越难找到有限子覆盖。由于较粗的一致拓扑 <span class="math inline">\(\mathcal{T}_{\text{uni}}\)</span> 都已经不紧致了，比它更细的箱拓扑 <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span> 必然也不紧致。 <strong>方法二</strong>：利用紧致 Hausdorff 空间的极大性性质。<span class="math inline">\(([0,1]^{\mathbb{N}}, \mathcal{T}_{\text{prod}})\)</span> 是紧致的 Hausdorff 空间。拓扑学中有一个基本定理：在同一个集合上，任何严格精细于紧致 Hausdorff 拓扑的拓扑都不可能是紧致的。由于 <span class="math inline">\(\mathcal{T}_{\text{box}}\)</span> 严格细于 <span class="math inline">\(\mathcal{T}_{\text{prod}}\)</span>，它必定不紧致。</p></li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
