@@ -1,0 +1,2434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-05-04">
+
+<title>INDUCED TOPOLOGIES – 拓扑学讲义翻译</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sec8.html">8. INDUCED TOPOLOGIES</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">拓扑学讲义翻译</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BASIC TOPOLOGY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. CATEGORY THEORY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. MAPS BETWEEN AND SUBSETS OF TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. TOPOLOGICAL SUBSPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. LIMITS AND CONVERGENCE</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec8.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">8. INDUCED TOPOLOGIES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. ORDERS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. IDENTIFYING AND ATTACHING SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. CONNECTEDNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. SEPARATION</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. COMPACTNESS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. COUNTABILITY</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15. METRIC SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16. LENGTH SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec17.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17. SPACES OF METRICS</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec18.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18. METRIZING TOPOLOGICAL SPACES</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sec19.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19. TOPOLOGY OF FUNCTION SPACES</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#initial-and-final-topologies-初始拓扑与终止拓扑" id="toc-initial-and-final-topologies-初始拓扑与终止拓扑" class="nav-link active" data-scroll-target="#initial-and-final-topologies-初始拓扑与终止拓扑">8.1 Initial and final topologies | 初始拓扑与终止拓扑</a>
+  <ul class="collapse">
+  <li><a href="#initial-topology-初始拓扑" id="toc-initial-topology-初始拓扑" class="nav-link" data-scroll-target="#initial-topology-初始拓扑">8.1.1 Initial topology | 初始拓扑</a></li>
+  <li><a href="#final-topology-终止拓扑" id="toc-final-topology-终止拓扑" class="nav-link" data-scroll-target="#final-topology-终止拓扑">8.1.2 Final topology | 终止拓扑</a></li>
+  <li><a href="#weak-topologies-弱拓扑" id="toc-weak-topologies-弱拓扑" class="nav-link" data-scroll-target="#weak-topologies-弱拓扑">8.1.3 Weak topologies | 弱拓扑</a></li>
+  </ul></li>
+  <li><a href="#subspace-topology." id="toc-subspace-topology." class="nav-link" data-scroll-target="#subspace-topology.">8.2 Subspace topology.</a>
+  <ul class="collapse">
+  <li><a href="#subspaces-of-topological-spaces." id="toc-subspaces-of-topological-spaces." class="nav-link" data-scroll-target="#subspaces-of-topological-spaces.">8.2.1 Subspaces of topological spaces.</a></li>
+  <li><a href="#embeddings-嵌入" id="toc-embeddings-嵌入" class="nav-link" data-scroll-target="#embeddings-嵌入">8.2.2 Embeddings | 嵌入</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">8.2.3 Exercises</a></li>
+  </ul></li>
+  <li><a href="#product-topology-乘积拓扑" id="toc-product-topology-乘积拓扑" class="nav-link" data-scroll-target="#product-topology-乘积拓扑">8.3 Product topology | 乘积拓扑</a>
+  <ul class="collapse">
+  <li><a href="#products-of-two-topological-spaces-两个拓扑空间的乘积" id="toc-products-of-two-topological-spaces-两个拓扑空间的乘积" class="nav-link" data-scroll-target="#products-of-two-topological-spaces-两个拓扑空间的乘积">8.3.1 Products of two topological spaces | 两个拓扑空间的乘积</a></li>
+  <li><a href="#products-of-topological-spaces-拓扑空间的乘积" id="toc-products-of-topological-spaces-拓扑空间的乘积" class="nav-link" data-scroll-target="#products-of-topological-spaces-拓扑空间的乘积">8.3.2 Products of topological spaces | 拓扑空间的乘积</a></li>
+  <li><a href="#box-topology-箱拓扑" id="toc-box-topology-箱拓扑" class="nav-link" data-scroll-target="#box-topology-箱拓扑">8.3.3 Box topology | 箱拓扑</a></li>
+  <li><a href="#slice-topology-切片拓扑" id="toc-slice-topology-切片拓扑" class="nav-link" data-scroll-target="#slice-topology-切片拓扑">8.3.4 Slice topology | 切片拓扑</a></li>
+  </ul></li>
+  <li><a href="#quotient-topology-商拓扑" id="toc-quotient-topology-商拓扑" class="nav-link" data-scroll-target="#quotient-topology-商拓扑">8.4 Quotient topology | 商拓扑</a>
+  <ul class="collapse">
+  <li><a href="#quotients-of-topological-spaces-拓扑空间的商" id="toc-quotients-of-topological-spaces-拓扑空间的商" class="nav-link" data-scroll-target="#quotients-of-topological-spaces-拓扑空间的商">8.4.1 Quotients of topological spaces | 拓扑空间的商</a></li>
+  <li><a href="#quotient-maps-商映射" id="toc-quotient-maps-商映射" class="nav-link" data-scroll-target="#quotient-maps-商映射">8.4.2 Quotient maps | 商映射</a></li>
+  <li><a href="#partitions-and-equivalence-relations-划分与等价关系" id="toc-partitions-and-equivalence-relations-划分与等价关系" class="nav-link" data-scroll-target="#partitions-and-equivalence-relations-划分与等价关系">8.4.3 Partitions and equivalence relations | 划分与等价关系</a></li>
+  </ul></li>
+  <li><a href="#coproduct-topology-上积拓扑-余积拓扑" id="toc-coproduct-topology-上积拓扑-余积拓扑" class="nav-link" data-scroll-target="#coproduct-topology-上积拓扑-余积拓扑">8.5 Coproduct topology | 上积拓扑 (余积拓扑)</a>
+  <ul class="collapse">
+  <li><a href="#coproducts-of-two-topological-spaces-两个拓扑空间的余积" id="toc-coproducts-of-two-topological-spaces-两个拓扑空间的余积" class="nav-link" data-scroll-target="#coproducts-of-two-topological-spaces-两个拓扑空间的余积">8.5.1 Coproducts of two topological spaces | 两个拓扑空间的余积</a></li>
+  <li><a href="#coproducts-of-topological-spaces-拓扑空间的余积" id="toc-coproducts-of-topological-spaces-拓扑空间的余积" class="nav-link" data-scroll-target="#coproducts-of-topological-spaces-拓扑空间的余积">8.5.2 Coproducts of topological spaces | 拓扑空间的余积</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">INDUCED TOPOLOGIES</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 4, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/bsj2.jpg" class="img-fluid figure-img"></p>
+<figcaption>pixiv@枫玥</figcaption>
+</figure>
+</div>
+<section id="initial-and-final-topologies-初始拓扑与终止拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="initial-and-final-topologies-初始拓扑与终止拓扑">8.1 Initial and final topologies | 初始拓扑与终止拓扑</h2>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be topological spaces.</p>
+<ul>
+<li>If <span class="math inline">\(A \subseteq X\)</span>, what is the most natural topology on <span class="math inline">\(A\)</span>?</li>
+<li>What is the most natural topology on the disjoint union <span class="math inline">\(X \sqcup Y\)</span> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>?</li>
+<li>What is the most natural topology on the cartesian product <span class="math inline">\(X \times Y\)</span> of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>?</li>
+<li>What is the most natural topology on <span class="math inline">\(\mathbb{S}^1\)</span>, given a map <span class="math inline">\(\pi: \mathbb{R} \to \mathbb{S}^1\)</span> with <span class="math inline">\(\pi(x) = e^{ix}\)</span>?</li>
+<li>What is the most natural topology on <span class="math inline">\(\mathbb{R}^2\)</span> making all polynomials continuous?</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p>设 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 为拓扑空间。</p>
+<ul>
+<li>若 <span class="math inline">\(A \subseteq X\)</span>，则 <span class="math inline">\(A\)</span> 上最自然的拓扑是什么？</li>
+<li>在 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> 的不相交并 <span class="math inline">\(X \sqcup Y\)</span> 上，最自然的拓扑是什么？</li>
+<li>在 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> 的笛卡尔积 <span class="math inline">\(X \times Y\)</span> 上，最自然的拓扑是什么？</li>
+<li>给定映射 <span class="math inline">\(\pi: \mathbb{R} \to \mathbb{S}^1\)</span> 且 <span class="math inline">\(\pi(x) = e^{ix}\)</span>，<span class="math inline">\(\mathbb{S}^1\)</span> 上最自然的拓扑是什么？</li>
+<li>使所有多项式都连续的 <span class="math inline">\(\mathbb{R}^2\)</span> 上最自然的拓扑是什么？</li>
+</ul>
+</details>
+<section id="initial-topology-初始拓扑" class="level3">
+<h3 class="anchored" data-anchor-id="initial-topology-初始拓扑">8.1.1 Initial topology | 初始拓扑</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.1.1 Definition:</strong> Let <span class="math inline">\(X\)</span> be a set, <span class="math inline">\(\{(Y_j, \mathcal{T}_j)\}_{j \in J}\)</span> be a family of topological spaces, and <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> be a family of maps. Taking the intersection among the topologies <span class="math inline">\(\mathcal{T}\)</span> on <span class="math inline">\(X\)</span> such that for any <span class="math inline">\(j \in J\)</span>, the map <span class="math inline">\(f_j: (X, \mathcal{T}) \to (Y_j, \mathcal{T}_j)\)</span> is continuous, <span class="math inline">\(\mathcal{T}_{\mathcal{F}} = \bigcap_{\mathcal{T}} \mathcal{T}\)</span> is called the <em>initial topology</em> on <span class="math inline">\(X\)</span> induced by <span class="math inline">\(\mathcal{F}\)</span> from <span class="math inline">\(\{\mathcal{T}_j\}_{j \in J}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.1.1 定义</strong>：设 <span class="math inline">\(X\)</span> 为一个集合，<span class="math inline">\(\{(Y_j, \mathcal{T}_j)\}_{j \in J}\)</span> 为一族拓扑空间，且 <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> 为一族映射。取 <span class="math inline">\(X\)</span> 上所有使得对任意 <span class="math inline">\(j \in J\)</span>，映射 <span class="math inline">\(f_j: (X, \mathcal{T}) \to (Y_j, \mathcal{T}_j)\)</span> 均连续的拓扑 <span class="math inline">\(\mathcal{T}\)</span> 的交集，称 <span class="math inline">\(\mathcal{T}_{\mathcal{F}} = \bigcap_{\mathcal{T}} \mathcal{T}\)</span> 为由 <span class="math inline">\(\mathcal{F}\)</span> 从 <span class="math inline">\(\{\mathcal{T}_j\}_{j \in J}\)</span> 诱导在 <span class="math inline">\(X\)</span> 上的<strong>初始拓扑</strong>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.1.2 Remark:</strong> The initial topology <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span> is the coarsest topology on <span class="math inline">\(X\)</span> under which <span class="math inline">\(\mathcal{F}\)</span> consists of continuous maps. It is indeed a topology on <span class="math inline">\(X\)</span> by the following theorem.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.1.2 备注</strong>：初始拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span> 是使得 <span class="math inline">\(\mathcal{F}\)</span> 中所有映射均连续的 <span class="math inline">\(X\)</span> 上最粗糙的拓扑。根据以下定理，它确实是 <span class="math inline">\(X\)</span> 上的一个拓扑。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.1.3 Theorem:</strong> Let <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> be a family of maps from a set <span class="math inline">\(X\)</span> to topological spaces <span class="math inline">\((Y_j, \mathcal{T}_j)\)</span>. The initial topology induced by <span class="math inline">\(\mathcal{F}\)</span> is a topology on <span class="math inline">\(X\)</span> generated by the subbase <span class="math inline">\(\mathcal{S}_{\mathcal{F}} = \{f_j^{-1}(V) \subseteq X : j \in J, V \in \mathcal{T}_j\}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.1.3 定理</strong>：设 <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> 是从集合 <span class="math inline">\(X\)</span> 到拓扑空间 <span class="math inline">\((Y_j, \mathcal{T}_j)\)</span> 的一族映射。由 <span class="math inline">\(\mathcal{F}\)</span> 诱导的初始拓扑是由子基 <span class="math inline">\(\mathcal{S}_{\mathcal{F}} = \{f_j^{-1}(V) \subseteq X : j \in J, V \in \mathcal{T}_j\}\)</span> 生成的 <span class="math inline">\(X\)</span> 上的拓扑。
+</details>
+</div>
+</div>
+</div>
+<em>Proof:</em> Being the intersection of topologies, <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span> is a topology on <span class="math inline">\(X\)</span> by Theorem 3.1.5.3 (1). <span class="math inline">\(\blacksquare\)</span>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<em>证明</em>：作为拓扑的交集，根据定理 3.1.5.3 (1)，<span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span> 是 <span class="math inline">\(X\)</span> 上的一个拓扑。<span class="math inline">\(\blacksquare\)</span>
+</details>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.1.1.4 The characteristic property of the initial topology:</strong> Let <span class="math inline">\(X\)</span> be a set, <span class="math inline">\(\{Y_j\}_{j \in J}\)</span> be a family of topological spaces, and <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> be a family of maps. A topology <span class="math inline">\(\mathcal{T}_X\)</span> on <span class="math inline">\(X\)</span> is the initial topology induced by <span class="math inline">\(\mathcal{F}\)</span> iff for any map <span class="math inline">\(h: Z \to X\)</span> is continuous provided that <span class="math inline">\(g_j = f_j \circ h: Z \to Y_j\)</span> is continuous for any <span class="math inline">\(j \in J\)</span>.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+  &amp; X &amp; \\
+_{f_j}\swarrow &amp; &amp; \nwarrow_{h} \\
+Y_j &amp; \xleftarrow{g_j} &amp; Z
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.1.4 初始拓扑的特征性质</strong>：设 <span class="math inline">\(X\)</span> 为一个集合，<span class="math inline">\(\{Y_j\}_{j \in J}\)</span> 为一族拓扑空间，且 <span class="math inline">\(\mathcal{F} = \{f_j: X \to Y_j\}_{j \in J}\)</span> 为一族映射。<span class="math inline">\(X\)</span> 上的拓扑 <span class="math inline">\(\mathcal{T}_X\)</span> 是由 <span class="math inline">\(\mathcal{F}\)</span> 诱导的初始拓扑，当且仅当对于任何映射 <span class="math inline">\(h: Z \to X\)</span>，<span style="background-color:yellow;">只要对任意 <span class="math inline">\(j \in J\)</span>，<span class="math inline">\(g_j = f_j \circ h: Z \to Y_j\)</span> 均连续，则 <span class="math inline">\(h\)</span> 连续。</span>
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> Suppose <span class="math inline">\(\mathcal{T}_X\)</span> is the initial topology <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span>. For any <span class="math inline">\(U = f_j^{-1}(V_j) \in \mathcal{S}_{\mathcal{F}}\)</span> where <span class="math inline">\(j \in J\)</span> and <span class="math inline">\(V_j \in \mathcal{T}_j\)</span> if <span class="math inline">\(g_j\)</span> is known continuous, then the preimage <span class="math inline">\(W = g_j^{-1}(V_j) \in \mathcal{T}_Z\)</span>. Now that <span class="math inline">\(W = h^{-1}(U)\)</span> we conclude that <span class="math inline">\(h\)</span> is continuous. Suppose the continuity of <span class="math inline">\(g_j = f_j \circ h\)</span> for all <span class="math inline">\(j \in J\)</span> implies that of <span class="math inline">\(h\)</span>. We let <span class="math inline">\(Z = X\)</span> and <span class="math inline">\(h = \text{id}_X\)</span>. Then <span class="math inline">\(\mathcal{T}_Z\)</span> is a topology making <span class="math inline">\(g_j = f_j: (X, \mathcal{T}_Z) \to (Y_j, \mathcal{T}_j)\)</span> continuous for any <span class="math inline">\(j \in J\)</span>, and then the continuity of <span class="math inline">\(h\)</span> implies that <span class="math inline">\(\mathcal{T}_Z\)</span> is finer than <span class="math inline">\(\mathcal{T}_X\)</span>. Therefore, <span class="math inline">\(\mathcal{T}_X\)</span> is the coarsest among them, which is the initial topology <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span> by definition. <span class="math inline">\(\blacksquare\)</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<em>证明</em>：假设 <span class="math inline">\(\mathcal{T}_X\)</span> 是初始拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span>。对于任意 <span class="math inline">\(U = f_j^{-1}(V_j) \in \mathcal{S}_{\mathcal{F}}\)</span>（其中 <span class="math inline">\(j \in J\)</span> 且 <span class="math inline">\(V_j \in \mathcal{T}_j\)</span>），若已知 <span class="math inline">\(g_j\)</span> 连续，则原像 <span class="math inline">\(W = g_j^{-1}(V_j) \in \mathcal{T}_Z\)</span>。由于 <span class="math inline">\(W = h^{-1}(U)\)</span>，我们断定 <span class="math inline">\(h\)</span> 连续。 反之，假设对所有 <span class="math inline">\(j \in J\)</span>，<span class="math inline">\(g_j = f_j \circ h\)</span> 的连续性蕴含了 <span class="math inline">\(h\)</span> 的连续性。令 <span class="math inline">\(Z = X\)</span> 且 <span class="math inline">\(h = \text{id}_X\)</span>。则 <span class="math inline">\(\mathcal{T}_Z\)</span> 是使得 <span class="math inline">\(g_j = f_j: (X, \mathcal{T}_Z) \to (Y_j, \mathcal{T}_j)\)</span> 对任意 <span class="math inline">\(j \in J\)</span> 均连续的一种拓扑，此时 <span class="math inline">\(h\)</span> 的连续性意味着 <span class="math inline">\(\mathcal{T}_Z\)</span> 比 <span class="math inline">\(\mathcal{T}_X\)</span> 更细。因此，<span class="math inline">\(\mathcal{T}_X\)</span> 是这些拓扑中最粗糙的一个，根据定义，它就是初始拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{F}}\)</span>。<span class="math inline">\(\blacksquare\)</span>
+</details>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.1.5 Proposition:</strong> The initial topology on a set <span class="math inline">\(X\)</span> induced by the empty map <span class="math inline">\(\emptyset \to X\)</span> is the trivial topology.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.1.5 命题</strong>：在集合 <span class="math inline">\(X\)</span> 上由空映射 <span class="math inline">\(\emptyset \to X\)</span> 诱导的初始拓扑是平凡拓扑（即平凡拓扑）。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="final-topology-终止拓扑" class="level3">
+<h3 class="anchored" data-anchor-id="final-topology-终止拓扑">8.1.2 Final topology | 终止拓扑</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.2.1 Definition:</strong> Let <span class="math inline">\(Y\)</span> be a set, <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> be a family of topological spaces, and <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> be a family of maps. Taking the union among the topologies <span class="math inline">\(\mathcal{T}\)</span> on <span class="math inline">\(Y\)</span> such that for any <span class="math inline">\(i \in I\)</span>, the map <span class="math inline">\(f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T})\)</span> is continuous, <span class="math inline">\(\mathcal{T}_{\mathcal{G}} = \bigcup_{\mathcal{T}} \mathcal{T}\)</span> is called the <em>final topology</em> on <span class="math inline">\(Y\)</span> induced by <span class="math inline">\(\mathcal{G}\)</span> from <span class="math inline">\(\{\mathcal{T}_i\}_{i \in I}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.2.1 定义</strong>：设 <span class="math inline">\(Y\)</span> 为一个集合，<span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 为一族拓扑空间，且 <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> 为一族映射。取 <span class="math inline">\(Y\)</span> 上所有使得对任意 <span class="math inline">\(i \in I\)</span>，映射 <span class="math inline">\(f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T})\)</span> 均连续的拓扑 <span class="math inline">\(\mathcal{T}\)</span> 的并集，称 <span class="math inline">\(\mathcal{T}_{\mathcal{G}} = \bigcup_{\mathcal{T}} \mathcal{T}\)</span> 为由 <span class="math inline">\(\mathcal{G}\)</span> 从 <span class="math inline">\(\{\mathcal{T}_i\}_{i \in I}\)</span> 诱导在 <span class="math inline">\(Y\)</span> 上的<strong>终止拓扑</strong>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.2.2 Remark:</strong> The final topology <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span> is the finest topology on <span class="math inline">\(Y\)</span> under which <span class="math inline">\(\mathcal{G}\)</span> consists of continuous maps. It is indeed a topology on <span class="math inline">\(Y\)</span> by the following theorem.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.2.2 备注</strong>：终止拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span> 是使得 <span class="math inline">\(\mathcal{G}\)</span> 中所有映射均连续的 <span class="math inline">\(Y\)</span> 上最精细的拓扑。根据以下定理，它确实是 <span class="math inline">\(Y\)</span> 上的一个拓扑。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.2.3 Theorem:</strong> Let <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> be a family of maps from topological spaces <span class="math inline">\((X_i, \mathcal{T}_i)\)</span> to a set <span class="math inline">\(Y\)</span>. The final topology induced by <span class="math inline">\(\mathcal{G}\)</span> is a topology on <span class="math inline">\(Y\)</span> given by <span class="math display">\[\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(f_i^{-1}(V) \in \mathcal{T}_i)\}. \tag{77}\]</span>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.2.3 定理</strong>：设 <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> 是从拓扑空间 <span class="math inline">\((X_i, \mathcal{T}_i)\)</span> 到集合 <span class="math inline">\(Y\)</span> 的一族映射。由 <span class="math inline">\(\mathcal{G}\)</span> 诱导的终止拓扑是 <span class="math inline">\(Y\)</span> 上的一个拓扑，由下式给出： <span class="math display">\[\mathcal{T}_{\mathcal{G}} = \{V \subseteq Y : (\forall i \in I)(f_i^{-1}(V) \in \mathcal{T}_i)\}。 \tag{77}\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.1.2.4 The characteristic property of the final topology:</strong> Let <span class="math inline">\(Y\)</span> be a set, <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> be a family of topological spaces, and <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> be a family of maps. A topology <span class="math inline">\(\mathcal{T}_Y\)</span> on <span class="math inline">\(Y\)</span> is the final topology induced by <span class="math inline">\(\mathcal{G}\)</span> iff for any map <span class="math inline">\(h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)\)</span> is continuous provided that <span class="math inline">\(g_i = h \circ f_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)\)</span> is continuous for any <span class="math inline">\(i \in I\)</span>.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+(X_i, \mathcal{T}_i) &amp; \xrightarrow{f_i} &amp; (Y, \mathcal{T}_Y) \\
+_{g_i}\searrow &amp; &amp; \swarrow_{h} \\
+&amp; (Z, \mathcal{T}_Z) &amp;
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.2.4 终止拓扑的特征性质</strong>：设 <span class="math inline">\(Y\)</span> 为一个集合，<span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 为一族拓扑空间，且 <span class="math inline">\(\mathcal{G} = \{f_i: X_i \to Y\}_{i \in I}\)</span> 为一族映射。<span class="math inline">\(Y\)</span> 上的拓扑 <span class="math inline">\(\mathcal{T}_Y\)</span> 是由 <span class="math inline">\(\mathcal{G}\)</span> 诱导的终止拓扑，当且仅当对于任何映射 <span class="math inline">\(h: (Y, \mathcal{T}_Y) \to (Z, \mathcal{T}_Z)\)</span>，<span style="background-color:yellow;">只要对任意 <span class="math inline">\(i \in I\)</span>，<span class="math inline">\(g_i = h \circ f_i: (X_i, \mathcal{T}_i) \to (Z, \mathcal{T}_Z)\)</span> 均连续，则 <span class="math inline">\(h\)</span> 连续。</span>
+</details>
+</div>
+</div>
+</div>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开证明]
+</summary>
+<p><em>Proof:</em> Suppose <span class="math inline">\(\mathcal{T}_Y\)</span> is the final topology <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span>. For any <span class="math inline">\(W \in \mathcal{T}_Z\)</span> if <span class="math inline">\(g_i\)</span> is known continuous, then the preimage <span class="math inline">\(U_i = g_i^{-1}(W) \in \mathcal{T}_i\)</span>. Now that <span class="math inline">\(U_i = f_i^{-1}(V) \in \mathcal{T}_i\)</span> where <span class="math inline">\(V = h^{-1}(W)\)</span> we have <span class="math inline">\(V \in \mathcal{T}_{\mathcal{G}}\)</span>. We conclude that <span class="math inline">\(h\)</span> is continuous. Suppose the continuity of <span class="math inline">\(g_i = h \circ f_i\)</span> for all <span class="math inline">\(i \in I\)</span> implies that of <span class="math inline">\(h\)</span>. We let <span class="math inline">\(Z = Y\)</span> and <span class="math inline">\(h = \text{id}_Y\)</span>. Then <span class="math inline">\(\mathcal{T}_Z\)</span> is a topology making <span class="math inline">\(g_i = \text{id}_Y \circ f_i = f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)\)</span> continuous for any <span class="math inline">\(i \in I\)</span>, and then the continuity of <span class="math inline">\(h: (Y, \mathcal{T}_Y) \to (Y, \mathcal{T}_Z)\)</span> implies that <span class="math inline">\(\mathcal{T}_Z\)</span> is coarser than <span class="math inline">\(\mathcal{T}_Y\)</span>. Therefore, <span class="math inline">\(\mathcal{T}_Y\)</span> is the finest among them, which is the final topology <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span> by definition. <span class="math inline">\(\blacksquare\)</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<em>证明</em>：假设 <span class="math inline">\(\mathcal{T}_Y\)</span> 是终止拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span>。对于任意 <span class="math inline">\(W \in \mathcal{T}_Z\)</span>，若已知 <span class="math inline">\(g_i\)</span> 连续，则原像 <span class="math inline">\(U_i = g_i^{-1}(W) \in \mathcal{T}_i\)</span>。由于 <span class="math inline">\(U_i = f_i^{-1}(V) \in \mathcal{T}_i\)</span>（其中 <span class="math inline">\(V = h^{-1}(W)\)</span>），我们得到 <span class="math inline">\(V \in \mathcal{T}_{\mathcal{G}}\)</span>。由此断定 <span class="math inline">\(h\)</span> 连续。 反之，假设对所有 <span class="math inline">\(i \in I\)</span>，<span class="math inline">\(g_i = h \circ f_i\)</span> 的连续性蕴含了 <span class="math inline">\(h\)</span> 的连续性。令 <span class="math inline">\(Z = Y\)</span> 且 <span class="math inline">\(h = \text{id}_Y\)</span>。设 <span class="math inline">\(\mathcal{T}_Z\)</span> 是使得 <span class="math inline">\(g_i = \text{id}_Y \circ f_i = f_i: (X_i, \mathcal{T}_i) \to (Y, \mathcal{T}_Z)\)</span> 对任意 <span class="math inline">\(i \in I\)</span> 均连续的一种拓扑，此时 <span class="math inline">\(h: (Y, \mathcal{T}_Y) \to (Y, \mathcal{T}_Z)\)</span> 的连续性意味着 <span class="math inline">\(\mathcal{T}_Z\)</span> 比 <span class="math inline">\(\mathcal{T}_Y\)</span> 更粗。因此，<span class="math inline">\(\mathcal{T}_Y\)</span> 是这些拓扑中最精细的一个，根据定义，它就是终止拓扑 <span class="math inline">\(\mathcal{T}_{\mathcal{G}}\)</span>。<span class="math inline">\(\blacksquare\)</span>
+</details>
+</details>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.2.5 Proposition:</strong> The final topology on a set <span class="math inline">\(X\)</span> induced by the constant map <span class="math inline">\(X \to *\)</span> is the discrete topology.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.2.5 命题</strong>：在集合 <span class="math inline">\(X\)</span> 上由常数映射 <span class="math inline">\(X \to *\)</span> 诱导的终止拓扑是离散拓扑。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="weak-topologies-弱拓扑" class="level3">
+<h3 class="anchored" data-anchor-id="weak-topologies-弱拓扑">8.1.3 Weak topologies | 弱拓扑</h3>
+Let <span class="math inline">\(\mathbb{K}\)</span> be a topological field as in Definition 28.2.1.1, namely a field with a compatible topology. We will mostly consider <span class="math inline">\(\mathbb{K}\)</span> as <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{C}\)</span> with their standard topologies. Recall the weak and weak* topologies in Functional Analysis on a topological vector space <span class="math inline">\((X, \mathcal{T}_X)\)</span> (Definition 28.2.2.1) over a topological field <span class="math inline">\(\mathbb{K}\)</span>, or in particular, a normed vector space, and its continuous dual <span class="math inline">\(X^*\)</span> (Definition 28.2.2.4), or the space of continuous <span class="math inline">\(\mathbb{K}\)</span>-linear functionals. These topologies will be defined as initial topologies and related to product topologies.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+设 <span class="math inline">\(\mathbb{K}\)</span> 为定义 28.2.1.1 中的拓扑域，即具有相容拓扑的域。我们主要将 <span class="math inline">\(\mathbb{K}\)</span> 视为具有标准拓扑的 <span class="math inline">\(\mathbb{R}\)</span> 或 <span class="math inline">\(\mathbb{C}\)</span>。 回想泛函分析中，在拓扑域 <span class="math inline">\(\mathbb{K}\)</span> 上的拓扑向量空间 <span class="math inline">\((X, \mathcal{T}_X)\)</span>（定义 28.2.2.1）——特别是赋范向量空间及其连续对偶空间 <span class="math inline">\(X^*\)</span>（定义 28.2.2.4），即连续 <span class="math inline">\(\mathbb{K}\)</span>-线性泛函空间——上的弱拓扑和弱*拓扑。这些拓扑将被定义为初始拓扑，并与乘积拓扑相关联。
+</details>
+There is a canonical pairing <span class="math inline">\(\langle \cdot, \cdot \rangle : X \times X^* \to \mathbb{K}\)</span> defined by <span class="math inline">\(\langle x, \alpha \rangle = \alpha(x)\)</span> for all <span class="math inline">\(x \in X\)</span> and <span class="math inline">\(\alpha \in X^*\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+存在正则配对 <span class="math inline">\(\langle \cdot, \cdot \rangle : X \times X^* \to \mathbb{K}\)</span>，定义为对于所有 <span class="math inline">\(x \in X\)</span> 和 <span class="math inline">\(\alpha \in X^*\)</span>，<span class="math inline">\(\langle x, \alpha \rangle = \alpha(x)\)</span> 。<span class="math inline">\(ev_x(\alpha)=\alpha(x)\)</span>
+</details>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.1 Weak and weak* topologies:</strong> Let <span class="math inline">\((X, \mathcal{T}_X)\)</span> be a topological vector space and <span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span> be its continuous dual. The weak topology on <span class="math inline">\(X\)</span> is the initial topology <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> on <span class="math inline">\(X\)</span> induced by <span class="math inline">\(X^*\)</span>. The weak* topology on <span class="math inline">\(X^*\)</span> is the initial topology <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span> on <span class="math inline">\(X^*\)</span> induced by <span class="math inline">\(X\)</span> seen as <span class="math inline">\(\text{ev}(X) \subseteq X^{**}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.1 弱拓扑与弱*拓扑</strong>：设 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 为拓扑向量空间，<span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span> 为其连续对偶空间。<span class="math inline">\(X\)</span> 上的<strong>弱拓扑</strong>是由 <span class="math inline">\(X^*\)</span> 诱导在 <span class="math inline">\(X\)</span> 上的初始拓扑 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span>。<span class="math inline">\(X^*\)</span> 上的<strong>弱*拓扑</strong>是由视为 <span class="math inline">\(\text{ev}(X) \subseteq X^{**}\)</span> 的 <span class="math inline">\(X\)</span> 诱导在 <span class="math inline">\(X^*\)</span> 上的初始拓扑 <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.2 Proposition:</strong> The <em>weak topology</em> <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> on <span class="math inline">\(X\)</span> is the coarsest topology making all maps <span class="math inline">\(\alpha: X \to \mathbb{K}\)</span> continuous for <span class="math inline">\(\alpha \in X^*\)</span>. The <em>weak* topology</em> <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span> on <span class="math inline">\(X^*\)</span> is the coarsest topology making all maps <span class="math inline">\(\text{ev}_x: X^* \to \mathbb{K}\)</span> continuous for <span class="math inline">\(x \in X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.2 命题</strong>：<span class="math inline">\(X\)</span> 上的<strong>弱拓扑</strong> <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 是使得所有映射 <span class="math inline">\(\alpha: X \to \mathbb{K}\)</span>（对于 <span class="math inline">\(\alpha \in X^*\)</span>）均连续的最粗糙拓扑。<span class="math inline">\(X^*\)</span> 上的<strong>弱*拓扑</strong> <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span> 是使得所有映射 <span class="math inline">\(\text{ev}_x: X^* \to \mathbb{K}\)</span>（对于 <span class="math inline">\(x \in X\)</span>）均连续的最粗糙拓扑。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.3 Proposition:</strong> If <span class="math inline">\(Y\)</span> is a vector space of linear functionals on <span class="math inline">\(X\)</span>, then the continuous dual of <span class="math inline">\(X\)</span> with respect to the topology <span class="math inline">\(\sigma(X, Y)\)</span> is precisely equal to <span class="math inline">\(Y\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.3 命题</strong>：若 <span class="math inline">\(Y\)</span> 是 <span class="math inline">\(X\)</span> 上线性泛函的向量空间，则 <span class="math inline">\(X\)</span> 关于拓扑 <span class="math inline">\(\sigma(X, Y)\)</span> 的连续对偶空间恰好等于 <span class="math inline">\(Y\)</span>。
+</details>
+</div>
+</div>
+</div>
+If <span class="math inline">\(\mathcal{T}_X\)</span> comes from a norm <span class="math inline">\(\|\cdot\|_X\)</span> (Definition 28.2.3.1), then <span class="math inline">\(X^*\)</span> is also induced by a norm <span class="math inline">\(\|\cdot\|_{X^*}\)</span>, called the dual norm to <span class="math inline">\(\|\cdot\|_X\)</span>, defined by <span class="math display">\[\|\alpha\|_{X^*} = \sup_{\|x\|_X \leq 1} |\langle x, \alpha \rangle|. \tag{79}\]</span> The norm <span class="math inline">\(\|\cdot\|_{X^*}\)</span> induces the <em>strong topology</em> <span class="math inline">\(\mathcal{T}_{X^*}\)</span> on <span class="math inline">\(X^*\)</span> (Definition 28.2.3.1), which yields a normed vector space <span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span>. The continuous dual <span class="math inline">\(X^{**}\)</span> to <span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span> is called the <em>double dual</em>, with a norm <span class="math inline">\(\|\cdot\|_{X^{**}}\)</span> which induces a strong topology <span class="math inline">\(\mathcal{T}_{X^{**}}\)</span> defined in an analogous way as <span class="math inline">\(\|\cdot\|_{X^*}\)</span> and <span class="math inline">\(\mathcal{T}_{X^*}\)</span>. There is a continuous linear embedding, called the <em>evaluation map</em> <span class="math inline">\(\text{ev}: X \to X^{**}\)</span>, <span class="math inline">\(x \mapsto \text{ev}_x\)</span> defined by <span class="math inline">\(\text{ev}_x(\alpha) = \alpha(x) = \langle x, \alpha \rangle\)</span>.
+<details>
+<summary style="color: gray; pointer;">
+[点击展开翻译]
+</summary>
+若 <span class="math inline">\(\mathcal{T}_X\)</span> 源自范数 <span class="math inline">\(\|\cdot\|_X\)</span>，则 <span class="math inline">\(X^*\)</span> 也由一个范数 <span class="math inline">\(\|\cdot\|_{X^*}\)</span> 诱导，称为 <span class="math inline">\(\|\cdot\|_X\)</span> 的对偶范数，定义为： <span class="math display">\[\|\alpha\|_{X^*} = \sup_{\|x\|_X \leq 1} |\langle x, \alpha \rangle|。\]</span> 范数 <span class="math inline">\(\|\cdot\|_{X^*}\)</span> 在 <span class="math inline">\(X^*\)</span> 上诱导了<strong>强拓扑</strong> <span class="math inline">\(\mathcal{T}_{X^*}\)</span>，从而产生赋范向量空间 <span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span>。<span class="math inline">\((X^*, \mathcal{T}_{X^*})\)</span> 的连续对偶空间 <span class="math inline">\(X^{**}\)</span> 称为<strong>二阶对偶</strong>，其范数 <span class="math inline">\(\|\cdot\|_{X^{**}}\)</span> 以与 <span class="math inline">\(\|\cdot\|_{X^*}\)</span> 类似的方式诱导强拓扑 <span class="math inline">\(\mathcal{T}_{X^{**}}\)</span>。存在一个连续线性嵌入，称为<strong>赋值映射</strong> <span class="math inline">\(\text{ev}: X \to X^{**}\)</span>，<span class="math inline">\(x \mapsto \text{ev}_x\)</span>，定义为 <span class="math inline">\(\text{ev}_x(\alpha) = \alpha(x) = \langle x, \alpha \rangle\)</span>。
+</details>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.4 Remark:</strong> On <span class="math inline">\(X^*\)</span> there is also a weak topology <span class="math inline">\(\mathcal{T}_{X^*, X^{**}}\)</span> on <span class="math inline">\(X^*\)</span> induced by <span class="math inline">\(X^{**}\)</span>. Since <span class="math inline">\(X \subseteq X^{**}\)</span>, the weak* topology is coarser than the weak topology. If <span class="math inline">\(X\)</span> is <em>reflexive</em>, in the sense that <span class="math inline">\(\text{ev}: X \to X^{**}\)</span> is an isomorphism, the weak* topology coincides with the weak topology.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.4 备注</strong>：在 <span class="math inline">\(X^*\)</span> 上还存在一个由 <span class="math inline">\(X^{**}\)</span> 诱导的弱拓扑 <span class="math inline">\(\mathcal{T}_{X^*, X^{**}}\)</span>。由于 <span class="math inline">\(X \subseteq X^{**}\)</span>，弱*拓扑比弱拓扑更粗。若 <span class="math inline">\(X\)</span> 是<strong>自反的</strong>（即 <span class="math inline">\(\text{ev}: X \to X^{**}\)</span> 是同构），则弱*拓扑与弱拓扑重合。
+</details>
+</div>
+</div>
+</div>
+A topological space is more likely to be compact as the topology be coarser. In an infinite-dimensional normed space <span class="math inline">\((X, \|\cdot\|_X)\)</span>, the closed unit ball <span class="math inline">\(\mathbb{B}_X\)</span> is never compact in the strong topology <span class="math inline">\(\mathcal{T}_X\)</span>, nor in the weak topology <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> unless <span class="math inline">\(X\)</span> is reflexive. However, the closed unit ball <span class="math inline">\(\mathbb{B}_{X^*}\)</span> in <span class="math inline">\(X^*\)</span> is always weak* compact.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+拓扑越粗，拓扑空间就越有可能是紧的。在无穷维赋范空间 <span class="math inline">\((X, \|\cdot\|_X)\)</span> 中，闭单位球 <span class="math inline">\(\mathbb{B}_X\)</span> 在强拓扑 <span class="math inline">\(\mathcal{T}_X\)</span> 中绝不是紧的，在弱拓扑 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中也不是紧的（除非 <span class="math inline">\(X\)</span> 是自反的）。然而，<span class="math inline">\(X^*\)</span> 中的闭单位球 <span class="math inline">\(\mathbb{B}_{X^*}\)</span> 总是弱*紧的。
+</details>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.5 Proposition:</strong> For example, a closed ball in any infinite-dimensional normed vector space is never compact. Let <span class="math inline">\(X\)</span> be a normed vector space. Then the closed unit ball <span class="math inline">\(\mathbb{B}_X\)</span> is compact in the weak topology <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> iff <span class="math inline">\(X\)</span> is reflexive.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.5 命题</strong>：例如，任何无穷维赋范向量空间中的闭球都绝不是紧的。设 <span class="math inline">\(X\)</span> 为赋范向量空间，则闭单位球 <span class="math inline">\(\mathbb{B}_X\)</span> 在弱拓扑 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中是紧的当且仅当 <span class="math inline">\(X\)</span> 是自反的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.6 Banach–Alaoglu:</strong> Let <span class="math inline">\(X\)</span> be a normed vector space. Then the closed unit ball <span class="math inline">\(\mathbb{B}_{X^*}\)</span> is compact in the weak* topology <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.6 Banach–Alaoglu 定理</strong>：设 <span class="math inline">\(X\)</span> 为赋范向量空间。则闭单位球 <span class="math inline">\(\mathbb{B}_{X^*}\)</span> 在弱*拓扑 <span class="math inline">\(\mathcal{T}_{X^*, X}\)</span> 中是紧的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.7 Heine–Borel for normed vector spaces:</strong> Let <span class="math inline">\(X\)</span> be a normed vector space. A subset <span class="math inline">\(A\)</span> of <span class="math inline">\(X^*\)</span> is weak* compact iff it is weak* closed and bounded.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.7 赋范向量空间的 Heine–Borel 定理：</strong> 设 <span class="math inline">\(X\)</span> 为赋范向量空间。<span class="math inline">\(X^*\)</span> 的子集 <span class="math inline">\(A\)</span> 是弱<em>紧的，当且仅当它是弱</em>闭且有界的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.1.3.8 Remark:</strong> If <span class="math inline">\(X\)</span> is an infinite-dimensional normed space, even though the closed unit ball <span class="math inline">\(\overline{\mathbb{B}}_{X^*}\)</span> is compact, <span class="math inline">\((X^*, \mathcal{T}_{X^*, X})\)</span> is not locally compact (Definition 13.4.2.2). The reason is that the any nonempty open subset of <span class="math inline">\((X^*, \mathcal{T}_{X^*, X})\)</span> is unbounded and is not contained in <span class="math inline">\(\overline{\mathbb{B}}_{X^*}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.1.3.8 备注：</strong> 如果 <span class="math inline">\(X\)</span> 是无限维赋范空间，尽管闭单位球 <span class="math inline">\(\overline{\mathbb{B}}_{X^*}\)</span> 是紧的，<span class="math inline">\((X^*, \mathcal{T}_{X^*, X})\)</span> 却不是局部紧的（定义 13.4.2.2）。原因是 <span class="math inline">\((X^*, \mathcal{T}_{X^*, X})\)</span> 的任何非空开子集都是无界的，且不包含于 <span class="math inline">\(\overline{\mathbb{B}}_{X^*}\)</span> 中。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.1.3.9 Weak and weak* convergences:</strong> Let <span class="math inline">\(x_\bullet: (I, \preceq) \to X\)</span> be a net (Definition 7.6.0.3) in a topological vector space <span class="math inline">\(X\)</span> over <span class="math inline">\(\mathbb{K}\)</span>. It <em>converges</em> (Definition 7.6.0.6) in <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> or <em>converges weakly</em> to <span class="math inline">\(y \in X\)</span> iff <span class="math inline">\(\alpha(x_\bullet) \to \alpha(x)\)</span> in <span class="math inline">\(\mathbb{K}\)</span> for any <span class="math inline">\(\alpha \in X^*\)</span>, denoted by <span class="math inline">\(x_\bullet \xrightarrow{w} y\)</span>, <span class="math inline">\(x_\bullet \rightharpoonup y\)</span>, or <span class="math inline">\(\text{w-}\lim_{i \in I} x_i \to y\)</span>.</p>
+<p>Let <span class="math inline">\(\alpha_\bullet: (I, \preceq) \to X^*\)</span> be a net in the continuous dual space <span class="math inline">\(X^*\)</span>. It <em>converges</em> (Definition 7.6.0.6) in <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> to <span class="math inline">\(y \in X\)</span> iff <span class="math inline">\(\alpha_\bullet(x) \to \alpha(x)\)</span> in <span class="math inline">\(\mathbb{K}\)</span> for any <span class="math inline">\(\alpha \in X^*\)</span>, denoted by <span class="math inline">\(\alpha_\bullet \xrightarrow{w^*} y\)</span>, <span class="math inline">\(\alpha_\bullet \stackrel{*}{\rightharpoonup} y\)</span>, or <span class="math inline">\(\text{w}^*\text{-}\lim_{i \in I} \alpha_i \to y\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p>**8.1.3.9 弱收敛与弱*收敛：** 设 <span class="math inline">\(x_\bullet: (I, \preceq) \to X\)</span> 为 <span class="math inline">\(\mathbb{K}\)</span> 上拓扑向量空间 <span class="math inline">\(X\)</span> 中的网（定义 7.6.0.3）。它在 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中<em>收敛</em>（定义 7.6.0.6）或<em>弱收敛</em>于 <span class="math inline">\(y \in X\)</span>，当且仅当对于任意 <span class="math inline">\(\alpha \in X^*\)</span>，<span class="math inline">\(\alpha(x_\bullet) \to \alpha(x)\)</span> 在 <span class="math inline">\(\mathbb{K}\)</span> 中成立，记作 <span class="math inline">\(x_\bullet \xrightarrow{w} y\)</span>，<span class="math inline">\(x_\bullet \rightharpoonup y\)</span>，或 <span class="math inline">\(\text{w-}\lim_{i \in I} x_i \to y\)</span>。</p>
+设 <span class="math inline">\(\alpha_\bullet: (I, \preceq) \to X^*\)</span> 为连续对偶空间 <span class="math inline">\(X^*\)</span> 中的网。它在 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中<em>收敛</em>（定义 7.6.0.6）于 <span class="math inline">\(y \in X\)</span>，当且仅当对于任意 <span class="math inline">\(\alpha \in X^*\)</span>，<span class="math inline">\(\alpha_\bullet(x) \to \alpha(x)\)</span> 在 <span class="math inline">\(\mathbb{K}\)</span> 中成立，记作 <span class="math inline">\(\alpha_\bullet \xrightarrow{w^*} y\)</span>，<span class="math inline">\(\alpha_\bullet \stackrel{*}{\rightharpoonup} y\)</span>，或 <span class="math inline">\(\text{w}^*\text{-}\lim_{i \in I} \alpha_i \to y\)</span>。
+</details>
+</div>
+</div>
+</div>
+<p>The weak/weak* topology is characterized by the weak/weak* convergence. We could also define the weak/weak* convergence of sequences but they are not sufficient to characterize the weak/weak* topology in general Remark 3.3.0.8 and Remark 3.3.0.9.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.1.3.10 Weak and weak* convergences of sequences:</strong> Let <span class="math inline">\(x\)</span> be a sequence in a topological vector space <span class="math inline">\(X\)</span> over <span class="math inline">\(\mathbb{K}\)</span>. It <em>converges</em> in <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> or <em>converges weakly</em> to <span class="math inline">\(y \in X\)</span> iff <span class="math inline">\(\alpha(x_n) \to \alpha(x)\)</span> in <span class="math inline">\(\mathbb{K}\)</span> for any <span class="math inline">\(\alpha \in X^*\)</span>, denoted by <span class="math inline">\(x_\bullet \xrightarrow{w} y\)</span>, <span class="math inline">\(x_\bullet \rightharpoonup y\)</span>, or <span class="math inline">\(\text{w-}\lim_{n \to \infty} x_n \to y\)</span>.</p>
+Let <span class="math inline">\(\alpha\)</span> be a sequence in the continuous dual space <span class="math inline">\(X^*\)</span>. It <em>converges</em> in <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> to <span class="math inline">\(y \in X\)</span> iff <span class="math inline">\(\alpha_n(x) \to \alpha(x)\)</span> in <span class="math inline">\(\mathbb{K}\)</span> for any <span class="math inline">\(\alpha \in X^*\)</span>, denoted by <span class="math inline">\(\alpha_n \xrightarrow{w^*} y\)</span>, <span class="math inline">\(\alpha_n \stackrel{*}{\rightharpoonup} y\)</span>, or <span class="math inline">\(\text{w}^*\text{-}\lim_{n \to \infty} \alpha_n \to y\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p>**8.1.3.10 序列的弱收敛与弱*收敛：** 设 <span class="math inline">\(x\)</span> 为 <span class="math inline">\(\mathbb{K}\)</span> 上拓扑向量空间 <span class="math inline">\(X\)</span> 中的序列。它在 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中<em>收敛</em>或<em>弱收敛</em>于 <span class="math inline">\(y \in X\)</span>，当且仅当对于任意 <span class="math inline">\(\alpha \in X^*\)</span>，<span class="math inline">\(\alpha(x_n) \to \alpha(x)\)</span> 在 <span class="math inline">\(\mathbb{K}\)</span> 中成立，记作 <span class="math inline">\(x_\bullet \xrightarrow{w} y\)</span>，<span class="math inline">\(x_\bullet \rightharpoonup y\)</span>，或 <span class="math inline">\(\text{w-}\lim_{n \to \infty} x_n \to y\)</span>。</p>
+设 <span class="math inline">\(\alpha\)</span> 为连续对偶空间 <span class="math inline">\(X^*\)</span> 中的序列。它在 <span class="math inline">\(\mathcal{T}_{X, X^*}\)</span> 中<em>收敛</em>于 <span class="math inline">\(y \in X\)</span>，当且仅当对于任意 <span class="math inline">\(\alpha \in X^*\)</span>，<span class="math inline">\(\alpha_n(x) \to \alpha(x)\)</span> 在 <span class="math inline">\(\mathbb{K}\)</span> 中成立，记作 <span class="math inline">\(\alpha_n \xrightarrow{w^*} y\)</span>，<span class="math inline">\(\alpha_n \stackrel{*}{\rightharpoonup} y\)</span>，或 <span class="math inline">\(\text{w}^*\text{-}\lim_{n \to \infty} \alpha_n \to y\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic\bsj3.jpg" class="img-fluid figure-img"></p>
+<figcaption>X(twitter)@?</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="subspace-topology." class="level2">
+<h2 class="anchored" data-anchor-id="subspace-topology.">8.2 Subspace topology.</h2>
+<section id="subspaces-of-topological-spaces." class="level3">
+<h3 class="anchored" data-anchor-id="subspaces-of-topological-spaces.">8.2.1 Subspaces of topological spaces.</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.2.1.1 Definition:</strong> For any subset <span class="math inline">\(A\)</span> of <span class="math inline">\(X\)</span>, the injection <span class="math inline">\(\iota_{A,X}: A \to X\)</span>, <span class="math inline">\(p \mapsto p\)</span>, is the <em>inclusion map</em> of <span class="math inline">\(A\)</span> into <span class="math inline">\(X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.1.1 定义：</strong> 对于 <span class="math inline">\(X\)</span> 的任意子集 <span class="math inline">\(A\)</span>，单射 <span class="math inline">\(\iota_{A,X}: A \to X, p \mapsto p\)</span> 称为 <span class="math inline">\(A\)</span> 到 <span class="math inline">\(X\)</span> 的<em>包含映射</em>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.2.1.2 Proposition:</strong> Let <span class="math inline">\(A\)</span> be a subset of a topological space <span class="math inline">\((X, \mathcal{T}_X)\)</span>. Then the <em>subspace topology</em> <span class="math inline">\(\mathcal{T}_A\)</span> on <span class="math inline">\(A\)</span> in <span class="math inline">\(X\)</span> is the initial topology induced by <span class="math inline">\(\{\iota_{A,X}\}\)</span>, and then <span class="math inline">\((A, \mathcal{T}_A)\)</span> is a <em>topological subspace</em> of <span class="math inline">\((X, \mathcal{T}_X)\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.1.2 命题：</strong> 设 <span class="math inline">\(A\)</span> 为拓扑空间 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 的子集。则 <span class="math inline">\(X\)</span> 中 <span class="math inline">\(A\)</span> 上的<em>子空间拓扑</em> <span class="math inline">\(\mathcal{T}_A\)</span> 是由 <span class="math inline">\(\{\iota_{A,X}\}\)</span> 诱导的初始拓扑，此时 <span class="math inline">\((A, \mathcal{T}_A)\)</span> 是 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 的<em>拓扑子空间</em>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.1.3 The universal property of the subspace topology:</strong> The subspace topology on <span class="math inline">\(A\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Y\)</span> and a map <span class="math inline">\(h: Y \to A\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(g = \iota_{A,X} \circ h: Y \to X\)</span> is continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+A &amp; &amp; \\
+\downarrow^{\iota_{A,X}} &amp; \nwarrow^{h} &amp; \\
+X &amp; \xleftarrow{g} &amp; Y
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.1.3 子空间拓扑的普遍性质</strong>：子空间拓扑在 <span class="math inline">\(A\)</span> 上的特征性质如下：对于任何拓扑空间 <span class="math inline">\(Y\)</span> 和映射 <span class="math inline">\(h: Y \to A\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当 <span class="math inline">\(g = \iota_{A,X} \circ h: Y \to X\)</span> 连续。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="embeddings-嵌入" class="level3">
+<h3 class="anchored" data-anchor-id="embeddings-嵌入">8.2.2 Embeddings | 嵌入</h3>
+Observe that a map <span class="math inline">\(f: (Z, \mathcal{T}_Z) \to (X, \mathcal{T}_X)\)</span> is continuous iff <span class="math inline">\(\mathcal{T}_Z\)</span> is finer than the initial topology on <span class="math inline">\(Z\)</span> induced by <span class="math inline">\(\{f\}\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+观察到映射 <span class="math inline">\(f: (Z, \mathcal{T}_Z) \to (X, \mathcal{T}_X)\)</span> 连续，当且仅当 <span class="math inline">\(\mathcal{T}_Z\)</span> 比由 <span class="math inline">\(\{f\}\)</span> 在 <span class="math inline">\(Z\)</span> 上诱导的初始拓扑更细。
+</details>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.2.2.1 Definition:</strong> An injection <span class="math inline">\(f: (Z, \mathcal{T}_Z) \to (X, \mathcal{T}_X)\)</span> is an <em>embedding</em> iff <span class="math inline">\(\mathcal{T}_Z\)</span> equals the initial topology on <span class="math inline">\(Z\)</span> induced by <span class="math inline">\(\{f\}\)</span>. The space <span class="math inline">\(Z\)</span> is <em>embeddable</em> into <span class="math inline">\(X\)</span> if there is an embedding <span class="math inline">\(f: Z \to X\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.1 定义</strong>：单射 <span class="math inline">\(f: (Z, \mathcal{T}_Z) \to (X, \mathcal{T}_X)\)</span> 是一个<strong>嵌入</strong>，当且仅当 <span class="math inline">\(\mathcal{T}_Z\)</span> 等于由 <span class="math inline">\(\{f\}\)</span> 在 <span class="math inline">\(Z\)</span> 上诱导的初始拓扑。如果存在嵌入 <span class="math inline">\(f: Z \to X\)</span>，则称空间 <span class="math inline">\(Z\)</span> 可<strong>嵌入</strong>到 <span class="math inline">\(X\)</span> 中。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.2.2.2 Proposition:</strong> A continuous injection <span class="math inline">\(f: Z \to X\)</span> is an embedding iff for any open <span class="math inline">\(W\)</span> in <span class="math inline">\(Z\)</span> there is an open <span class="math inline">\(U\)</span> in <span class="math inline">\(X\)</span> such that <span class="math inline">\(W = f^{-1}(U)\)</span>.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.2 命题</strong>：连续单射 <span class="math inline">\(f: Z \to X\)</span> 是嵌入，当且仅当对于 <span class="math inline">\(Z\)</span> 中的任何开集 <span class="math inline">\(W\)</span>，在 <span class="math inline">\(X\)</span> 中都存在一个开集 <span class="math inline">\(U\)</span> 使得 <span class="math inline">\(W = f^{-1}(U)\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important callout-titled" title="概念辨析：连续、开/闭映射与嵌入的区别">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>概念辨析：连续、开/闭映射与嵌入的区别
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>将命题 8.2.2.2 的条件与以下拓扑学基本定义进行严格的集合论对比，可以一针见血地看透“嵌入”的本质。</p>
+<p>对于拓扑空间之间的映射 <span class="math inline">\(f: Z \to X\)</span>：</p>
+<ul>
+<li><strong>连续 (Continuous)</strong>：只要求“拉回去是开”。
+<ul>
+<li><em>集合论视角</em>：<span class="math inline">\(f^{-1}(\mathcal{T}_X) \subseteq \mathcal{T}_Z\)</span>。</li>
+<li><em>本质</em>：<span class="math inline">\(X\)</span> 的开集拉回来能构成 <span class="math inline">\(Z\)</span> 的开集，但 <span class="math inline">\(Z\)</span> 的拓扑可以比诱导拓扑更细（拥有更多“额外”的开集）。</li>
+</ul></li>
+<li><strong>开映射 (Open map)</strong>：要求“推过去是开”。
+<ul>
+<li><em>集合论视角</em>：<span class="math inline">\(f(\mathcal{T}_Z) \subseteq \mathcal{T}_X\)</span>。即若 <span class="math inline">\(W \in \mathcal{T}_Z\)</span>，必有 <span class="math inline">\(f(W) \in \mathcal{T}_X\)</span>。</li>
+</ul></li>
+<li><strong>闭映射 (Closed map)</strong>：要求“推过去是闭”。
+<ul>
+<li><em>集合论视角</em>：<span class="math inline">\(f(\mathcal{F}_Z) \subseteq \mathcal{F}_X\)</span>。即若 <span class="math inline">\(C\)</span> 在 <span class="math inline">\(Z\)</span> 中闭，必有 <span class="math inline">\(f(C)\)</span> 在 <span class="math inline">\(X\)</span> 中闭。</li>
+</ul></li>
+</ul>
+<p><strong>嵌入 (Embedding)</strong>：要求“所有开集都必须是拉回来的”。</p>
+<ul>
+<li><p><strong>标准定义</strong>：<span class="math inline">\(f\)</span> 是单射，且 <span class="math inline">\(f: Z \to f(Z)\)</span> 是同胚（<span class="math inline">\(Z\)</span> 与它的像在子空间拓扑下完全等价）。</p></li>
+<li><p><strong>等价的集合论表述（假设单射）</strong>： <span class="math display">\[\mathcal{T}_Z = \{f^{-1}(U) : U \in \mathcal{T}_X\}\]</span></p></li>
+<li><p><em>本质洞察</em>：嵌入不仅要求映射连续，还苛刻地要求 <span class="math inline">\(Z\)</span> 上的拓扑<strong>完全由目标空间 <span class="math inline">\(X\)</span> 诱导</strong>，绝对不允许 <span class="math inline">\(Z\)</span> 拥有任何私自添加的“额外拓扑结构”。</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<strong>8.2.2.3 Proposition:</strong> A map <span class="math inline">\(f: Z \to X\)</span> between topological spaces is an embedding iff <span class="math inline">\(f|_{Z,f(Z)}\)</span> is a homeomorphism.
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.3 命题</strong>：<span style="background-color:yellow;">拓扑空间之间的映射 <span class="math inline">\(f: Z \to X\)</span> 是嵌入，当且仅当其限制映射 <span class="math inline">\(f|_{Z,f(Z)}\)</span> 是一个同胚。</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.4 The universal property of embeddings:</strong> An injection <span class="math inline">\(f: Z \to X\)</span> between topological spaces is an embedding iff for any map <span class="math inline">\(h: Y \to Z\)</span>, it is continuous iff the composition <span class="math inline">\(g = f \circ h: Y \to X\)</span> is continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+Z &amp; &amp; \\
+\downarrow^{f} &amp; \nwarrow^{h} &amp; \\
+X &amp; \xleftarrow{g} &amp; Y
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.4 嵌入的泛性质：</strong> 拓扑空间之间的单射 <span class="math inline">\(f: Z \to X\)</span> 是嵌入，当且仅当对于任何映射 <span class="math inline">\(h: Y \to Z\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当复合映射 <span class="math inline">\(g = f \circ h: Y \to X\)</span> 连续。
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> For the necessary condition, if <span class="math inline">\(f\)</span> is an embedding, then any <span class="math inline">\(W \subseteq Z\)</span> is open iff there is an open <span class="math inline">\(U \subseteq X\)</span> such that <span class="math inline">\(f(W) = U \cap f(Z)\)</span>. If <span class="math inline">\(h\)</span> is continuous, then <span class="math inline">\(g = f \circ h\)</span> is continuous being the composition of two continuous maps. Suppose <span class="math inline">\(g\)</span> is continuous, let <span class="math inline">\(W \subseteq Z\)</span> open, and let <span class="math inline">\(U \subseteq X\)</span> with <span class="math inline">\(f^{-1}(U) = W\)</span>. Then <span class="math inline">\(h^{-1}(W) = h^{-1} \circ f^{-1}(U) = g^{-1}(U)\)</span> is open and then <span class="math inline">\(h\)</span> is continuous.</p>
+<p>For the sufficient condition, letting <span class="math inline">\(h = \text{id}_Z\)</span> we obtain the continuity of <span class="math inline">\(f\)</span>. Then, let <span class="math inline">\(h = (f|_{Z,f(Z)})^{-1} : f(Z) \to X\)</span> and then <span class="math inline">\(g\)</span> becomes the inclusion of <span class="math inline">\(f(Z)\)</span> into <span class="math inline">\(X\)</span>. Since <span class="math inline">\(g\)</span> is continuous, we have that <span class="math inline">\(h\)</span> is continuous but then <span class="math inline">\(f|_{Z,f(Z)}\)</span> is an homeomorphism and <span class="math inline">\(f\)</span> is an embedding. ■</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.5 Proposition:</strong> “Being embeddable into” satisfies reflexivity and transitivity among topological spaces.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.5 命题：</strong> 在拓扑空间之间，“可嵌入”关系满足自反性和传递性。
+</details>
+</div>
+</div>
+</div>
+<p><strong>8.2.2.6 Question:</strong> Is embeddability antisymmetric among homeomorphism classes of topological spaces? In other words, are there topological spaces embeddable into each other but are not homeomorphic?</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.7 Proposition:</strong> A section is an embedding.</p>
+<details>
+<summary style="color: gray; pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.7 命题：</strong> 截面（section）是嵌入。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.8 Proposition:</strong> A bijective embedding is a homeomorphism.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.8 命题：</strong> 双射嵌入是同胚。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.9 Proposition:</strong> Let <span class="math inline">\(f\)</span> be a continuous injection. Then the following are equivalent.</p>
+<ul>
+<li>The map <span class="math inline">\(f\)</span> is an embedding.</li>
+<li>The map <span class="math inline">\(f\)</span> sends open sets to relatively open sets.</li>
+<li>The map <span class="math inline">\(f\)</span> sends closed sets to relatively closed sets.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.2.2.9 命题：</strong> 设 <span class="math inline">\(f\)</span> 是连续单射。则以下各项等价：</p>
+<ul>
+<li>映射 <span class="math inline">\(f\)</span> 是嵌入。</li>
+<li>映射 <span class="math inline">\(f\)</span> 将开集映射为相对开集。</li>
+<li>映射 <span class="math inline">\(f\)</span> 将闭集映射为相对闭集。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.10 Corollary:</strong> An open or closed continuous injection is an embedding.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.10 推论：</strong> 开或闭的连续单射是嵌入。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.11 Proposition:</strong> An embedding may not be open or closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.11 命题：</strong> 嵌入不一定是开映射或闭映射。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.2.2.12 Theorem:</strong> An embedding is open iff it has open image, or it is closed iff it has closed image.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.2.2.12 定理：</strong> 嵌入是开映射当且仅当它的像（image）是开集，或者，嵌入是闭映射当且仅当它的像是闭集。
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">8.2.3 Exercises</h3>
+<p>8.2.3.1 Show that Definition 8.2.2.1 of embeddings is equivalent to Definition 5.2.3.1.</p>
+<p>8.2.3.2 Show that an open continuous injection is an embedding. Show that a closed continuous injection is an embedding.</p>
+<p>8.2.3.3 Find non-homeomorphic topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> which embed each other.</p>
+<hr>
+</section>
+</section>
+<section id="product-topology-乘积拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="product-topology-乘积拓扑">8.3 Product topology | 乘积拓扑</h2>
+<section id="products-of-two-topological-spaces-两个拓扑空间的乘积" class="level3">
+<h3 class="anchored" data-anchor-id="products-of-two-topological-spaces-两个拓扑空间的乘积">8.3.1 Products of two topological spaces | 两个拓扑空间的乘积</h3>
+<p>Recall for two sets <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, their is the set of pairs, <span class="math inline">\(X \times Y = \{(p, q) : p \in X, q \in Y\}\)</span> and natural projection maps <span class="math inline">\(\text{pr}_X: X \times Y \to X\)</span> and <span class="math inline">\(\text{pr}_Y: X \times Y \to Y\)</span>, sending <span class="math inline">\((p, q)\)</span> to <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> respectively.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.1 Definition:</strong> Let <span class="math inline">\((X, \mathcal{T}_X)\)</span> and <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> be topological spaces. Then the <em>product topology</em> on <span class="math inline">\(X \times Y\)</span> is the initial topology <span class="math inline">\(\mathcal{T}_{X \times Y}\)</span> induced by <span class="math inline">\(\{\text{pr}_X, \text{pr}_Y\}\)</span>, and <span class="math inline">\((X \times Y, \mathcal{T}_{X \times Y})\)</span> is called the <em>product space</em> of <span class="math inline">\((X, \mathcal{T}_X)\)</span> by <span class="math inline">\((Y, \mathcal{T}_Y)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.1.1 定义：</strong> 设 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 和 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 为拓扑空间。则 <span class="math inline">\(X \times Y\)</span> 上的<strong>乘积拓扑</strong>（product topology）是由 <span class="math inline">\(\{\text{pr}_X, \text{pr}_Y\}\)</span> 诱导的初始拓扑 <span class="math inline">\(\mathcal{T}_{X \times Y}\)</span>，且 <span class="math inline">\((X \times Y, \mathcal{T}_{X \times Y})\)</span> 称为 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 与 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 的<strong>乘积空间</strong>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.2 Remark:</strong> The default topology on the product <span class="math inline">\(X \times Y\)</span> of two topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is the product topology.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.1.2 备注：</strong> 两个拓扑空间 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的乘积 <span class="math inline">\(X \times Y\)</span> 上的默认拓扑即为乘积拓扑。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.3 Proposition:</strong> Let <span class="math inline">\((X, \mathcal{T}_X)\)</span> and <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> be topological spaces. Their product topology <span class="math inline">\(\mathcal{T}_{X \times Y}\)</span> has a subbase <span class="math display">\[ \mathcal{S}_{X \times Y} = \{U \times Y : U \in \mathcal{T}_X\} \cup \{X \times V : V \in \mathcal{T}_Y\} \]</span> and a base <span class="math display">\[ \mathcal{B}_{X \times Y} = \{U \times V : U \in \mathcal{T}_X, V \in \mathcal{T}_Y\}. \]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.1.3 命题：</strong> 设 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 和 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 为拓扑空间。它们的乘积拓扑 <span class="math inline">\(\mathcal{T}_{X \times Y}\)</span> 拥有子基 <span class="math display">\[ \mathcal{S}_{X \times Y} = \{U \times Y : U \in \mathcal{T}_X\} \cup \{X \times V : V \in \mathcal{T}_Y\} \]</span> 以及基 <span class="math display">\[ \mathcal{B}_{X \times Y} = \{U \times V : U \in \mathcal{T}_X, V \in \mathcal{T}_Y\}. \]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.4 The universal property of the product topology of two spaces:</strong> The product topology on <span class="math inline">\(X \times Y\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Z\)</span> and a map <span class="math inline">\(h: Z \to X \times Y\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(g_X = \text{pr}_X \circ h: Z \to X\)</span> and <span class="math inline">\(g_Y = \text{pr}_Y \circ h: Z \to Y\)</span> are continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+X \times Y &amp; \xrightarrow{\text{pr}_Y} &amp; Y \\
+\downarrow^{\text{pr}_X} &amp; \nwarrow^{h} &amp; \uparrow_{g_Y} \\
+X &amp; \xleftarrow{g_X} &amp; Z
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.1.4 两个空间乘积拓扑的泛性质：</strong> <span class="math inline">\(X \times Y\)</span> 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 <span class="math inline">\(Z\)</span> 及映射 <span class="math inline">\(h: Z \to X \times Y\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当 <span class="math inline">\(g_X = \text{pr}_X \circ h: Z \to X\)</span> 且 <span class="math inline">\(g_Y = \text{pr}_Y \circ h: Z \to Y\)</span> 均连续。</p>
+<strong>图解提示</strong>：从右下角的 <span class="math inline">\(Z\)</span> 出发，不论你是直接飞去左上角的 <span class="math inline">\(X \times Y\)</span> 然后再投影下来，还是沿着外围先计算分量 <span class="math inline">\(g_X\)</span> 和 <span class="math inline">\(g_Y\)</span>，结果都是相等的（即 <span class="math inline">\(g_X = \text{pr}_X \circ h\)</span> 且 <span class="math inline">\(g_Y = \text{pr}_Y \circ h\)</span>）
+</details>
+</div>
+</div>
+</div>
+<p>The product topology is also called the <em>Tychonoff topology</em>. The universal property can be understood as the following “continuity via components” lemma.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.5 Lemma:</strong> Let <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> be topological spaces with their product space <span class="math inline">\(X_1 \times X_2\)</span>. Let <span class="math inline">\(F = (f_1, f_2): Y \to X_1 \times X_2\)</span> a map with components <span class="math inline">\(f_1: Y \to X_1\)</span> and <span class="math inline">\(f_2: Y \to X_2\)</span> given by <span class="math inline">\((f_1(q), f_2(q)) = f(q)\)</span> for <span class="math inline">\(q \in Y\)</span>. Then <span class="math inline">\(f\)</span> is continuous iff both components <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are continuous.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.1.5 引理：</strong> 设 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(X_2\)</span> 为拓扑空间，其乘积空间为 <span class="math inline">\(X_1 \times X_2\)</span>。设 <span class="math inline">\(F = (f_1, f_2): Y \to X_1 \times X_2\)</span> 是一个分量为 <span class="math inline">\(f_1: Y \to X_1\)</span> 和 <span class="math inline">\(f_2: Y \to X_2\)</span> 的映射，定义为对 <span class="math inline">\(q \in Y\)</span> 有 <span class="math inline">\((f_1(q), f_2(q)) = f(q)\)</span>。则 <span class="math inline">\(f\)</span> 连续当且仅当两个分量 <span class="math inline">\(f_1\)</span> 和 <span class="math inline">\(f_2\)</span> 均连续。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.6 Proposition:</strong> Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be subsets of topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>; then</p>
+<ul>
+<li><span class="math inline">\(A \times B\)</span> is open if both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are open;</li>
+<li><span class="math inline">\(A \times B\)</span> is closed if both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are closed.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.1.6 命题：</strong> 设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 分别是拓扑空间 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的子集；则：</p>
+<ul>
+<li>若 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 均为开集，则 <span class="math inline">\(A \times B\)</span> 是开集；</li>
+<li>若 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 均为闭集，则 <span class="math inline">\(A \times B\)</span> 是闭集。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> We the second bullet as am example. The complement of the product of the subsets <span class="math inline">\((A \times B)^c = (A^c \times Y) \cup (X \times B^c)\)</span> is open in <span class="math inline">\(X \times Y\)</span>. ■</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.7 Proposition:</strong> Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be subsets of topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>; then</p>
+<ul>
+<li>if <span class="math inline">\(A \times B\)</span> is open and <span class="math inline">\(B\)</span> (or <span class="math inline">\(A\)</span>) is nonempty then <span class="math inline">\(A\)</span> (or <span class="math inline">\(B\)</span>) is open;</li>
+<li>if <span class="math inline">\(A \times B\)</span> is closed and <span class="math inline">\(B\)</span> (or <span class="math inline">\(A\)</span>) is nonempty then <span class="math inline">\(A\)</span> (or <span class="math inline">\(B\)</span>) is closed.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.1.7 命题：</strong> 设 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 分别是拓扑空间 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 的子集；则：</p>
+<ul>
+<li>若 <span class="math inline">\(A \times B\)</span> 是开集且 <span class="math inline">\(B\)</span>（或 <span class="math inline">\(A\)</span>）非空，则 <span class="math inline">\(A\)</span>（或 <span class="math inline">\(B\)</span>）是开集；</li>
+<li>若 <span class="math inline">\(A \times B\)</span> 是闭集且 <span class="math inline">\(B\)</span>（或 <span class="math inline">\(A\)</span>）非空，则 <span class="math inline">\(A\)</span>（或 <span class="math inline">\(B\)</span>）是闭集。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.8 Proposition:</strong> Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be topological spaces with <span class="math inline">\(X \times Y\)</span> their product space. For any <span class="math inline">\(A \subseteq X\)</span> and <span class="math inline">\(B \subseteq Y\)</span> we have</p>
+<ul>
+<li><span class="math inline">\((A \times B)^- = A^- \times B^-\)</span>;</li>
+<li><span class="math inline">\((A \times B)^\circ = A^\circ \times B^\circ\)</span>; and</li>
+<li>the Leibniz rule <span class="math inline">\((A \times B)^b = (A^b \times B) \cup (A \times B^b) \cup (A^b \times B^b)\)</span>.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.1.8 命题：</strong> 设 <span class="math inline">\(X, Y\)</span> 为拓扑空间，<span class="math inline">\(X \times Y\)</span> 为其乘积空间。对于任何 <span class="math inline">\(A \subseteq X\)</span> 和 <span class="math inline">\(B \subseteq Y\)</span>，我们有：</p>
+<ul>
+<li><span class="math inline">\((A \times B)^- = A^- \times B^-\)</span>（闭包）；</li>
+<li><span class="math inline">\((A \times B)^\circ = A^\circ \times B^\circ\)</span>（内部）；以及</li>
+<li>莱布尼茨法则 <span class="math inline">\((A \times B)^b = (A^b \times B) \cup (A \times B^b) \cup (A^b \times B^b)\)</span>（边界）。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> By the definition of the product topology, <span class="math inline">\(A^\circ \times B^\circ\)</span> is open in <span class="math inline">\(X \times Y\)</span> and therefore is contained in <span class="math inline">\((A \times B)^\circ\)</span>. On the other hand, any basic open set in <span class="math inline">\(X \times Y\)</span> that is contained in <span class="math inline">\(A \times B\)</span> is an open rectangle <span class="math inline">\(U \times V\)</span> with open sides <span class="math inline">\(U \subseteq A\)</span> and <span class="math inline">\(V \subseteq B\)</span> and then <span class="math inline">\(U \subseteq A^\circ\)</span> and <span class="math inline">\(V \subseteq B^\circ\)</span>. Therefore, as a union of basic open sets, any open subset of <span class="math inline">\(A \times B\)</span> which is contained in <span class="math inline">\(A^\circ \times B^\circ\)</span>.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.9 Theorem:</strong> The coordinate projection <span class="math inline">\(\text{pr}_X: X \times Y \to (X, \mathcal{T}_X)\)</span> is an open map.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.1.9 定理：</strong> 坐标投影 <span class="math inline">\(\text{pr}_X: X \times Y \to (X, \mathcal{T}_X)\)</span> 是开映射。
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> It is enough to show that the image of basic open sets are open, which is straightforward. ■</p>
+<p>Let <span class="math inline">\(f_1: X_1 \to Y_1\)</span> and <span class="math inline">\(f_2: X_2 \to Y_2\)</span> be maps between sets. Their <em>cartesian product</em> or <em>direct product</em> is the map <span class="math display">\[f_1 \times f_2: X_1 \times X_2 \to Y_1 \times Y_2, \quad (p_1, p_2) \mapsto (f_1(p_1), f_2(p_2)). \quad (82)\]</span></p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.1.10 Proposition:</strong> Let <span class="math inline">\(f_i: X_i \to Y_i, i \in \{1, 2\}\)</span> be maps between topological spaces, and their product be <span class="math inline">\(f_1 \times f_2: X_1 \times X_2 \to Y_1 \times Y_2\)</span>.</p>
+<ul>
+<li>The product map <span class="math inline">\(f_1 \times f_2\)</span> is continuous if both <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are continuous.</li>
+<li>The product map <span class="math inline">\(f_1 \times f_2\)</span> is open if both <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are open.</li>
+<li>The product map <span class="math inline">\(f_1 \times f_2\)</span> is closed if both <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_2\)</span> are closed.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.1.10 命题：</strong> 设 <span class="math inline">\(f_i: X_i \to Y_i, i \in \{1, 2\}\)</span> 为拓扑空间之间的映射，其乘积映射为 <span class="math inline">\(f_1 \times f_2: X_1 \times X_2 \to Y_1 \times Y_2\)</span>。</p>
+<ul>
+<li>若 <span class="math inline">\(f_1\)</span> 和 <span class="math inline">\(f_2\)</span> 均连续，则乘积映射 <span class="math inline">\(f_1 \times f_2\)</span> 连续。</li>
+<li>若 <span class="math inline">\(f_1\)</span> 和 <span class="math inline">\(f_2\)</span> 均是开映射，则乘积映射 <span class="math inline">\(f_1 \times f_2\)</span> 是开映射。</li>
+<li>若 <span class="math inline">\(f_1\)</span> 和 <span class="math inline">\(f_2\)</span> 均是闭映射，则乘积映射 <span class="math inline">\(f_1 \times f_2\)</span> 是闭映射。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="products-of-topological-spaces-拓扑空间的乘积" class="level3">
+<h3 class="anchored" data-anchor-id="products-of-topological-spaces-拓扑空间的乘积">8.3.2 Products of topological spaces | 拓扑空间的乘积</h3>
+<p>The definition and universal property of product spaces be generalized to the product of finitely many and further to arbitrarily many spaces. Let <span class="math inline">\(\{X_i\}_{i \in I}\)</span> be a family of sets, their <em>cartesian product</em> is the set <span class="math display">\[\prod_{i \in I} X_i = \left\{ p: I \to \bigsqcup_{i \in I} X_i : (\forall i \in I)(p(i) \in X_i) \right\}, \quad (83)\]</span> and with the <em>coordinate projections</em> <span class="math display">\[\text{pr}_i: \prod_{j \in I} X_j \to X_i, \quad p \mapsto p(i). \quad (84)\]</span></p>
+<p>Denote the <span class="math inline">\(i\)</span>-th <em>component</em> by <span class="math inline">\(p_i = p(i)\)</span>. For a family <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> of topological spaces, the <em>product topology</em> on <span class="math inline">\(\prod_{i \in I} X_i\)</span> is the initial topology <span class="math inline">\(\mathcal{T}_{\prod_{i \in I} X_i}\)</span> induced by <span class="math inline">\(\{\text{pr}_i\}_{i \in I}\)</span>. We denote their <em>product space</em> by <span class="math inline">\(\prod_{i \in I} (X_i, \mathcal{T}_i) = \left( \prod_{i \in I} X_i, \mathcal{T}_{\prod_{i \in I} X_i} \right)\)</span>.</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.1 Proposition:</strong> If <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> is a family of topological spaces with <span class="math inline">\(\mathcal{S}_i\)</span> a subbase for <span class="math inline">\(\mathcal{T}_i\)</span>, then their product topology <span class="math inline">\(\mathcal{T}_{\prod_{i \in I} X_i}\)</span> has a subbase <span class="math display">\[\mathcal{S} = \left\{ U_i \times \prod_{j \in I \setminus \{i\}} X_j : i \in I, U_i \in \mathcal{S}_i \right\}. \quad (85)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.1 命题：</strong> 若 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 是一族拓扑空间，且 <span class="math inline">\(\mathcal{S}_i\)</span> 是 <span class="math inline">\(\mathcal{T}_i\)</span> 的子基，则它们的乘积拓扑 <span class="math inline">\(\mathcal{T}_{\prod_{i \in I} X_i}\)</span> 拥有子基： <span class="math display">\[\mathcal{S} = \left\{ U_i \times \prod_{j \in I \setminus \{i\}} X_j : i \in I, U_i \in \mathcal{S}_i \right\}。\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.2 Proposition:</strong> If <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> is a family of topological spaces, then their product topology <span class="math inline">\(\mathcal{T}_{\prod_{i \in I} X_i}\)</span> has a base <span class="math display">\[\begin{aligned} \mathcal{B}_{\prod_{i \in I} X_i} &amp;= \left\{ \prod_{j \in J} U_j \times \prod_{j \in I \setminus J} X_j : J \subseteq I, |J| &lt; \infty, (\forall j \in J)(U_j \in \mathcal{T}_j) \right\} \\ &amp;= \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{T}_i), |\{i \in I : U_i \neq X_i\}| &lt; \infty \right\}. \end{aligned} \quad (86)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.2 命题：</strong> 若 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 是一族拓扑空间，则它们的乘积拓扑 <span class="math inline">\(\mathcal{T}_{\prod_{i \in I} X_i}\)</span> 拥有基： <span class="math display">\[\begin{aligned} \mathcal{B}_{\prod_{i \in I} X_i} &amp;= \left\{ \prod_{j \in J} U_j \times \prod_{j \in I \setminus J} X_j : J \subseteq I, |J| &lt; \infty, (\forall j \in J)(U_j \in \mathcal{T}_j) \right\} \\ &amp;= \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{T}_i), |\{i \in I : U_i \neq X_i\}| &lt; \infty \right\}。 \end{aligned}\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.3 Theorem:</strong> If <span class="math inline">\(\{X_i\}_{i \in I}\)</span> is a family of topological spaces with <span class="math inline">\(A_i \subseteq X_i\)</span>, then the product topology on <span class="math inline">\(\prod_{i \in I} A_i\)</span> of the subspace topologies on <span class="math inline">\(A_i\)</span> in <span class="math inline">\(X_i\)</span> coincides with its subspace topology in <span class="math inline">\(\prod_{i \in I} X_i\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.3 定理：</strong> 设 <span class="math inline">\(\{X_i\}_{i \in I}\)</span> 是一族拓扑空间且 <span class="math inline">\(A_i \subseteq X_i\)</span>，则 <span class="math inline">\(A_i\)</span> 在 <span class="math inline">\(X_i\)</span> 中的子空间拓扑的乘积拓扑 <span class="math inline">\(\prod_{i \in I} A_i\)</span>，与 <span class="math inline">\(\prod_{i \in I} X_i\)</span> 在其子空间 <span class="math inline">\(\prod_{i \in I} A_i\)</span> 上诱导的子空间拓扑是一致的。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.4 The universal property of the product topology:</strong> The product topology on <span class="math inline">\(\prod_{i \in I} X_i\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Z\)</span> and a map <span class="math inline">\(h: Z \to \prod_{i \in I} X_i\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(g_i = \text{pr}_i \circ h: Z \to X_i\)</span> is continuous for any <span class="math inline">\(i \in I\)</span>.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\prod_{i \in I} X_i &amp; &amp; \\
+\downarrow^{\text{pr}_i} &amp; \nwarrow^{h} &amp; \\
+X_i &amp; \xleftarrow{g_i} &amp; Z
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.2.4 乘积拓扑的泛性质：</strong></p>
+<span class="math inline">\(\prod_{i \in I} X_i\)</span> 上的乘积拓扑由以下性质刻画：对于任何拓扑空间 <span class="math inline">\(Z\)</span> 及映射 <span class="math inline">\(h: Z \to \prod_{i \in I} X_i\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当对任何 <span class="math inline">\(i \in I\)</span>，复合映射 <span class="math inline">\(g_i = \text{pr}_i \circ h: Z \to X_i\)</span> 均连续。
+</details>
+</div>
+</div>
+</div>
+<p>Lemma 2.2.3.3 is a special case of Lemma 8.3.2.5.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.5 Lemma:</strong> Let <span class="math inline">\(\{f_i : Y \to X_i\}_{i \in I}\)</span> be a family of maps between topological spaces <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> and <span class="math inline">\((X_i, \mathcal{T}_i)\)</span>. Let <span class="math inline">\(f = (f_i)_{i \in I}: Y \to \prod_{i \in I} X_i\)</span> be given by <span class="math inline">\(f(p)_i = f_i(p)\)</span> for <span class="math inline">\(i \in I\)</span>. Then <span class="math inline">\(f\)</span> is continuous iff <span class="math inline">\(f_i\)</span> is continuous for any <span class="math inline">\(i \in I\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.5 引理：</strong> 设 <span class="math inline">\(\{f_i : Y \to X_i\}_{i \in I}\)</span> 是拓扑空间 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 与 <span class="math inline">\((X_i, \mathcal{T}_i)\)</span> 之间的一族映射。设 <span class="math inline">\(f = (f_i)_{i \in I}: Y \to \prod_{i \in I} X_i\)</span> 定义为对 <span class="math inline">\(i \in I\)</span> 有 <span class="math inline">\(f(p)_i = f_i(p)\)</span>。则 <span class="math inline">\(f\)</span> 连续当且仅当对任何 <span class="math inline">\(i \in I\)</span>，<span class="math inline">\(f_i\)</span> 均连续。
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> The preimages of sets in the subbase <span class="math inline">\(\mathcal{S}\)</span> as in Proposition 8.3.2.1 of the product topology on <span class="math inline">\(\prod_{i \in I} Y_i\)</span> are exactly the preimages of sets in the subbases <span class="math inline">\(\mathcal{S}_i\)</span> of the topologies <span class="math inline">\(\mathcal{T}_i\)</span> on <span class="math inline">\(Y_i\)</span>. ■</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.6 Proposition:</strong> If <span class="math inline">\(\{X_i\}_{i \in I}\)</span> is a family of topological spaces with closed subsets <span class="math inline">\(A_i \subseteq X_i\)</span>, then the product <span class="math inline">\(\prod_{i \in I} A_i\)</span> is closed in the product space <span class="math inline">\(\prod_{i \in I} X_i\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.6 命题：</strong> 若 <span class="math inline">\(\{X_i\}_{i \in I}\)</span> 是一族拓扑空间，且 <span class="math inline">\(A_i \subseteq X_i\)</span> 是闭子集，则乘积 <span class="math inline">\(\prod_{i \in I} A_i\)</span> 在乘积空间 <span class="math inline">\(\prod_{i \in I} X_i\)</span> 中是闭集。
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> The complement of the product of the subsets <span class="math display">\[\left( \prod_{i \in I} A_i \right)^c = \bigcup_{i \in I} \left( A_i^c \times \prod_{j \in I \setminus \{i\}} X_j \right) \quad (87)\]</span> is open in <span class="math inline">\(\prod_{i \in I} X_i\)</span>. ■</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.7 Proposition:</strong> If <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> is a family of topological spaces with open subsets <span class="math inline">\(A_i \subseteq X_i\)</span>, then the product <span class="math inline">\(\prod_{i \in I} A_i\)</span> is open in <span class="math inline">\(\left( \prod_{i \in I} X_i, \mathcal{T}_{\prod_{i \in I} X_i} \right)\)</span> iff either the product is empty or all <span class="math inline">\(A_i\)</span> are open in <span class="math inline">\(X_i\)</span> among which finitely many is a proper subset.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.3.2.7 命题：</strong> 若 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 是一族拓扑空间且 <span class="math inline">\(A_i \subseteq X_i\)</span> 是开子集，则乘积 <span class="math inline">\(\prod_{i \in I} A_i\)</span> 在 <span class="math inline">\(\left( \prod_{i \in I} X_i, \mathcal{T}_{\prod_{i \in I} X_i} \right)\)</span> 中是开集，当且仅当该乘积为空，或者所有 <span class="math inline">\(A_i\)</span> 在 <span class="math inline">\(X_i\)</span> 中均为开集且其中只有有限个是真子集。</p>
+在无限维的乘积拓扑中，一堆开集乘在一起 <span class="math inline">\(\prod A_i\)</span> 想要成为合法的开集，条件是：除了有限的几个维度你可以在里面划定开子集外，剩下的所有维度，你必须毫无保留地填满整个空间（<span class="math inline">\(A_i = X_i\)</span>）。 否则，哪怕你所有维度用的都是开集，乘出来的结果也不被承认是开集（8.3.2.8）
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.2.8 Remark:</strong> Alert: the open box is not open in the product space of infinitely many components!</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.2.8 备注：</strong> 注意：<span style="background-color:yellow;">在无穷维分量的乘积空间中，“开盒子”（open box，即无穷个开集的笛卡尔积）通常不是开集！</span>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section id="box-topology-箱拓扑" class="level3">
+<h3 class="anchored" data-anchor-id="box-topology-箱拓扑">8.3.3 Box topology | 箱拓扑</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.3.1 Definition:</strong> For a family <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> of topological spaces, the <em>box topology</em> <span class="math inline">\(\mathcal{T}_{\square_{i \in I} X_i}\)</span> on <span class="math inline">\(\prod_{i \in I} X_i\)</span> is the topology generated by the base <span class="math display">\[\mathcal{B}_{\square_{i \in I} X_i} = \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{T}_i) \right\}. \quad (88)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.3.1 定义：</strong> 对于一族拓扑空间 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span>，其乘积集合 <span class="math inline">\(\prod_{i \in I} X_i\)</span> 上的<strong>箱拓扑</strong>（box topology）<span class="math inline">\(\mathcal{T}_{\square_{i \in I} X_i}\)</span> 是由以下基生成的拓扑： <span class="math display">\[\mathcal{B}_{\square_{i \in I} X_i} = \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{T}_i) \right\}。\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.3.2 Proposition:</strong> For a family <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> of topological spaces with <span class="math inline">\(\mathcal{S}_i\)</span> is subbase for <span class="math inline">\(\mathcal{T}_i\)</span>, the box topology <span class="math inline">\(\mathcal{T}_{\square_{i \in I} X_i}\)</span> on <span class="math inline">\(\prod_{i \in I} X_i\)</span> is the topology generated by the subbase <span class="math display">\[\mathcal{S}_{\square_{i \in I} X_i} = \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{S}_i) \right\}. \quad (89)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.3.2 命题：</strong> 对于一族拓扑空间 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span>，设 <span class="math inline">\(\mathcal{S}_i\)</span> 是 <span class="math inline">\(\mathcal{T}_i\)</span> 的子基，则其乘积集合 <span class="math inline">\(\prod_{i \in I} X_i\)</span> 上的箱拓扑 <span class="math inline">\(\mathcal{T}_{\square_{i \in I} X_i}\)</span> 是由以下子基生成的拓扑： <span class="math display">\[\mathcal{S}_{\square_{i \in I} X_i} = \left\{ \prod_{i \in I} U_i : (\forall i \in I)(U_i \in \mathcal{S}_i) \right\}。\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.3.3 Proposition:</strong> The box topology on <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> is strictly finer than the product topology, and hence it does not enjoy the universal property of the product topology, when <span class="math inline">\(I\)</span> is infinite (and more than finitely many of <span class="math inline">\(\mathcal{T}_i\)</span> is nontrivial, of course), and coincides with the product topology when <span class="math inline">\(I\)</span> is finite. Therefore, if the function <span class="math inline">\(f = (f_i)_{i \in I}: (Y, \mathcal{T}_Y) \to \left(\prod_{i \in I} X_i, \mathcal{T}_{\square_{i \in I} X_i}\right)\)</span> is continuous then <span class="math inline">\(f_i: (Y, \mathcal{T}_Y) \to (X_i, \mathcal{T}_i)\)</span> is continuous for any <span class="math inline">\(i \in I\)</span>, but not necessarily the other way around.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.3.3 命题：</strong> 当指数集 <span class="math inline">\(I\)</span> 为无限集时（当然，且有超过有限个 <span class="math inline">\(\mathcal{T}_i\)</span> 是非平凡的），箱拓扑比乘积拓扑严格更细，因此它不满足乘积拓扑的泛性质；当 <span class="math inline">\(I\)</span> 为有限集时，箱拓扑与乘积拓扑重合。因此，如果函数 <span class="math inline">\(f = (f_i)_{i \in I}: (Y, \mathcal{T}_Y) \to \left(\prod_{i \in I} X_i, \mathcal{T}_{\square_{i \in I} X_i}\right)\)</span> 连续，那么对于任何 <span class="math inline">\(i \in I\)</span>，<span class="math inline">\(f_i: (Y, \mathcal{T}_Y) \to (X_i, \mathcal{T}_i)\)</span> 都连续，但反之则不一定成立。
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="slice-topology-切片拓扑" class="level3">
+<h3 class="anchored" data-anchor-id="slice-topology-切片拓扑">8.3.4 Slice topology | 切片拓扑</h3>
+<p>Given a map <strong>from</strong> a product space, like <span class="math inline">\(f: \prod_{i \in I} X_i \to Y\)</span>, one could consider its slices.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.4.1 Definition:</strong> Let <span class="math inline">\(\{X_i\}_{i \in I}\)</span> be a family of sets. The <em>slice</em> of <span class="math inline">\(\prod_{i \in I} X_i\)</span> at <span class="math inline">\(p_{\hat{i}} = (p_j)_{j \in I \setminus \{i\}}\)</span> is <span class="math inline">\(p_{\hat{i}} \times X_i\)</span> for <span class="math inline">\(i \in I\)</span>, the image of the inclusion <span class="math display">\[\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i, \quad p_i \mapsto p \text{ where } p = (p_j)_{j \in I}. \quad (90)\]</span> Let <span class="math inline">\(f: \prod_{i \in I} X_i \to Y\)</span> be a map. The <em>slices</em> of <span class="math inline">\(f\)</span> at <span class="math inline">\(p_{\hat{i}}\)</span> is <span class="math display">\[f_{p_{\hat{i}}} = f \circ \iota_{p_{\hat{i}}} : X_i \to Y, \quad p_i \mapsto f(p) \text{ where } p = (p_j)_{j \in I}. \quad (91)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.4.1 定义：</strong> 设 <span class="math inline">\(\{X_i\}_{i \in I}\)</span> 为一族集合。<span class="math inline">\(\prod_{i \in I} X_i\)</span> 在 <span class="math inline">\(p_{\hat{i}} = (p_j)_{j \in I \setminus \{i\}}\)</span> 处的<strong>切片</strong>（slice）定义为 <span class="math inline">\(p_{\hat{i}} \times X_i\)</span>，即包含映射 <span class="math inline">\(\iota_{p_{\hat{i}}}\)</span> 的像： <span class="math display">\[\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i, \quad p_i \mapsto p \text{ 其中 } p = (p_j)_{j \in I}。\]</span> 设 <span class="math inline">\(f: \prod_{i \in I} X_i \to Y\)</span> 是一个映射。<span class="math inline">\(f\)</span> 在 <span class="math inline">\(p_{\hat{i}}\)</span> 处的<strong>切片</strong>定义为： <span class="math display">\[f_{p_{\hat{i}}} = f \circ \iota_{p_{\hat{i}}} : X_i \to Y, \quad p_i \mapsto f(p) \text{ 其中 } p = (p_j)_{j \in I}。\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.3.4.2 Definition:</strong> For a family <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> of topological spaces, the <em>slice topology</em> <span class="math inline">\(\mathcal{T}_{\text{slice}}\)</span> on <span class="math inline">\(\prod_{i \in I} X_i\)</span> is the final topology induced by the slice inclusions <span class="math display">\[\left\{ (\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i) : i \in I, p_{\hat{i}} \in \prod_{j \in I \setminus \{i\}} X_j \right\}. \quad (92)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.3.4.2 定义：</strong> 对于一族拓扑空间 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span>，<span class="math inline">\(\prod_{i \in I} X_i\)</span> 上的<strong>切片拓扑</strong>（slice topology） <span class="math inline">\(\mathcal{T}_{\text{slice}}\)</span> 是由以下所有切片包含映射诱导的终拓扑： <span class="math display">\[\left\{ (\iota_{p_{\hat{i}}} : X_i \to \prod_{i \in I} X_i) : i \in I, p_{\hat{i}} \in \prod_{j \in I \setminus \{i\}} X_j \right\}。\]</span>
+</details>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quotient-topology-商拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="quotient-topology-商拓扑">8.4 Quotient topology | 商拓扑</h2>
+<section id="quotients-of-topological-spaces-拓扑空间的商" class="level3">
+<h3 class="anchored" data-anchor-id="quotients-of-topological-spaces-拓扑空间的商">8.4.1 Quotients of topological spaces | 拓扑空间的商</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.1.1 Definition:</strong> A <em>partition</em> of a set <span class="math inline">\(X\)</span> is a collection <span class="math inline">\(\Gamma \subseteq \mathcal{P}(X)\)</span> of pairwise disjoint nonempty subsets of <span class="math inline">\(X\)</span> whose union equals <span class="math inline">\(X\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.1.1 定义：</strong> 集合 <span class="math inline">\(X\)</span> 的一个<strong>划分</strong>（partition）是 <span class="math inline">\(X\)</span> 的一族两两不交的非空子集 <span class="math inline">\(\Gamma \subseteq \mathcal{P}(X)\)</span>，其并集等于 <span class="math inline">\(X\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.1.2 Definition:</strong> For any partition <span class="math inline">\(\Gamma\)</span> of <span class="math inline">\(X\)</span>, the surjection <span class="math inline">\(\pi_{X,\Gamma}: X \to \Gamma, p \mapsto [p]\)</span>, is the <em>classification map</em> of <span class="math inline">\(X\)</span> onto <span class="math inline">\(\Gamma\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.1.2 定义：</strong> 对于 <span class="math inline">\(X\)</span> 的任何划分 <span class="math inline">\(\Gamma\)</span>，满射 <span class="math inline">\(\pi_{X,\Gamma}: X \to \Gamma, p \mapsto [p]\)</span> 称为 <span class="math inline">\(X\)</span> 到 <span class="math inline">\(\Gamma\)</span> 上的<strong>分类映射</strong>（classification map）。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.1.3 Definition:</strong> Let <span class="math inline">\(\Gamma\)</span> be a partition of a topological space <span class="math inline">\((X, \mathcal{T}_X)\)</span>. Then the <em>quotient topology</em> on <span class="math inline">\(\Gamma\)</span> is the final topology <span class="math inline">\(\mathcal{T}_{\Gamma}\)</span> on <span class="math inline">\(\Gamma\)</span> induced by <span class="math inline">\(\{\pi_{X,\Gamma}\}\)</span>, and then <span class="math inline">\((\Gamma, \mathcal{T}_{\Gamma})\)</span> is a <em>quotient space</em> of <span class="math inline">\((X, \mathcal{T}_X)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.1.3 定义：</strong> 设 <span class="math inline">\(\Gamma\)</span> 是拓扑空间 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 的一个划分。则 <span class="math inline">\(\Gamma\)</span> 上的<strong>商拓扑</strong>（quotient topology）是由 <span class="math inline">\(\{\pi_{X,\Gamma}\}\)</span> 诱导的终拓扑 <span class="math inline">\(\mathcal{T}_{\Gamma}\)</span>，此时 <span class="math inline">\((\Gamma, \mathcal{T}_{\Gamma})\)</span> 称为 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 的一个<strong>商空间</strong>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.1.4 The universal property of the quotient topology:</strong> The quotient topology on <span class="math inline">\(Y\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Z\)</span> and a map <span class="math inline">\(h: Y \to Z\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(g = h \circ \pi: X \to Z\)</span> is continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+X &amp; \xrightarrow{g} &amp; Z \\
+_{\pi}\downarrow &amp; \nearrow_{h} &amp; \\
+Y &amp; &amp;
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.1.4 商拓扑的泛性质：</strong> <span class="math inline">\(Y\)</span> 上的商拓扑由以下性质刻画：对于任何拓扑空间 <span class="math inline">\(Z\)</span> 及映射 <span class="math inline">\(h: Y \to Z\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当 <span class="math inline">\(g = h \circ \pi: X \to Z\)</span> 连续。
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="quotient-maps-商映射" class="level3">
+<h3 class="anchored" data-anchor-id="quotient-maps-商映射">8.4.2 Quotient maps | 商映射</h3>
+<p>Observe that a map <span class="math inline">\(g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)\)</span> is continuous iff <span class="math inline">\(\mathcal{T}_Y\)</span> is coarser than the final topology on <span class="math inline">\(Y\)</span> induced by <span class="math inline">\(\{g\}\)</span>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.1 Definition:</strong> A surjection <span class="math inline">\(g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)\)</span> is a <em>quotient map</em> iff <span class="math inline">\(\mathcal{T}_Y\)</span> equals the final topology on <span class="math inline">\(Y\)</span> induced by <span class="math inline">\(\{g\}\)</span>. The space <span class="math inline">\(Y\)</span> is <em>quotientable</em> from <span class="math inline">\(X\)</span> if there is a quotient map <span class="math inline">\(g: X \to Y\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.1 定义：</strong> <span style="background-color:yellow;">满射</span> <span class="math inline">\(g: (X, \mathcal{T}_X) \to (Y, \mathcal{T}_Y)\)</span> 是<strong>商映射</strong>（quotient map），当且仅当 <span class="math inline">\(\mathcal{T}_Y\)</span> 等于 <span class="math inline">\(Y\)</span> 上由 <span class="math inline">\(\{g\}\)</span> 诱导的终拓扑。若存在商映射 <span class="math inline">\(g: X \to Y\)</span>，则称空间 <span class="math inline">\(Y\)</span> 是从 <span class="math inline">\(X\)</span> <strong>可商的</strong>（quotientable）。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.2 Proposition:</strong> A continuous surjection <span class="math inline">\(g: X \to Y\)</span> is a quotient map iff for any open <span class="math inline">\(U\)</span> in <span class="math inline">\(X\)</span> if there is a subset <span class="math inline">\(V\)</span> of <span class="math inline">\(Y\)</span> such that <span class="math inline">\(U = g^{-1}(V)\)</span> then <span class="math inline">\(V\)</span> is open.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.2 命题：</strong> 连续满射 <span class="math inline">\(g: X \to Y\)</span> 是商映射，当且仅当对于 <span class="math inline">\(X\)</span> 中的任何开集 <span class="math inline">\(U\)</span>，若存在 <span class="math inline">\(Y\)</span> 的子集 <span class="math inline">\(V\)</span> 使得 <span class="math inline">\(U = g^{-1}(V)\)</span>，则 <span class="math inline">\(V\)</span> 是开集。
+</details>
+</div>
+</div>
+</div>
+<p>Compare Proposition 8.4.2.2 with these definitions. A map <span class="math inline">\(g: X \to Y\)</span> between topological spaces is</p>
+<ul>
+<li>continuous iff for any open <span class="math inline">\(V\)</span> in <span class="math inline">\(Y\)</span> there is an open <span class="math inline">\(U\)</span> in <span class="math inline">\(X\)</span> such that <span class="math inline">\(U = g^{-1}(V)\)</span>;</li>
+<li>open iff for any open <span class="math inline">\(U\)</span> in <span class="math inline">\(X\)</span> there is an open <span class="math inline">\(V\)</span> in <span class="math inline">\(Y\)</span> such that <span class="math inline">\(g(U) = V\)</span>;</li>
+<li>closed iff for any closed <span class="math inline">\(A\)</span> in <span class="math inline">\(X\)</span> there is a closed <span class="math inline">\(B\)</span> in <span class="math inline">\(Y\)</span> such that <span class="math inline">\(g(A) = B\)</span>.</li>
+</ul>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.3 Proposition:</strong> A map <span class="math inline">\(g: X \to Y\)</span> between topological spaces is a quotient map iff <span class="math inline">\(\tilde{g}\)</span> is a homeomorphism where <span class="math inline">\(\tilde{g}: \Gamma_g \to Y\)</span> is defined as <span class="math inline">\(\tilde{g}([q]) \to g(q)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.3 命题：</strong> 拓扑空间之间的映射 <span class="math inline">\(g: X \to Y\)</span> 是商映射，当且仅当 <span class="math inline">\(\tilde{g}\)</span> 是同胚，其中 <span class="math inline">\(\tilde{g}: \Gamma_g \to Y\)</span> 定义为 <span class="math inline">\(\tilde{g}([q]) \to g(q)\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.4 The universal property of quotient maps:</strong> An surjection <span class="math inline">\(g: X \to Y\)</span> between topological spaces is a quotient map iff for any map <span class="math inline">\(h: Y \to Z\)</span>, it is continuous iff the composition <span class="math inline">\(f = h \circ g: X \to Z\)</span> is continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+X &amp; \xrightarrow{f} &amp; Z \\
+_{g}\downarrow &amp; \nearrow_{h} &amp; \\
+Y &amp; &amp;
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.4 商映射的泛性质：</strong> 拓扑空间之间的满射 <span class="math inline">\(g: X \to Y\)</span> 是商映射，当且仅当对于任何映射 <span class="math inline">\(h: Y \to Z\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当复合映射 <span class="math inline">\(f = h \circ g: X \to Z\)</span> 连续。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.5 Proposition:</strong> If <span class="math inline">\(\mathcal{T}_Y\)</span> is the quotient topology on <span class="math inline">\(Y\)</span> generated by <span class="math inline">\(\pi\)</span>, then <span class="math inline">\(\mathcal{T}_Y = \{V \in \mathcal{P}(Y) : \pi^{-1}(V) \in \mathcal{T}_X\}\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.5 命题：</strong> 若 <span class="math inline">\(\mathcal{T}_Y\)</span> 是由 <span class="math inline">\(\pi\)</span> 生成的 <span class="math inline">\(Y\)</span> 上的商拓扑，则 <span class="math inline">\(\mathcal{T}_Y = \{V \in \mathcal{P}(Y) : \pi^{-1}(V) \in \mathcal{T}_X\}\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.6 Proposition:</strong> “Being quotient of” satisfies reflexivity and transitivity among topological spaces.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.6 命题：</strong> 在拓扑空间之间，“作为…的商”关系满足自反性和传递性。
+</details>
+</div>
+</div>
+</div>
+<p><strong>8.4.2.7 Question:</strong> Is quotientability antisymmetric among homeomorphism classes of topological spaces? In other words, are there topological spaces <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> quotients of each other but are not homeomorphic?</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.8 Proposition:</strong> A retraction is a quotient map.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.8 命题：</strong> 回缩（retraction）是商映射。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.9 Proposition:</strong> A bijective quotient map is a homeomorphism.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.9 命题：</strong> 双射商映射是同胚。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.10 Definition:</strong> Let <span class="math inline">\(f: X \to Y\)</span> be a map between sets. The <em>fiber</em> of <span class="math inline">\(f\)</span> at <span class="math inline">\(y \in Y\)</span> is a set <span class="math inline">\(f^{-1}(y)\)</span>. The <em>f-saturation</em> of a set <span class="math inline">\(A \subseteq X\)</span> is the set <span class="math inline">\(f^{-1}(f(A))\)</span>. The set <span class="math inline">\(A\)</span> is <em>f-saturated</em> iff <span class="math inline">\(A = f^{-1}(f(A))\)</span> iff <span class="math inline">\(A\)</span> consists of fibers of <span class="math inline">\(f\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.10 定义：</strong> 设 <span class="math inline">\(f: X \to Y\)</span> 是集合之间的映射。<span class="math inline">\(f\)</span> 在 <span class="math inline">\(y \in Y\)</span> 处的<strong>纤维</strong>（fiber）是集合 <span class="math inline">\(f^{-1}(y)\)</span>。集合 <span class="math inline">\(A \subseteq X\)</span> 的 <strong><span class="math inline">\(f\)</span>-饱和</strong>（f-saturation）是集合 <span class="math inline">\(f^{-1}(f(A))\)</span>。集合 <span class="math inline">\(A\)</span> 是 <strong><span class="math inline">\(f\)</span>-饱和的</strong>，当且仅当 <span class="math inline">\(A = f^{-1}(f(A))\)</span>，即当且仅当 <span class="math inline">\(A\)</span> 由 <span class="math inline">\(f\)</span> 的纤维组成。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.11 Proposition:</strong> Let <span class="math inline">\(g: X \to Y\)</span> be a continuous surjection. Then the following are equivalent.</p>
+<ul>
+<li>The map <span class="math inline">\(g\)</span> is a quotient map.</li>
+<li>The map <span class="math inline">\(g\)</span> sends saturated open sets to open sets.</li>
+<li>The map <span class="math inline">\(g\)</span> sends saturated closed sets to closed sets.</li>
+</ul>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<p><strong>8.4.2.11 命题：</strong> 设 <span class="math inline">\(g: X \to Y\)</span> 是连续满射。则以下各项等价：</p>
+<ul>
+<li>映射 <span class="math inline">\(g\)</span> 是商映射。</li>
+<li>映射 <span class="math inline">\(g\)</span> 将饱和开集映射为开集。</li>
+<li>映射 <span class="math inline">\(g\)</span> 将饱和闭集映射为闭集。</li>
+</ul>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.12 Corollary:</strong> An open or closed continuous surjection is a quotient map.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.12 推论：</strong> 开或闭的连续满射是商映射。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.13 Proposition:</strong> A quotient map may not be open or closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.13 命题：</strong> 商映射不一定是开映射或闭映射。
+</details>
+</div>
+</div>
+</div>
+<p><em>Proof:</em> It is not the case that a quotient map is necessarily open. Indeed, the identification map <span class="math inline">\(g_0: [0, 1] \sqcup * \to \mathbb{S}^1\)</span>, where the endpoints of <span class="math inline">\([0, 1]\)</span> are identified with <span class="math inline">\(*\)</span>, takes the open point <span class="math inline">\(*\)</span> of the domain to a non-open point in <span class="math inline">\(\mathbb{S}^1\)</span>. Nor is it the case that a quotient map is necessarily a closed map; the classic example is the first projection map <span class="math inline">\(\text{pr}_1: \mathbb{R}^2 \to \mathbb{R}\)</span>, which projects the closed locus <span class="math inline">\(xy = 1\)</span> onto a non-closed subset of <span class="math inline">\(\mathbb{R}\)</span>. ■</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.2.14 Proposition:</strong> Let <span class="math inline">\(g: X \to Y\)</span> be a quotient map between topological spaces and let <span class="math inline">\(A \subseteq X\)</span> be <span class="math inline">\(g\)</span>-saturated. The submap <span class="math inline">\(g|_{A,g(A)}\)</span> is a quotient map if <span class="math inline">\(A\)</span> is either open or closed in <span class="math inline">\(X\)</span>, or if <span class="math inline">\(g\)</span> is either open or closed.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.2.14 命题：</strong> 设 <span class="math inline">\(g: X \to Y\)</span> 为拓扑空间之间的商映射，且令 <span class="math inline">\(A \subseteq X\)</span> 是 <span class="math inline">\(g\)</span>-饱和的。如果 <span class="math inline">\(A\)</span> 在 <span class="math inline">\(X\)</span> 中是开集或闭集，或者 <span class="math inline">\(g\)</span> 本身是开映射或闭映射，则子映射 <span class="math inline">\(g|_{A,g(A)}\)</span> 也是商映射。
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="partitions-and-equivalence-relations-划分与等价关系" class="level3">
+<h3 class="anchored" data-anchor-id="partitions-and-equivalence-relations-划分与等价关系">8.4.3 Partitions and equivalence relations | 划分与等价关系</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.3.1 Definition:</strong> An <em>equivalence relation</em> on a set <span class="math inline">\(X\)</span> is a relation <span class="math inline">\(R \subseteq X^2\)</span> on <span class="math inline">\(X\)</span> that is reflexive, symmetric, and transitive.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.3.1 定义：</strong> 集合 <span class="math inline">\(X\)</span> 上的<strong>等价关系</strong>（equivalence relation）是 <span class="math inline">\(X\)</span> 上的一个满足自反性、对称性和传递性的关系 <span class="math inline">\(R \subseteq X^2\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-caution">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.3.2 Remark:</strong> Surjections from a set <span class="math inline">\(X\)</span>, partitions of <span class="math inline">\(X\)</span> and equivalence relations on <span class="math inline">\(X\)</span> are equivalent in some sense. Let <span class="math inline">\(f: X \to Y\)</span> be a surjection. Then <span class="math inline">\(\Gamma_f = \{f^{-1}(q) : q \in Y\}\)</span> is a partition of <span class="math inline">\(X\)</span>, and <span class="math inline">\(p_1 \sim p_2 \iff f(p_1) = f(p_2)\)</span> is an equivalence relation on <span class="math inline">\(X\)</span>. Let <span class="math inline">\(\Gamma\)</span> be a partition of <span class="math inline">\(X\)</span>. Then <span class="math inline">\(p_1 \sim_\Gamma p_2 \iff (\exists A \in \Gamma)(p_1 \in A \land p_2 \in A)\)</span> is an equivalence relation on <span class="math inline">\(X\)</span>, and <span class="math inline">\(\pi_\Gamma: X \to \Gamma, p \mapsto A \ni p\)</span> is a surjection. Let <span class="math inline">\(\sim\)</span> be an equivalence relation on <span class="math inline">\(X\)</span>. Then the quotient set <span class="math inline">\(X/\sim\)</span> as the collection of equivalence classes of <span class="math inline">\(\sim\)</span> is a partition of <span class="math inline">\(X\)</span>, and <span class="math inline">\(\pi_\sim: X \to X/\sim, p \mapsto [p]\)</span> is a surjection.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.3.2 备注：</strong> 从某种意义上说，集合 <span class="math inline">\(X\)</span> 的满射、划分以及等价关系是等价的。 设 <span class="math inline">\(f: X \to Y\)</span> 是一个满射。则 <span class="math inline">\(\Gamma_f = \{f^{-1}(q) : q \in Y\}\)</span> 是 <span class="math inline">\(X\)</span> 的一个划分，且 <span class="math inline">\(p_1 \sim p_2 \iff f(p_1) = f(p_2)\)</span> 是 <span class="math inline">\(X\)</span> 上的一个等价关系。 设 <span class="math inline">\(\Gamma\)</span> 是 <span class="math inline">\(X\)</span> 的一个划分。则 <span class="math inline">\(p_1 \sim_\Gamma p_2 \iff (\exists A \in \Gamma)(p_1 \in A \land p_2 \in A)\)</span> 是 <span class="math inline">\(X\)</span> 上的一个等价关系，且 <span class="math inline">\(\pi_\Gamma: X \to \Gamma, p \mapsto A \ni p\)</span> 是一个满射。 设 <span class="math inline">\(\sim\)</span> 是 <span class="math inline">\(X\)</span> 上的一个等价关系。则作为 <span class="math inline">\(\sim\)</span> 的等价类集合的商集 <span class="math inline">\(X/\sim\)</span> 是 <span class="math inline">\(X\)</span> 的一个划分，且 <span class="math inline">\(\pi_\sim: X \to X/\sim, p \mapsto [p]\)</span> 是一个满射。
+</details>
+</div>
+</div>
+</div>
+<p>By the above remark, it is possible to define the quotient topology on the partition <span class="math inline">\(\Gamma\)</span> given it or an equivalence relation. Some results or examples are easier describe in those ways.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.3.3 Definition:</strong> The <em>quotient space</em> of a topological space <span class="math inline">\(X\)</span> with respect to a partition <span class="math inline">\(\Gamma\)</span> is the quotient space <span class="math inline">\((\Gamma, \mathcal{T}_\Gamma)\)</span> of <span class="math inline">\(X\)</span> generated by <span class="math inline">\(\pi_\Gamma\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.3.3 定义：</strong> 拓扑空间 <span class="math inline">\(X\)</span> 关于划分 <span class="math inline">\(\Gamma\)</span> 的<strong>商空间</strong>是由 <span class="math inline">\(\pi_\Gamma\)</span> 生成的 <span class="math inline">\(X\)</span> 的商空间 <span class="math inline">\((\Gamma, \mathcal{T}_\Gamma)\)</span>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.4.3.5 Proposition:</strong> If <span class="math inline">\((\Gamma, \mathcal{T}_{\Gamma})\)</span> is the quotient space of a topological space <span class="math inline">\((X, \mathcal{T}_X)\)</span> with respect to a partition <span class="math inline">\(\Gamma\)</span> then <span class="math display">\[\mathcal{T}_{\Gamma} = \left\{ \mathcal{U} \subseteq \Gamma : \bigcup_{U \in \mathcal{U}} U \in \mathcal{T}_X \right\}. \quad (94)\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.4.3.5 命题：</strong> 若 <span class="math inline">\((\Gamma, \mathcal{T}_{\Gamma})\)</span> 是拓扑空间 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 关于划分 <span class="math inline">\(\Gamma\)</span> 的商空间，则 <span class="math display">\[\mathcal{T}_{\Gamma} = \left\{ \mathcal{U} \subseteq \Gamma : \bigcup_{U \in \mathcal{U}} U \in \mathcal{T}_X \right\}。\]</span>
+</details>
+</div>
+</div>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pic/bsj4.jpg" class="img-fluid figure-img"></p>
+<figcaption>pixiv@takeshi</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="coproduct-topology-上积拓扑-余积拓扑" class="level2">
+<h2 class="anchored" data-anchor-id="coproduct-topology-上积拓扑-余积拓扑">8.5 Coproduct topology | 上积拓扑 (余积拓扑)</h2>
+<section id="coproducts-of-two-topological-spaces-两个拓扑空间的余积" class="level3">
+<h3 class="anchored" data-anchor-id="coproducts-of-two-topological-spaces-两个拓扑空间的余积">8.5.1 Coproducts of two topological spaces | 两个拓扑空间的余积</h3>
+<p>Recall for two sets <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, their <em>disjoint union</em> is the set of elements in both sets, without identifying duplications, <span class="math inline">\(X \sqcup Y = X \times \{1\} \cup Y \times \{2\}\)</span>. There are natural inclusions <span class="math inline">\(\iota_X: X \to X \sqcup Y\)</span> and <span class="math inline">\(\iota_Y: Y \to X \sqcup Y\)</span>, sending <span class="math inline">\(x\)</span> to <span class="math inline">\((x, 1)\)</span> and <span class="math inline">\(y\)</span> to <span class="math inline">\((y, 2)\)</span> respectively.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.5.1.1 Definition:</strong> Let <span class="math inline">\((X, \mathcal{T}_X)\)</span> and <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> be topological spaces. Then the <em>coproduct topology</em> or the <em>disjoint union topology</em> on <span class="math inline">\(X \sqcup Y\)</span> is the final topology <span class="math inline">\(\mathcal{T}_{X \sqcup Y}\)</span> induced by <span class="math inline">\(\{\iota_X, \iota_Y\}\)</span>, and <span class="math inline">\((X \sqcup Y, \mathcal{T}_{X \sqcup Y})\)</span> is called the <em>coproduct space</em>, or the <em>topological sum</em> of <span class="math inline">\((X, \mathcal{T}_X)\)</span> by <span class="math inline">\((Y, \mathcal{T}_Y)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.5.1.1 定义：</strong> 设 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 和 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 为拓扑空间。则 <span class="math inline">\(X \sqcup Y\)</span> 上的<strong>余积拓扑</strong>（coproduct topology）或<strong>不交并拓扑</strong>（disjoint union topology）是由 <span class="math inline">\(\{\iota_X, \iota_Y\}\)</span> 诱导的终拓扑 <span class="math inline">\(\mathcal{T}_{X \sqcup Y}\)</span>，且 <span class="math inline">\((X \sqcup Y, \mathcal{T}_{X \sqcup Y})\)</span> 称为 <span class="math inline">\((X, \mathcal{T}_X)\)</span> 与 <span class="math inline">\((Y, \mathcal{T}_Y)\)</span> 的<strong>余积空间</strong>或<strong>拓扑和</strong>。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.5.1.2 The universal property of the coproduct topology of two spaces:</strong> The coproduct topology on <span class="math inline">\(X \sqcup Y\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Z\)</span> and a map <span class="math inline">\(h: X \sqcup Y \to Z\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(f_X = h \circ \iota_X: X \to Z\)</span> and <span class="math inline">\(f_Y = h \circ \iota_Y: Y \to Z\)</span> are continuous.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+X \sqcup Y &amp; \xleftarrow{\iota_Y} &amp; Y \\
+\uparrow^{\iota_X} &amp; \searrow^{h} &amp; \downarrow_{g_Y} \\
+X &amp; \xrightarrow{g_X} &amp; Z
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.5.1.2 两个空间余积拓扑的泛性质：</strong> <span class="math inline">\(X \sqcup Y\)</span> 上的余积拓扑由以下性质刻画：对于任何拓扑空间 <span class="math inline">\(Z\)</span> 及映射 <span class="math inline">\(h: X \sqcup Y \to Z\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当 <span class="math inline">\(f_X = h \circ \iota_X: X \to Z\)</span> 且 <span class="math inline">\(f_Y = h \circ \iota_Y: Y \to Z\)</span> 均连续。
+</details>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="coproducts-of-topological-spaces-拓扑空间的余积" class="level3">
+<h3 class="anchored" data-anchor-id="coproducts-of-topological-spaces-拓扑空间的余积">8.5.2 Coproducts of topological spaces | 拓扑空间的余积</h3>
+<p>The definition and universal property of coproduct spaces be generalized to the coproduct of finitely many and further to arbitrarily many spaces. Let <span class="math inline">\(\{X_i\}_{i \in I}\)</span> be a family of sets; there is the set <span class="math display">\[\bigsqcup_{i \in I} X_i = \bigcup_{i \in I} X_i \times \{i\}, \quad (96) \text{}\]</span> and with the inclusions <span class="math display">\[\iota_i: X_i \to \bigsqcup_{i \in I} X_i, \quad p_i \mapsto (p_i, i). \quad (97) \text{}\]</span></p>
+<p>For a family <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> of topological spaces, the <em>coproduct topology</em> on <span class="math inline">\(\coprod_{i \in I} X_i\)</span> is the final topology <span class="math inline">\(\mathcal{T}_{\sqcup_{i \in I} X_i}\)</span> induced by <span class="math inline">\(\{\iota_i\}_{i \in I}\)</span>. We denote their <em>coproduct space</em> by <span class="math inline">\(\sqcup_{i \in I} (X_i, \mathcal{T}_i) = \left( \sqcup_{i \in I} X_i, \mathcal{T}_{\sqcup_{i \in I} X_i} \right)\)</span>.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开解释]
+</summary>
+<ul>
+<li><p>痛点：现在你有任意多个（甚至不可数个）空间 <span class="math inline">\(\{X_i\}_{i \in I}\)</span>，要把它们倒进同一个大缸里求并集。万一空间 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(X_2\)</span> 里恰好都有一个叫 <span class="math inline">\(p\)</span> 的点，倒进去不就混淆了吗？</p></li>
+<li><p>数学操作：为了强行让它们“不相交”，我们给每个点贴上来源标签（公式 96）。<span class="math inline">\(X_i \times \{i\}\)</span> 的意思就是，空间 <span class="math inline">\(X_i\)</span> 里的点 <span class="math inline">\(p\)</span>，现在改名叫 <span class="math inline">\((p, i)\)</span>。</p></li>
+<li><p>包含映射 <span class="math inline">\(\iota_i\)</span> (公式 97)：这就相当于把点 <span class="math inline">\(p\)</span> 贴上第 <span class="math inline">\(i\)</span> 号标签后，扔进大缸 <span class="math inline">\(\coprod X_i\)</span> 里。</p></li>
+<li><p>因为大缸里的各个子空间老死不相往来（完全不相交），所以它们各自的拓扑也互不干涉。</p></li>
+<li><p>大缸的子基 <span class="math inline">\(\mathcal{S}_{\coprod X_i}\)</span> 怎么算？直接把所有小空间各自的子基 <span class="math inline">\(\mathcal{S}_i\)</span> 简单粗暴地倒在一起（求不相交并）就行了。 不需要像乘积拓扑那样去费尽心思地做截面。</p></li>
+<li><p>完全继承了上一节的“免检金牌”。</p></li>
+</ul>
+<p>你要证明从大缸出发射向外部空间 <span class="math inline">\(Z\)</span> 的函数 <span class="math inline">\(h\)</span> 是连续的？</p>
+<ul>
+<li>捷径：不需要去大缸里找开集。你只要证明 <span class="math inline">\(h\)</span> 在每一个小空间 <span class="math inline">\(X_i\)</span> 上的表现（即复合映射 <span class="math inline">\(f_i = h \circ \iota_i\)</span>）都是连续的就可以了。</li>
+</ul>
+</details>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.5.2.1 Proposition:</strong> If <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> is a family of topological spaces with <span class="math inline">\(\mathcal{S}_i\)</span> a subbase for <span class="math inline">\(\mathcal{T}_i\)</span>, then their coproduct topology <span class="math inline">\(\mathcal{T}_{\sqcup_{i \in I} X_i}\)</span> has a subbase <span class="math display">\[\mathcal{S}_{\sqcup_{i \in I} X_i} = \bigsqcup_{i \in I} \mathcal{S}_i. \quad (98) \text{}\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.5.2.1 命题：</strong> 若 <span class="math inline">\(\{(X_i, \mathcal{T}_i)\}_{i \in I}\)</span> 是一族拓扑空间，且 <span class="math inline">\(\mathcal{S}_i\)</span> 是 <span class="math inline">\(\mathcal{T}_i\)</span> 的子基，则它们的余积拓扑 <span class="math inline">\(\mathcal{T}_{\sqcup_{i \in I} X_i}\)</span> 拥有子基： <span class="math display">\[\mathcal{S}_{\sqcup_{i \in I} X_i} = \bigsqcup_{i \in I} \mathcal{S}_i。\]</span>
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.5.2.2 The universal property of the coproduct topology:</strong> The coproduct topology on <span class="math inline">\(\bigsqcup_{i \in I} X_i\)</span> is characterized by the following property. For any topological space <span class="math inline">\(Z\)</span> and a map <span class="math inline">\(h: \bigsqcup_{i \in I} X_i \to Z\)</span>, <span class="math inline">\(h\)</span> is continuous iff <span class="math inline">\(f_i = h \circ \iota_i: X_i \to Z\)</span> is continuous for any <span class="math inline">\(i \in I\)</span>.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\coprod_{i\in I} X_i &amp; &amp; \\
+\uparrow^{\iota_i} &amp; \searrow^{h} &amp; \\
+X_i &amp; \xrightarrow{f_i} &amp; Z
+\end{array}
+\]</span></p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.5.2.2 余积拓扑的泛性质：</strong> <span class="math inline">\(\bigsqcup_{i \in I} X_i\)</span> 上的余积拓扑由以下性质刻画：对于任何拓扑空间 <span class="math inline">\(Z\)</span> 及映射 <span class="math inline">\(h: \bigsqcup_{i \in I} X_i \to Z\)</span>，<span class="math inline">\(h\)</span> 连续当且仅当对任何 <span class="math inline">\(i \in I\)</span>，复合映射 <span class="math inline">\(f_i = h \circ \iota_i: X_i \to Z\)</span> 均连续。
+</details>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>8.5.2.3 Proposition:</strong> The coproduct of point spaces is a discrete space.</p>
+<details>
+<summary style="color: gray; cursor: pointer;">
+[点击展开翻译]
+</summary>
+<strong>8.5.2.3 命题：</strong> 点空间的余积是一个离散空间。
+</details>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
